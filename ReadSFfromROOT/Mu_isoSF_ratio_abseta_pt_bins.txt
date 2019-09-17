@@ -1,0 +1,54 @@
+if (leppt < 40){ 
+    if( lepeta < 0.900) isoSF *= 0.996774 ;
+    else if( lepeta < 1.200) isoSF *= 0.996165 ;
+    else if( lepeta < 2.100) isoSF *= 0.997773 ;
+    else isoSF *= 0.998785 ;
+} 
+else if (leppt < 50){ 
+    if( lepeta < 0.900) isoSF *= 0.998380 ;
+    else if( lepeta < 1.200) isoSF *= 0.997641 ;
+    else if( lepeta < 2.100) isoSF *= 0.998417 ;
+    else isoSF *= 0.999581 ;
+} 
+else if (leppt < 60){ 
+    if( lepeta < 0.900) isoSF *= 0.999209 ;
+    else if( lepeta < 1.200) isoSF *= 0.998940 ;
+    else if( lepeta < 2.100) isoSF *= 0.999302 ;
+    else isoSF *= 0.998849 ;
+} 
+else if (leppt < 120){ 
+    if( lepeta < 0.900) isoSF *= 0.999648 ;
+    else if( lepeta < 1.200) isoSF *= 0.999956 ;
+    else if( lepeta < 2.100) isoSF *= 1.000361 ;
+    else isoSF *= 0.998738 ;
+} 
+else if (leppt < 200){ 
+    if( lepeta < 0.900) isoSF *= 0.999866 ;
+    else if( lepeta < 1.200) isoSF *= 0.999198 ;
+    else if( lepeta < 2.100) isoSF *= 1.000536 ;
+    else isoSF *= 0.996425 ;
+} 
+else if (leppt < 300){ 
+    if( lepeta < 0.900) isoSF *= 1.000000 ;
+    else if( lepeta < 1.200) isoSF *= 0.994535 ;
+    else if( lepeta < 2.100) isoSF *= 1.000000 ;
+    else isoSF *= 1.000000 ;
+} 
+else if (leppt < 500){ 
+    if( lepeta < 0.900) isoSF *= 1.000000 ;
+    else if( lepeta < 1.200) isoSF *= 1.000000 ;
+    else if( lepeta < 2.100) isoSF *= 1.000000 ;
+    else isoSF *= 0.000000 ;
+} 
+else if (leppt < 700){ 
+    if( lepeta < 0.900) isoSF *= 0.000000 ;
+    else if( lepeta < 1.200) isoSF *= 0.000000 ;
+    else if( lepeta < 2.100) isoSF *= 0.000000 ;
+    else isoSF *= 0.000000 ;
+} 
+else{ 
+    if( lepeta < 0.900) isoSF *= 0.000000 ;
+    else if( lepeta < 1.200) isoSF *= 0.000000 ;
+    else if( lepeta < 2.100) isoSF *= 0.000000 ;
+    else isoSF *= 0.000000 ;
+} 

@@ -24,6 +24,7 @@ class step1 {
 public :
    TTree          *inputTree;   //!pointer to the analyzed TTree or TChain
    TFile          *inputFile, *outputFile;
+   TString         inFileName;
    Int_t           fCurrent; //!current Tree number in a TChain
 
    Bool_t          isSig;
@@ -1160,6 +1161,7 @@ step1::step1(TString inputFileName, TString outputFileName) : inputTree(0), inpu
 
   std::cout<<"Opening file: "<<inputFileName<<std::endl;
   inputFile=TFile::Open(inputFileName);
+  inFileName = inputFileName;
   
   outputFile=new TFile(outputFileName,"RECREATE");   
   

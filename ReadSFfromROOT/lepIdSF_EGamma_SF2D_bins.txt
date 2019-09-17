@@ -1,0 +1,72 @@
+if (leppt < 20){ 
+    if( lepeta < -2.000) lepIdSF *= 0.943237 ;
+    else if( lepeta < -1.566) lepIdSF *= 0.956818 ;
+    else if( lepeta < -1.444) lepIdSF *= 1.000000 ;
+    else if( lepeta < -0.800) lepIdSF *= 1.008304 ;
+    else if( lepeta < 0.000) lepIdSF *= 0.992727 ;
+    else if( lepeta < 0.800) lepIdSF *= 0.991566 ;
+    else if( lepeta < 1.444) lepIdSF *= 0.998800 ;
+    else if( lepeta < 1.566) lepIdSF *= 1.000000 ;
+    else if( lepeta < 2.000) lepIdSF *= 0.978360 ;
+    else lepIdSF *= 0.930036 ;
+} 
+else if (leppt < 35){ 
+    if( lepeta < -2.000) lepIdSF *= 0.926220 ;
+    else if( lepeta < -1.566) lepIdSF *= 0.937431 ;
+    else if( lepeta < -1.444) lepIdSF *= 1.000000 ;
+    else if( lepeta < -0.800) lepIdSF *= 0.963636 ;
+    else if( lepeta < 0.000) lepIdSF *= 0.980527 ;
+    else if( lepeta < 0.800) lepIdSF *= 0.980704 ;
+    else if( lepeta < 1.444) lepIdSF *= 0.963429 ;
+    else if( lepeta < 1.566) lepIdSF *= 1.000000 ;
+    else if( lepeta < 2.000) lepIdSF *= 0.942794 ;
+    else lepIdSF *= 0.918089 ;
+} 
+else if (leppt < 50){ 
+    if( lepeta < -2.000) lepIdSF *= 0.941176 ;
+    else if( lepeta < -1.566) lepIdSF *= 0.953241 ;
+    else if( lepeta < -1.444) lepIdSF *= 1.000000 ;
+    else if( lepeta < -0.800) lepIdSF *= 0.961665 ;
+    else if( lepeta < 0.000) lepIdSF *= 0.972467 ;
+    else if( lepeta < 0.800) lepIdSF *= 0.973742 ;
+    else if( lepeta < 1.444) lepIdSF *= 0.964758 ;
+    else if( lepeta < 1.566) lepIdSF *= 1.000000 ;
+    else if( lepeta < 2.000) lepIdSF *= 0.955319 ;
+    else lepIdSF *= 0.932535 ;
+} 
+else if (leppt < 100){ 
+    if( lepeta < -2.000) lepIdSF *= 0.948276 ;
+    else if( lepeta < -1.566) lepIdSF *= 0.966562 ;
+    else if( lepeta < -1.444) lepIdSF *= 1.000000 ;
+    else if( lepeta < -0.800) lepIdSF *= 0.967568 ;
+    else if( lepeta < 0.000) lepIdSF *= 0.979348 ;
+    else if( lepeta < 0.800) lepIdSF *= 0.975162 ;
+    else if( lepeta < 1.444) lepIdSF *= 0.969697 ;
+    else if( lepeta < 1.566) lepIdSF *= 1.000000 ;
+    else if( lepeta < 2.000) lepIdSF *= 0.970772 ;
+    else lepIdSF *= 0.937500 ;
+} 
+else if (leppt < 200){ 
+    if( lepeta < -2.000) lepIdSF *= 0.983370 ;
+    else if( lepeta < -1.566) lepIdSF *= 0.968750 ;
+    else if( lepeta < -1.444) lepIdSF *= 1.000000 ;
+    else if( lepeta < -0.800) lepIdSF *= 0.979437 ;
+    else if( lepeta < 0.000) lepIdSF *= 0.982628 ;
+    else if( lepeta < 0.800) lepIdSF *= 0.988121 ;
+    else if( lepeta < 1.444) lepIdSF *= 0.993407 ;
+    else if( lepeta < 1.566) lepIdSF *= 1.000000 ;
+    else if( lepeta < 2.000) lepIdSF *= 0.989529 ;
+    else lepIdSF *= 0.939232 ;
+} 
+else{ 
+    if( lepeta < -2.000) lepIdSF *= 0.921659 ;
+    else if( lepeta < -1.566) lepIdSF *= 0.984783 ;
+    else if( lepeta < -1.444) lepIdSF *= 1.000000 ;
+    else if( lepeta < -0.800) lepIdSF *= 1.006711 ;
+    else if( lepeta < 0.000) lepIdSF *= 0.993464 ;
+    else if( lepeta < 0.800) lepIdSF *= 0.958643 ;
+    else if( lepeta < 1.444) lepIdSF *= 1.013423 ;
+    else if( lepeta < 1.566) lepIdSF *= 1.000000 ;
+    else if( lepeta < 2.000) lepIdSF *= 0.948875 ;
+    else lepIdSF *= 1.056671 ;
+} 

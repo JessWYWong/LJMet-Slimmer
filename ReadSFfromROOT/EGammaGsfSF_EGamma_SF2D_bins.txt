@@ -1,0 +1,56 @@
+if (leppt < 45){ 
+    if( lepeta < -2.000) EGammaGsfSF *= 0.977482 ;
+    else if( lepeta < -1.566) EGammaGsfSF *= 0.981614 ;
+    else if( lepeta < -1.444) EGammaGsfSF *= 0.948352 ;
+    else if( lepeta < -1.000) EGammaGsfSF *= 0.969262 ;
+    else if( lepeta < -0.500) EGammaGsfSF *= 0.976555 ;
+    else if( lepeta < 0.000) EGammaGsfSF *= 0.970378 ;
+    else if( lepeta < 0.500) EGammaGsfSF *= 0.970348 ;
+    else if( lepeta < 1.000) EGammaGsfSF *= 0.972421 ;
+    else if( lepeta < 1.444) EGammaGsfSF *= 0.969917 ;
+    else if( lepeta < 1.566) EGammaGsfSF *= 0.957965 ;
+    else if( lepeta < 2.000) EGammaGsfSF *= 0.979592 ;
+    else EGammaGsfSF *= 0.979592 ;
+} 
+else if (leppt < 75){ 
+    if( lepeta < -2.000) EGammaGsfSF *= 0.983673 ;
+    else if( lepeta < -1.566) EGammaGsfSF *= 0.981707 ;
+    else if( lepeta < -1.444) EGammaGsfSF *= 0.970619 ;
+    else if( lepeta < -1.000) EGammaGsfSF *= 0.975535 ;
+    else if( lepeta < -0.500) EGammaGsfSF *= 0.979695 ;
+    else if( lepeta < 0.000) EGammaGsfSF *= 0.979654 ;
+    else if( lepeta < 0.500) EGammaGsfSF *= 0.977620 ;
+    else if( lepeta < 1.000) EGammaGsfSF *= 0.978680 ;
+    else if( lepeta < 1.444) EGammaGsfSF *= 0.977366 ;
+    else if( lepeta < 1.566) EGammaGsfSF *= 0.963945 ;
+    else if( lepeta < 2.000) EGammaGsfSF *= 0.982741 ;
+    else EGammaGsfSF *= 0.983740 ;
+} 
+else if (leppt < 100){ 
+    if( lepeta < -2.000) EGammaGsfSF *= 0.996951 ;
+    else if( lepeta < -1.566) EGammaGsfSF *= 0.996954 ;
+    else if( lepeta < -1.444) EGammaGsfSF *= 1.003229 ;
+    else if( lepeta < -1.000) EGammaGsfSF *= 0.995902 ;
+    else if( lepeta < -0.500) EGammaGsfSF *= 0.991895 ;
+    else if( lepeta < 0.000) EGammaGsfSF *= 0.991903 ;
+    else if( lepeta < 0.500) EGammaGsfSF *= 0.991903 ;
+    else if( lepeta < 1.000) EGammaGsfSF *= 0.991895 ;
+    else if( lepeta < 1.444) EGammaGsfSF *= 0.995902 ;
+    else if( lepeta < 1.566) EGammaGsfSF *= 1.003229 ;
+    else if( lepeta < 2.000) EGammaGsfSF *= 0.996954 ;
+    else EGammaGsfSF *= 0.996951 ;
+} 
+else{ 
+    if( lepeta < -2.000) EGammaGsfSF *= 0.989909 ;
+    else if( lepeta < -1.566) EGammaGsfSF *= 0.989889 ;
+    else if( lepeta < -1.444) EGammaGsfSF *= 1.009595 ;
+    else if( lepeta < -1.000) EGammaGsfSF *= 0.984725 ;
+    else if( lepeta < -0.500) EGammaGsfSF *= 0.987891 ;
+    else if( lepeta < 0.000) EGammaGsfSF *= 0.993933 ;
+    else if( lepeta < 0.500) EGammaGsfSF *= 0.993933 ;
+    else if( lepeta < 1.000) EGammaGsfSF *= 0.987891 ;
+    else if( lepeta < 1.444) EGammaGsfSF *= 0.984725 ;
+    else if( lepeta < 1.566) EGammaGsfSF *= 1.009595 ;
+    else if( lepeta < 2.000) EGammaGsfSF *= 0.989889 ;
+    else EGammaGsfSF *= 0.989909 ;
+} 
