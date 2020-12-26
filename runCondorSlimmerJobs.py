@@ -11,12 +11,17 @@ shift = sys.argv[1]
 
 relbase = os.environ['CMSSW_BASE']
 
-inputDir='/eos/uscms/store/group/lpcljm/FWLJMET102X_3lep2017_062019/'#+shift+'/'
-#inputDir='/eos/uscms/store/user/wywong/FWLJMET102X_3lep2017_062019/'
+#inputDir='/eos/uscms/store/user/wywong/FWLJMET102X_3lep2017_wywong_102019_saveLooseLep/'#+shift+'/'
+#inputDir='/eos/uscms/store/user/wywong/FWLJMET102X_3lep2017_wywong_062019/'
+inputDir='/eos/uscms/store/user/wywong/FWLJMET102X_3lep2017_wywong_012020/'
 
-outputDir='/eos/uscms/store/group/lpcljm/FWLJMET102X_3lep2017_062019_wywong_step1/'#+shift+'/'
+#outputDir='/eos/uscms/store/user/wywong/FWLJMET102X_3lep2017_wywong_012020_step1_etaFRv5/'
+#outputDir='/eos/uscms/store/user/wywong/FWLJMET102X_3lep2017_wywong_012020_step1_FRv4_uFR/'
+#outputDir='/eos/uscms/store/user/wywong/FWLJMET102X_3lep2017_wywong_012020_step1_FRv5_PRv2_prefire_elIdSys_TrigEffWeight_pdf4LHC/' #_etaFR/'
+outputDir='/eos/uscms/store/user/wywong/FWLJMET102X_3lep2017_wywong_012020_step1_FRv5_PRv2_pdf4LHC_nPU/' #_etaFR/'
 
-condorDir=os.environ['CMSSW_BASE']+'/..'+'/FWLJMET102X_3lep2017_062019_wywong_step1/'#+shift+'/'
+condorDir=os.environ['CMSSW_BASE']+'/../'+outputDir.split('/')[-2]+'/' #'/FWLJMET102X_3lep2017_wywong_102019_step1_FRv2_UnityElPR/'#+shift+'/'
+
 
 runDir=os.getcwd()
 # Can change the file directory if needed
@@ -41,16 +46,18 @@ print 'Starting submission'
 count=0
  
 signalList = [
-     #'TprimeTprime_M-1000_TuneCP5_13TeV-madgraph-pythia8',
-     #'TprimeTprime_M-1100_TuneCP5_13TeV-madgraph-pythia8',
-     #'TprimeTprime_M-1200_TuneCP5_13TeV-madgraph-pythia8',
-     #'TprimeTprime_M-1800_TuneCP5_13TeV-madgraph-pythia8',
+## FWLJMET
+     'TprimeTprime_M-1300_TuneCP5_13TeV-madgraph-pythia8',
+     'TprimeTprime_M-1400_TuneCP5_13TeV-madgraph-pythia8',
+     'TprimeTprime_M-1500_TuneCP5_13TeV-madgraph-pythia8',
+     'TprimeTprime_M-1600_TuneCP5_13TeV-madgraph-pythia8',
+     'TprimeTprime_M-1700_TuneCP5_13TeV-madgraph-pythia8',
 
-     #'TprimeTprime_M-1300_TuneCP5_13TeV-madgraph-pythia8',
-     #'TprimeTprime_M-1400_TuneCP5_13TeV-madgraph-pythia8',
-     #'TprimeTprime_M-1500_TuneCP5_13TeV-madgraph-pythia8',
-     #'TprimeTprime_M-1600_TuneCP5_13TeV-madgraph-pythia8',
-     #'TprimeTprime_M-1700_TuneCP5_13TeV-madgraph-pythia8',
+## FWLJMET_wywong
+     'TprimeTprime_M-1000_TuneCP5_13TeV-madgraph-pythia8',
+     'TprimeTprime_M-1100_TuneCP5_13TeV-madgraph-pythia8',
+     'TprimeTprime_M-1200_TuneCP5_13TeV-madgraph-pythia8',
+     'TprimeTprime_M-1800_TuneCP5_13TeV-madgraph-pythia8',
 
 #    'TprimeTprime_M-1300_TuneCP5_13TeV-madgraph-pythia8/multiLep2017/190620_221349/0000',
 #    'TprimeTprime_M-1400_TuneCP5_13TeV-madgraph-pythia8/multiLep2017/190620_222511/0000',
@@ -98,7 +105,7 @@ universe = vanilla
 Executable = %(RUNDIR)s/makeStep1.sh
 Should_Transfer_Files = YES
 WhenToTransferOutput = ON_EXIT
-Transfer_Input_Files = %(RUNDIR)s/makeStep1.C, %(RUNDIR)s/%(POST)s/step1.cc, %(RUNDIR)s/%(POST)s/step1.h, %(RUNDIR)s/%(POST)s/step1_cc.d, %(RUNDIR)s/%(POST)s/step1_cc.so, %(RUNDIR)s/%(POST)s/fakerate.h
+Transfer_Input_Files = %(RUNDIR)s/makeStep1.C, %(RUNDIR)s/%(POST)s/step1.cc, %(RUNDIR)s/%(POST)s/step1.h, %(RUNDIR)s/%(POST)s/step1_cc.d, %(RUNDIR)s/%(POST)s/step1_cc.so, %(RUNDIR)s/%(POST)s/fakerate.h, %(RUNDIR)s/%(POST)s/PUweights.h
 Output = %(FILENAME)s_%(LABEL)s.out
 Error = %(FILENAME)s_%(LABEL)s.err
 Log = %(FILENAME)s_%(LABEL)s.log
@@ -116,24 +123,27 @@ Queue 1"""%dict)
 #, %(RUNDIR)s/csc2015_Dec01.txt, %(RUNDIR)s/ecalscn1043093_Dec01.txt
 
 signalList = [
-#     'BprimeBprime_M-1000_TuneCP5_13TeV-madgraph-pythia8',
-#     'BprimeBprime_M-1100_TuneCP5_13TeV-madgraph-pythia8',
-#     'BprimeBprime_M-1200_TuneCP5_13TeV-madgraph-pythia8',
-#     'BprimeBprime_M-1300_TuneCP5_13TeV-madgraph-pythia8',
-#     'BprimeBprime_M-1400_TuneCP5_13TeV-madgraph-pythia8',
-#     'BprimeBprime_M-1500_TuneCP5_13TeV-madgraph-pythia8',
-#     'BprimeBprime_M-1600_TuneCP5_13TeV-madgraph-pythia8',
-#     'BprimeBprime_M-1700_TuneCP5_13TeV-madgraph-pythia8',
-#     'BprimeBprime_M-1800_TuneCP5_13TeV-madgraph-pythia8',
+     'BprimeBprime_M-900_TuneCP5_13TeV-madgraph-pythia8',
+     'BprimeBprime_M-1000_TuneCP5_13TeV-madgraph-pythia8',
+     'BprimeBprime_M-1100_TuneCP5_13TeV-madgraph-pythia8',
+     'BprimeBprime_M-1200_TuneCP5_13TeV-madgraph-pythia8',
+     'BprimeBprime_M-1300_TuneCP5_13TeV-madgraph-pythia8',
+     'BprimeBprime_M-1400_TuneCP5_13TeV-madgraph-pythia8',
+     'BprimeBprime_M-1500_TuneCP5_13TeV-madgraph-pythia8',
+     'BprimeBprime_M-1600_TuneCP5_13TeV-madgraph-pythia8',
+     'BprimeBprime_M-1700_TuneCP5_13TeV-madgraph-pythia8',
+     'BprimeBprime_M-1800_TuneCP5_13TeV-madgraph-pythia8',
 
+## FWLJMET
      #'BprimeBprime_M-1100_TuneCP5_13TeV-madgraph-pythia8',#/multiLep2017/190620_230122/0000',
      #'BprimeBprime_M-1200_TuneCP5_13TeV-madgraph-pythia8',#/multiLep2017/190620_221456/0000',
-     'BprimeBprime_M-1300_TuneCP5_13TeV-madgraph-pythia8',#/multiLep2017/190620_222622/0000',
-     'BprimeBprime_M-1400_TuneCP5_13TeV-madgraph-pythia8',#/multiLep2017/190620_221236/0000',
-     'BprimeBprime_M-1500_TuneCP5_13TeV-madgraph-pythia8',#/multiLep2017/190620_221835/0000',
-     'BprimeBprime_M-1700_TuneCP5_13TeV-madgraph-pythia8',#/multiLep2017/190620_230014/0000',
-     'BprimeBprime_M-1800_TuneCP5_13TeV-madgraph-pythia8',#/multiLep2017/190620_225908/0000',
+     #'BprimeBprime_M-1300_TuneCP5_13TeV-madgraph-pythia8',#/multiLep2017/190620_222622/0000',
+     #'BprimeBprime_M-1400_TuneCP5_13TeV-madgraph-pythia8',#/multiLep2017/190620_221236/0000',
+     #'BprimeBprime_M-1500_TuneCP5_13TeV-madgraph-pythia8',#/multiLep2017/190620_221835/0000',
+     #'BprimeBprime_M-1700_TuneCP5_13TeV-madgraph-pythia8',#/multiLep2017/190620_230014/0000',
+     #'BprimeBprime_M-1800_TuneCP5_13TeV-madgraph-pythia8',#/multiLep2017/190620_225908/0000',
 
+## FWLJMET_wywong
      #'BprimeBprime_M-1000_TuneCP5_13TeV-madgraph-pythia8',#/multiLep2017/190806_185500/0000',
      #'BprimeBprime_M-1600_TuneCP5_13TeV-madgraph-pythia8',#/multiLep2017/190806_185643/0000', 
      ]
@@ -171,7 +181,7 @@ universe = vanilla
 Executable = %(RUNDIR)s/makeStep1.sh
 Should_Transfer_Files = YES
 WhenToTransferOutput = ON_EXIT
-Transfer_Input_Files = %(RUNDIR)s/makeStep1.C, %(RUNDIR)s/%(POST)s/step1.cc, %(RUNDIR)s/%(POST)s/step1.h, %(RUNDIR)s/%(POST)s/step1_cc.d, %(RUNDIR)s/%(POST)s/step1_cc.so, %(RUNDIR)s/%(POST)s/fakerate.h
+Transfer_Input_Files = %(RUNDIR)s/makeStep1.C, %(RUNDIR)s/%(POST)s/step1.cc, %(RUNDIR)s/%(POST)s/step1.h, %(RUNDIR)s/%(POST)s/step1_cc.d, %(RUNDIR)s/%(POST)s/step1_cc.so, %(RUNDIR)s/%(POST)s/fakerate.h, %(RUNDIR)s/%(POST)s/PUweights.h
 Output = %(FILENAME)s_%(LABEL)s.out
 Error = %(FILENAME)s_%(LABEL)s.err
 Log = %(FILENAME)s_%(LABEL)s.log
@@ -184,8 +194,10 @@ Queue 1"""%dict)
              os.system('condor_submit %(FILENAME)s_%(LABEL)s.job'%dict)
              os.system('sleep 0.5')
              os.chdir('%s'%(runDir))
-             print count, "jobs submitted!!!"
- 
+             print count, "jobs submitted!!!" 
+
+
+
 # #, %(RUNDIR)s/csc2015_Dec01.txt, %(RUNDIR)s/ecalscn1043093_Dec01.txt
 # 
 dirList = [
@@ -215,26 +227,34 @@ dirList = [
         #'TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8',#/multiLep2017/190620_230758/0000',
         #'TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8',#/multiLep2017/190620_230333/0000',
         
-        #'DoubleEG/multiLep2017/190620_231818/0000',
-        #'DoubleEG/multiLep2017/190620_231925/0000',
-        #'DoubleEG/multiLep2017/190620_232145/0000',        
-        #'DoubleEG/multiLep2017/190620_232253/0000',
-        #'DoubleEG/multiLep2017/190620_232359/0000',
-        #'DoubleMuon/multiLep2017/190620_231237/0000',
-        #'DoubleMuon/multiLep2017/190620_231343/0000',
-        #'DoubleMuon/multiLep2017/190620_231451/0000',
-        #'DoubleMuon/multiLep2017/190620_231557/0000',
-        #'DoubleMuon/multiLep2017/190620_231703/0000',
-        #'MuonEG/multiLep2017/190620_232504/0000',
-        #'MuonEG/multiLep2017/190620_232610/0000',
-        #'MuonEG/multiLep2017/190620_232720/0000',
+        #'DoubleEG/multiLep2017/200103_013654/0000',#190620_231818/0000',
+        #'DoubleEG/multiLep2017/200103_160146/0000',#190620_231925/0000',
+        #'DoubleEG/multiLep2017/200103_175338/0000',#190620_232145/0000',        
+        #'DoubleEG/multiLep2017/200103_175538/0000',#190620_232253/0000',
+        #'DoubleEG/multiLep2017/200103_193851/0000',#190620_232359/0000',
+        #'DoubleMuon/multiLep2017/200103_202128/0000',#190620_231237/0000',
+        #'DoubleMuon/multiLep2017/200103_205150/0000',#190620_231343/0000',
+        #'DoubleMuon/multiLep2017/200103_205330/0000',#190620_231451/0000',
+        #'DoubleMuon/multiLep2017/200103_205513/0000',#190620_231557/0000',
+        #'DoubleMuon/multiLep2017/200103_205606/0000',#190620_231703/0000',
+        #'MuonEG/multiLep2017/200103_205715/0000',#190620_232504/0000',
+        #'MuonEG/multiLep2017/200103_205816/0000',#190620_232610/0000',
+        #'MuonEG/multiLep2017/200103_210318/0000',#190620_232720/0000',
+        #'MuonEG/multiLep2017/200103_210424/0000',
+        #'MuonEG/multiLep2017/200103_210518/0000',#190620_232931/0000',
         #####deleted files####'MuonEG/multiLep2017/190620_232826/0000',
-        #'MuonEG/multiLep2017/190620_232931/0000',
+        #########'MuonEG/multiLep2017/190620_232931/0000',
 
+## FWLJMET_wywong
 	#'MuonEG/multiLep2017/190905_030235/0000',
-        #'TTTo2L2Nu_TuneCP5_PSweights_13TeV-powheg-pythia8',
-        #'TTToHadronic_TuneCP5_PSweights_13TeV-powheg-pythia8',
-	#'TTToSemiLeptonic_TuneCP5_PSweights_13TeV-powheg-pythia8',
+        #'TTTo2L2Nu_TuneCP5_PSweights_13TeV-powheg-pythia8/multiLep2017/200206_213509/0000',#191021_194953/0000',
+	#'TTTo2L2Nu_TuneCP5_PSweights_13TeV-powheg-pythia8/multiLep2017/200206_213509/0001',#191021_194953/0001',
+        #'TTToHadronic_TuneCP5_PSweights_13TeV-powheg-pythia8/multiLep2017/190905_082355/0000',
+        #'TTToHadronic_TuneCP5_PSweights_13TeV-powheg-pythia8/multiLep2017/190905_082355/0001',
+        #'TTToHadronic_TuneCP5_PSweights_13TeV-powheg-pythia8/multiLep2017/190905_082355/0002',
+	#'TTToSemiLeptonic_TuneCP5_PSweights_13TeV-powheg-pythia8/multiLep2017/190905_081259/0000',
+        #'TTToSemiLeptonic_TuneCP5_PSweights_13TeV-powheg-pythia8/multiLep2017/190905_081259/0001',
+        #'TTToSemiLeptonic_TuneCP5_PSweights_13TeV-powheg-pythia8/multiLep2017/190905_081259/0002',
 	#'TT_Mtt-700to1000_TuneCP5_PSweights_13TeV-powheg-pythia8',
 	#'',
     ]
@@ -258,19 +278,18 @@ dirList = [
 # 	dirList.append('DoubleEG_RRF_v2')
 # 	dirList.append('DoubleMuon_RRF_v2')
 # 	dirList.append('MuonEG_RRF_v2')
-DoubleEG_crabid = {'231818' : 'D', '231925' : 'E', '232145' : 'F', '232253' : 'B', '232359' : 'C'}
-MuonEG_crabid = {'232504' : 'B', '232610' : 'C', '232720' : 'D', '030235' : 'E', '232931' : 'F'}
-DoubleMuon_crabid = {'231237' : 'F', '231343' : 'E', '231451' : 'D', '231557' : 'C', '231703' : 'B'}
+DoubleEG_crabid = {'175338' : 'D', '175538' : 'E', '193851' : 'F', '013654' : 'B', '160146' : 'C'}
+MuonEG_crabid = {'205715' : 'B', '205816' : 'C', '210318' : 'D', '210424' : 'E', '210518' : 'F'}
+DoubleMuon_crabid = {'205606' : 'F', '205513' : 'E', '205330' : 'D', '205150' : 'C', '202128' : 'B'}
 
 for path in dirList:
     sample=path.split('/')[0]
-
     subdir = EOSlistdir(inputDir+path)
     while len(subdir) == 1  and ".root" not in subdir[0]:
         print subdir
         path = path +"/"+ subdir[0]
         subdir = EOSlistdir(inputDir+path)
-    if len(EOSlistSubdirs(inputDir+path))>1: #EOSlistSubdirs only list directories, unlike EOSlistdir
+    if len(EOSlistSubdirs(inputDir+path))>1: #EOSlistSubdirs only list directories, unlike EOSlistdir 
         print EOSlistSubdirs(inputDir+path)
         print "Multiple sub directories found --> specify which to use in sample list"
         break
@@ -289,9 +308,11 @@ for path in dirList:
       era = 'Run2017'+DoubleMuon_crabid[crabid.split('_')[-1]]
 
     os.system('eos root://cmseos.fnal.gov/ mkdir -p '+outDir+sample+era)
-    os.system('mkdir -p '+condorDir+sample+era)
-    relPath = path
     outPath = sample+era
+    if(path.split('/')[-1]=='0000' or path.split('/')[-1]=='0001'):
+        outPath=outPath+"/"+path.split('/')[-1]
+    os.system('mkdir -p '+condorDir+outPath)
+    relPath = path
 
     rootfiles = EOSlist_root_files(inputDir+path)
     for file in rootfiles:
@@ -309,7 +330,7 @@ universe = vanilla
 Executable = %(RUNDIR)s/makeStep1.sh
 Should_Transfer_Files = YES
 WhenToTransferOutput = ON_EXIT
-Transfer_Input_Files = %(RUNDIR)s/makeStep1.C, %(RUNDIR)s/%(POST)s/step1.cc, %(RUNDIR)s/%(POST)s/step1.h, %(RUNDIR)s/%(POST)s/step1_cc.d, %(RUNDIR)s/%(POST)s/step1_cc.so, %(RUNDIR)s/%(POST)s/fakerate.h
+Transfer_Input_Files = %(RUNDIR)s/makeStep1.C, %(RUNDIR)s/%(POST)s/step1.cc, %(RUNDIR)s/%(POST)s/step1.h, %(RUNDIR)s/%(POST)s/step1_cc.d, %(RUNDIR)s/%(POST)s/step1_cc.so, %(RUNDIR)s/%(POST)s/fakerate.h, %(RUNDIR)s/%(POST)s/PUweights.h
 Output = %(FILENAME)s.out
 Error = %(FILENAME)s.err
 Log = %(FILENAME)s.log
@@ -323,7 +344,8 @@ Queue 1"""%dict)
         os.system('sleep 0.5')
         os.chdir('%s'%(runDir))
         print count, "jobs submitted!!!" 
-
+	#break
+    #break
 print "out "+outDir+"/"+outPath+"      from "+inDir+"/"+relPath
 
 #, %(RUNDIR)s/csc2015_Dec01.txt, %(RUNDIR)s/ecalscn1043093_Dec01.txt

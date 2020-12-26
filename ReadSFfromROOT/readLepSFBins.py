@@ -27,7 +27,7 @@ OutText = open(sys.argv[3]+"_"+sys.argv[2]+"_bins.txt", "w+")
 nYwritten =0
 for y in range(1,nY+1):
   pTUpEdge = Y.GetBinUpEdge(y)
-  if Y.GetBinLowEdge(y)<30:
+  if Y.GetBinUpEdge(y)<30:
     continue 
   nYwritten+=1
   if(y==nY):
