@@ -24,12 +24,13 @@ class step1 {
 public :
    TTree          *inputTree;   //!pointer to the analyzed TTree or TChain
    TFile          *inputFile, *outputFile;
-   TString         inFileName;
+   string         SampleName;
    Int_t           fCurrent; //!current Tree number in a TChain
 
    Bool_t          isSig;
    Bool_t          isTOP;
    Bool_t          isMadgraphBkg;
+   Bool_t          isPowhegBkg;
    Bool_t          isMC;
    Bool_t          isTT;
    Bool_t          isTTV;
@@ -68,8 +69,11 @@ public :
    Float_t         TrigEffAltWeight;
    Float_t         TrigEffWeight;
    Float_t         TrigEffWeightUncert;
+   Float_t         TrigEffWeightUp;
+   Float_t         TrigEffWeightDn;
    Float_t         isoSF;
    Float_t         lepIdSF;
+   Float_t         elIdSys;
    Float_t         MuTrkSF;
    Float_t         EGammaGsfSF;
    Float_t         JetSF_80X;
@@ -83,6 +87,10 @@ public :
    vector<double>  renormWeights;
    vector<double>  alphaSWeights;
    vector<double>  pdfWeights;
+   vector<double>  pdfNewWeights;
+   Float_t         pdfNewNominalWeight;
+   vector<double>  pdfWeights4LHC;
+   vector<double>  pdfWeightsMSTW;
 
    Float_t         leptonPt_MultiLepCalc;
    Float_t         leptonEta_MultiLepCalc;
@@ -106,9 +114,9 @@ public :
    vector<double>  AK4JetPhi_MultiLepCalc_PtOrdered;
    vector<double>  AK4JetEnergy_MultiLepCalc_PtOrdered;
    vector<int>     AK4JetFlav_MultiLepCalc_PtOrdered;
-   vector<double>  AK4JetBDisc_MultiLepCalc_PtOrdered;
-   vector<double>  AK4JetBDeepCSVb_MultiLepCalc_PtOrdered;
-   vector<double>  AK4JetBDeepCSVbb_MultiLepCalc_PtOrdered;
+   vector<double>  AK4JetCSV_MultiLepCalc_PtOrdered;
+   vector<double>  AK4JetDeepCSVb_MultiLepCalc_PtOrdered;
+   vector<double>  AK4JetDeepCSVbb_MultiLepCalc_PtOrdered;
    vector<int>     AK4JetBTag_MultiLepCalc_PtOrdered;
    vector<int>     AK4JetBTag_bSFup_MultiLepCalc_PtOrdered;
    vector<int>     AK4JetBTag_bSFdn_MultiLepCalc_PtOrdered;
@@ -419,11 +427,11 @@ public :
    vector<int>     *viSelMCTriggersMu_MultiLepCalc;
    vector<int>     *viSelTriggersEl_MultiLepCalc;
    vector<int>     *viSelTriggersMu_MultiLepCalc;
-   vector<double>  *AK4JetBDeepCSVb_MultiLepCalc;
-   vector<double>  *AK4JetBDeepCSVbb_MultiLepCalc;
-   vector<double>  *AK4JetBDeepCSVc_MultiLepCalc;
-   vector<double>  *AK4JetBDeepCSVudsg_MultiLepCalc;
-   vector<double>  *AK4JetBDisc_MultiLepCalc;
+   vector<double>  *AK4JetDeepCSVb_MultiLepCalc;
+   vector<double>  *AK4JetDeepCSVbb_MultiLepCalc;
+   vector<double>  *AK4JetDeepCSVc_MultiLepCalc;
+   vector<double>  *AK4JetDeepCSVudsg_MultiLepCalc;
+   vector<double>  *AK4JetCSV_MultiLepCalc;
    vector<double>  *AK4JetEnergy_jerdn_MultiLepCalc;
    vector<double>  *AK4JetEnergy_jerup_MultiLepCalc;
    vector<double>  *AK4JetEnergy_jesdn_MultiLepCalc;
@@ -471,6 +479,7 @@ public :
    vector<double>  *HdecayPhi_TpTpCalc;
    vector<double>  *HdecayPt_TpTpCalc;
    vector<double>  *LHEweights_MultiLepCalc;
+   vector<double>  *NewPDFweights_MultiLepCalc;
    vector<double>  *LeptonEnergy_TpTpCalc;
    vector<double>  *LeptonEta_TpTpCalc;
    vector<double>  *LeptonPhi_TpTpCalc;
@@ -851,11 +860,11 @@ public :
    TBranch        *b_viSelMCTriggersMu_MultiLepCalc;   //!
    TBranch        *b_viSelTriggersEl_MultiLepCalc;   //!
    TBranch        *b_viSelTriggersMu_MultiLepCalc;   //!
-   TBranch        *b_AK4JetBDeepCSVb_MultiLepCalc;   //!
-   TBranch        *b_AK4JetBDeepCSVbb_MultiLepCalc;   //!
-   TBranch        *b_AK4JetBDeepCSVc_MultiLepCalc;   //!
-   TBranch        *b_AK4JetBDeepCSVudsg_MultiLepCalc;   //!
-   TBranch        *b_AK4JetBDisc_MultiLepCalc;   //!
+   TBranch        *b_AK4JetDeepCSVb_MultiLepCalc;   //!
+   TBranch        *b_AK4JetDeepCSVbb_MultiLepCalc;   //!
+   TBranch        *b_AK4JetDeepCSVc_MultiLepCalc;   //!
+   TBranch        *b_AK4JetDeepCSVudsg_MultiLepCalc;   //!
+   TBranch        *b_AK4JetCSV_MultiLepCalc;   //!
    TBranch        *b_AK4JetEnergy_jerdn_MultiLepCalc;   //!
    TBranch        *b_AK4JetEnergy_jerup_MultiLepCalc;   //!
    TBranch        *b_AK4JetEnergy_jesdn_MultiLepCalc;   //!
@@ -903,6 +912,7 @@ public :
    TBranch        *b_HdecayPhi_TpTpCalc;   //!
    TBranch        *b_HdecayPt_TpTpCalc;   //!
    TBranch        *b_LHEweights_MultiLepCalc;   //!
+   TBranch        *b_NewPDFweights_MultiLepCalc; //!
    TBranch        *b_LeptonEnergy_TpTpCalc;   //!
    TBranch        *b_LeptonEta_TpTpCalc;   //!
    TBranch        *b_LeptonPhi_TpTpCalc;   //!
@@ -1137,11 +1147,12 @@ step1::step1(TString inputFileName, TString outputFileName) : inputTree(0), inpu
     else SigMass = -1;
   }
   isMadgraphBkg = inputFileName.Contains("WJetsToLNu_HT") || inputFileName.Contains("QCD") || inputFileName.Contains("madgraph");
+  isPowhegBkg = inputFileName.Contains("_powheg_");
   isTOP = (inputFileName.Contains("Mtt") || inputFileName.Contains("ST") || inputFileName.Contains("TTZ_") || inputFileName.Contains("TTW_") || inputFileName.Contains("TT_Tune"));
-  isTT = (inputFileName.Contains("TT_Tune") || inputFileName.Contains("Mtt"));
+  isTT = (inputFileName.Contains("TT_Tune") || inputFileName.Contains("Mtt") || inputFileName.Contains("TTTo"));
   isST = inputFileName.Contains("ST");
   isTTV = (inputFileName.Contains("TTZ_") || inputFileName.Contains("TTW_"));
-  isMC      = !inputFileName.Contains("DoubleEG") && !inputFileName.Contains("Muon")  ;
+  isMC      = !inputFileName.Contains("EGamma") && !inputFileName.Contains("Muon");
   isTTincMtt0to700    = outputFileName.Contains("Mtt0to700");
   isTTincMtt0to1000    = outputFileName.Contains("Mtt0to1000");
   isTTincMtt700to1000    = outputFileName.Contains("Mtt700to1000");
@@ -1161,7 +1172,7 @@ step1::step1(TString inputFileName, TString outputFileName) : inputTree(0), inpu
 
   std::cout<<"Opening file: "<<inputFileName<<std::endl;
   inputFile=TFile::Open(inputFileName);
-  inFileName = inputFileName;
+  SampleName = (string) inputFileName(inputFileName.Last('/')+1,inputFileName.Last('_')-inputFileName.Last('/')-1);
   
   outputFile=new TFile(outputFileName,"RECREATE");   
   
@@ -1310,11 +1321,11 @@ void step1::Init(TTree *tree)
    viSelMCTriggersMu_MultiLepCalc = 0;
    viSelTriggersEl_MultiLepCalc = 0;
    viSelTriggersMu_MultiLepCalc = 0;
-   AK4JetBDeepCSVb_MultiLepCalc = 0;
-   AK4JetBDeepCSVbb_MultiLepCalc = 0;
-   AK4JetBDeepCSVc_MultiLepCalc = 0;
-   AK4JetBDeepCSVudsg_MultiLepCalc = 0;
-   AK4JetBDisc_MultiLepCalc = 0;
+   AK4JetDeepCSVb_MultiLepCalc = 0;
+   AK4JetDeepCSVbb_MultiLepCalc = 0;
+   AK4JetDeepCSVc_MultiLepCalc = 0;
+   AK4JetDeepCSVudsg_MultiLepCalc = 0;
+   AK4JetCSV_MultiLepCalc = 0;
    AK4JetEnergy_jerdn_MultiLepCalc = 0;
    AK4JetEnergy_jerup_MultiLepCalc = 0;
    AK4JetEnergy_jesdn_MultiLepCalc = 0;
@@ -1362,6 +1373,7 @@ void step1::Init(TTree *tree)
    HdecayPhi_TpTpCalc = 0;
    HdecayPt_TpTpCalc = 0;
    LHEweights_MultiLepCalc = 0;
+   NewPDFweights_MultiLepCalc = 0;
    LeptonEnergy_TpTpCalc = 0;
    LeptonEta_TpTpCalc = 0;
    LeptonPhi_TpTpCalc = 0;
@@ -1746,11 +1758,11 @@ void step1::Init(TTree *tree)
    inputTree->SetBranchAddress("viSelMCTriggersMu_MultiLepCalc", &viSelMCTriggersMu_MultiLepCalc, &b_viSelMCTriggersMu_MultiLepCalc);
    inputTree->SetBranchAddress("viSelTriggersEl_MultiLepCalc", &viSelTriggersEl_MultiLepCalc, &b_viSelTriggersEl_MultiLepCalc);
    inputTree->SetBranchAddress("viSelTriggersMu_MultiLepCalc", &viSelTriggersMu_MultiLepCalc, &b_viSelTriggersMu_MultiLepCalc);
-   inputTree->SetBranchAddress("AK4JetBDeepCSVb_MultiLepCalc", &AK4JetBDeepCSVb_MultiLepCalc, &b_AK4JetBDeepCSVb_MultiLepCalc);
-   inputTree->SetBranchAddress("AK4JetBDeepCSVbb_MultiLepCalc", &AK4JetBDeepCSVbb_MultiLepCalc, &b_AK4JetBDeepCSVbb_MultiLepCalc);
-   inputTree->SetBranchAddress("AK4JetBDeepCSVc_MultiLepCalc", &AK4JetBDeepCSVc_MultiLepCalc, &b_AK4JetBDeepCSVc_MultiLepCalc);
-   inputTree->SetBranchAddress("AK4JetBDeepCSVudsg_MultiLepCalc", &AK4JetBDeepCSVudsg_MultiLepCalc, &b_AK4JetBDeepCSVudsg_MultiLepCalc);
-   inputTree->SetBranchAddress("AK4JetBDisc_MultiLepCalc", &AK4JetBDisc_MultiLepCalc, &b_AK4JetBDisc_MultiLepCalc);
+   inputTree->SetBranchAddress("AK4JetDeepCSVb_MultiLepCalc", &AK4JetDeepCSVb_MultiLepCalc, &b_AK4JetDeepCSVb_MultiLepCalc);
+   inputTree->SetBranchAddress("AK4JetDeepCSVbb_MultiLepCalc", &AK4JetDeepCSVbb_MultiLepCalc, &b_AK4JetDeepCSVbb_MultiLepCalc);
+   inputTree->SetBranchAddress("AK4JetDeepCSVc_MultiLepCalc", &AK4JetDeepCSVc_MultiLepCalc, &b_AK4JetDeepCSVc_MultiLepCalc);
+   inputTree->SetBranchAddress("AK4JetDeepCSVudsg_MultiLepCalc", &AK4JetDeepCSVudsg_MultiLepCalc, &b_AK4JetDeepCSVudsg_MultiLepCalc);
+   inputTree->SetBranchAddress("AK4JetCSV_MultiLepCalc", &AK4JetCSV_MultiLepCalc, &b_AK4JetCSV_MultiLepCalc);
    inputTree->SetBranchAddress("AK4JetEnergy_jerdn_MultiLepCalc", &AK4JetEnergy_jerdn_MultiLepCalc, &b_AK4JetEnergy_jerdn_MultiLepCalc);
    inputTree->SetBranchAddress("AK4JetEnergy_jerup_MultiLepCalc", &AK4JetEnergy_jerup_MultiLepCalc, &b_AK4JetEnergy_jerup_MultiLepCalc);
    inputTree->SetBranchAddress("AK4JetEnergy_jesdn_MultiLepCalc", &AK4JetEnergy_jesdn_MultiLepCalc, &b_AK4JetEnergy_jesdn_MultiLepCalc);
@@ -1798,6 +1810,7 @@ void step1::Init(TTree *tree)
    inputTree->SetBranchAddress("HdecayPhi_TpTpCalc", &HdecayPhi_TpTpCalc, &b_HdecayPhi_TpTpCalc);
    inputTree->SetBranchAddress("HdecayPt_TpTpCalc", &HdecayPt_TpTpCalc, &b_HdecayPt_TpTpCalc);
    inputTree->SetBranchAddress("LHEweights_MultiLepCalc", &LHEweights_MultiLepCalc, &b_LHEweights_MultiLepCalc);
+   inputTree->SetBranchAddress("NewPDFweights_MultiLepCalc", &NewPDFweights_MultiLepCalc, &b_NewPDFweights_MultiLepCalc);
    inputTree->SetBranchAddress("LeptonEnergy_TpTpCalc", &LeptonEnergy_TpTpCalc, &b_LeptonEnergy_TpTpCalc);
    inputTree->SetBranchAddress("LeptonEta_TpTpCalc", &LeptonEta_TpTpCalc, &b_LeptonEta_TpTpCalc);
    inputTree->SetBranchAddress("LeptonPhi_TpTpCalc", &LeptonPhi_TpTpCalc, &b_LeptonPhi_TpTpCalc);
@@ -2021,3 +2034,4 @@ Int_t step1::Cut(Long64_t entry)
    return 1;
 }
 #endif // #ifdef step1_cxx
+

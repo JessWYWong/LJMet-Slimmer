@@ -6,7 +6,7 @@
 
 date
 
-source switchTo_LJMet94x_rizki_2017data_8Nov2018.sh #1st attempt for 2017data
+#source switchTo_LJMet94x_rizki_2017data_8Nov2018.sh #1st attempt for 2017data
 
 echo "SUBMITTING nominal"
 

@@ -39,7 +39,7 @@ for y in range(1,nY+1):
     OutText.write("else if (leppt < %d){ \r\n" %(pTUpEdge))
   for x in range(1,nX+1):
     etaUpEdge = X.GetBinUpEdge(x)
-    bincontent = hist.GetBinContent(x,y)
+    bincontent = hist.GetBinError(x,y)
     if swapXY:
       bincontent = hist.GetBinContent(y,x)
     if (x==1) :

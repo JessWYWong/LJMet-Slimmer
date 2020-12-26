@@ -11,7 +11,7 @@ void makeStep1(TString macroDir, TString inputFile, TString outputFile){
   gSystem->AddIncludePath(incl);
 
   step1 t(inputFile,outputFile);
-  if ( inputFile.Contains("MuonEG") || inputFile.Contains("DoubleEG") || inputFile.Contains("DoubleMuon") ) { 
+  if ( inputFile.Contains("MuonEG") || inputFile.Contains("EGamma") || inputFile.Contains("DoubleMuon") ) { 
       t.Loop("ljmet", "ljmet");   
   }
   else {
