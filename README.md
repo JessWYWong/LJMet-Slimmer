@@ -1,3 +1,5 @@
+# Modified from rsyarif/LJMet-Slimmer
+
 # LJMet-Slimmer
 
 Code (step1.cc/.h) to slim LJMet trees. Built on ROOT's MakeClass.
