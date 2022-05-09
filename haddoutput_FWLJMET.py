@@ -1,4 +1,5 @@
 import os,sys,datetime,time,math
+import subprocess
 from ROOT import *
 execfile("/uscms_data/d3/wywong/EOSSafeUtils.py")
 
@@ -20,14 +21,67 @@ outDir=outputDir[10:]
 
 os.system('eos root://cmseos.fnal.gov/ mkdir -p '+outDir)
 
+newsignalList = [
+     #'X53X53_M-900_RH_TuneCP5_13TeV-madgraph-pythia8',
+     #'X53X53_M-1000_RH_TuneCP5_13TeV-madgraph-pythia8',
+     #'X53X53_M-1100_RH_TuneCP5_13TeV-madgraph-pythia8',
+     #'X53X53_M-1200_RH_TuneCP5_13TeV-madgraph-pythia8',
+     #'X53X53_M-1300_RH_TuneCP5_13TeV-madgraph-pythia8',
+     #'X53X53_M-1400_RH_TuneCP5_13TeV-madgraph-pythia8',
+     #'X53X53_M-1600_RH_TuneCP5_13TeV-madgraph-pythia8',
+     #'X53X53_M-1700_RH_TuneCP5_13TeV-madgraph-pythia8',
+
+     #'X53X53_M-1100_LH_TuneCP5_13TeV-madgraph-pythia8',
+     #'X53X53_M-1200_LH_TuneCP5_13TeV-madgraph-pythia8',
+     #'X53X53_M-1400_LH_TuneCP5_13TeV-madgraph-pythia8',
+     #'X53X53_M-1500_LH_TuneCP5_13TeV-madgraph-pythia8',
+     #'X53X53_M-1700_LH_TuneCP5_13TeV-madgraph-pythia8',
+]
+signalOutList = ['TWTW']
+for sample in newsignalList:
+    for outlabel in signalOutList:
+        rootfiles = EOSlist_root_files(inputDir+'/'+sample+'_'+outlabel)
+
+        print '##########'*15
+        print 'HADDING:', sample#,'_',outlabel
+        print '##########'*15
+
+        print 'N root files in',sample,'=',len(rootfiles)
+
+        haddcommand = 'hadd -f root://cmseos.fnal.gov/'+outDir+'/'+sample+'_'+outlabel+'_hadd.root '
+
+	nFilesPerHadd = 500
+	print 'split into file extension ',range(int(math.ceil(len(rootfiles)/(nFilesPerHadd*1.0))))
+
+	if len(rootfiles) < nFilesPerHadd:
+		haddcommand = 'hadd -f /eos/uscms/'+outDir+'/'+sample+'_'+outlabel+'_hadd.root '
+
+	        for file in rootfiles:
+			if os.path.getsize('/eos/uscms/'+inDir+'/'+sample+'_'+outlabel+'/'+file) < 1501: continue
+            		haddcommand+=' root://cmseos.fnal.gov/'+inDir+'/'+sample+'_'+outlabel+'/'+file
+		os.system(haddcommand)
+	else:
+		for i in range(int(math.ceil(len(rootfiles)/(1.0*nFilesPerHadd)))):
+			haddcommand = 'hadd -f /eos/uscms/'+outDir+'/'+sample+'_'+outlabel+'_'+str(i+1)+'_hadd.root '
+			begin=i*nFilesPerHadd
+		        end=begin+nFilesPerHadd
+            		if end >len(rootfiles) : end=len(rootfiles)
+           		print 'file ',i,' with root files ', begin, ' to ', end
+            		for j in range(begin,end):
+				if os.path.getsize('/eos/uscms/'+inDir+'/'+sample+'_'+outlabel+'/'+rootfiles[j]) < 1501: continue
+				haddcommand+=' root://cmseos.fnal.gov/'+inDir+'/'+sample+'_'+outlabel+'/'+rootfiles[j]
+        		os.system(haddcommand)
+        #subprocess.call(haddcommand)
+#        print haddcommand
+
 signalList = [
-#     'TprimeTprime_M-700_TuneCP5_13TeV-madgraph-pythia8',
-     #'TprimeTprime_M-1000_TuneCP5_13TeV-madgraph-pythia8',
+     #'TprimeTprime_M-700_TuneCP5_13TeV-madgraph-pythia8',
+     'TprimeTprime_M-1000_TuneCP5_13TeV-madgraph-pythia8',
      #'TprimeTprime_M-1100_TuneCP5_13TeV-madgraph-pythia8',
      #'TprimeTprime_M-1200_TuneCP5_13TeV-madgraph-pythia8',
      #'TprimeTprime_M-1300_TuneCP5_13TeV-madgraph-pythia8',
      #'TprimeTprime_M-1400_TuneCP5_13TeV-madgraph-pythia8',
-     #'TprimeTprime_M-1500_TuneCP5_13TeV-madgraph-pythia8',
+     'TprimeTprime_M-1500_TuneCP5_13TeV-madgraph-pythia8',
      #'TprimeTprime_M-1600_TuneCP5_13TeV-madgraph-pythia8',
      #'TprimeTprime_M-1700_TuneCP5_13TeV-madgraph-pythia8',
      #'TprimeTprime_M-1800_TuneCP5_13TeV-madgraph-pythia8',
@@ -57,16 +111,16 @@ for sample in signalList:
 
 
 signalList = [
-    'BprimeBprime_M-900_TuneCP5_13TeV-madgraph-pythia8',
-    'BprimeBprime_M-1000_TuneCP5_13TeV-madgraph-pythia8',
-    'BprimeBprime_M-1100_TuneCP5_13TeV-madgraph-pythia8',
-    'BprimeBprime_M-1200_TuneCP5_13TeV-madgraph-pythia8',
-    'BprimeBprime_M-1300_TuneCP5_13TeV-madgraph-pythia8',
-    'BprimeBprime_M-1400_TuneCP5_13TeV-madgraph-pythia8',
-    'BprimeBprime_M-1500_TuneCP5_13TeV-madgraph-pythia8',
-    'BprimeBprime_M-1600_TuneCP5_13TeV-madgraph-pythia8',
-    'BprimeBprime_M-1700_TuneCP5_13TeV-madgraph-pythia8',
-    'BprimeBprime_M-1800_TuneCP5_13TeV-madgraph-pythia8',
+    #'BprimeBprime_M-900_TuneCP5_13TeV-madgraph-pythia8',
+    #'BprimeBprime_M-1000_TuneCP5_13TeV-madgraph-pythia8',
+    #'BprimeBprime_M-1100_TuneCP5_13TeV-madgraph-pythia8',
+    #'BprimeBprime_M-1200_TuneCP5_13TeV-madgraph-pythia8',
+    #'BprimeBprime_M-1300_TuneCP5_13TeV-madgraph-pythia8',
+    #'BprimeBprime_M-1400_TuneCP5_13TeV-madgraph-pythia8',
+    #'BprimeBprime_M-1500_TuneCP5_13TeV-madgraph-pythia8',
+    #'BprimeBprime_M-1600_TuneCP5_13TeV-madgraph-pythia8',
+    #'BprimeBprime_M-1700_TuneCP5_13TeV-madgraph-pythia8',
+    #'BprimeBprime_M-1800_TuneCP5_13TeV-madgraph-pythia8',
     ]
 
 signalOutList = ['']
@@ -98,6 +152,23 @@ for sample in signalList:
 
 
 dirList = [
+	#### new signal samples (no decay!)
+     #'TTTT_TuneCP5_PSweights_13TeV-amcatnlo-pythia8_correctnPartonsInBorn',
+     #'X53X53_M-900_RH_TuneCP5_13TeV-madgraph-pythia8',
+     #'X53X53_M-1000_RH_TuneCP5_13TeV-madgraph-pythia8',
+     #'X53X53_M-1100_RH_TuneCP5_13TeV-madgraph-pythia8',
+     #'X53X53_M-1200_RH_TuneCP5_13TeV-madgraph-pythia8',
+     #'X53X53_M-1300_RH_TuneCP5_13TeV-madgraph-pythia8',
+     #'X53X53_M-1400_RH_TuneCP5_13TeV-madgraph-pythia8',
+     #'X53X53_M-1600_RH_TuneCP5_13TeV-madgraph-pythia8',
+     #'X53X53_M-1700_RH_TuneCP5_13TeV-madgraph-pythia8',
+
+     #'X53X53_M-1100_LH_TuneCP5_13TeV-madgraph-pythia8',
+     #'X53X53_M-1200_LH_TuneCP5_13TeV-madgraph-pythia8',
+     #'X53X53_M-1400_LH_TuneCP5_13TeV-madgraph-pythia8',
+     #'X53X53_M-1500_LH_TuneCP5_13TeV-madgraph-pythia8',
+     #'X53X53_M-1700_LH_TuneCP5_13TeV-madgraph-pythia8',
+
 	#### As requested by Cristina Botta (ARC B2G-17-011).
 # 	'TTGJets_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8',
 # 	'ZGTo2LG_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8',
@@ -113,31 +184,33 @@ dirList = [
 # 	'TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8',
 # 	'WW_TuneCP5_13TeV-pythia8',	
 
-	#######################################
-        #'TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8/0000',
-        #'TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8/0000',
-        #'WWW_4F_TuneCP5_13TeV-amcatnlo-pythia8/0000',
-        #'WWZ_4F_TuneCP5_13TeV-amcatnlo-pythia8/0000',
-        #'WZTo3LNu_TuneCP5_13TeV-amcatnloFXFX-pythia8/0000',
-        #'WZZ_TuneCP5_13TeV-amcatnlo-pythia8/0000',
-        #'ZZTo4L_13TeV_powheg_pythia8/0000',
-        #'ZZZ_TuneCP5_13TeV-amcatnlo-pythia8/0000',
+	################# FWLJMET ######################
+        'TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8/0000',
+        'TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8/0000',
+        'WWW_4F_TuneCP5_13TeV-amcatnlo-pythia8/0000',
+        'WWZ_4F_TuneCP5_13TeV-amcatnlo-pythia8/0000',
+        'WZTo3LNu_TuneCP5_13TeV-amcatnloFXFX-pythia8/0000',
+        'WZZ_TuneCP5_13TeV-amcatnlo-pythia8/0000',
+        'WZZTo3L1Nu2Q_4f_TuneCP5_13TeV_amcatnlo_pythia8/0000',
+        'WZZ_ZTo2L_WToAll_4f_TuneCP5_13TeV_amcatnlo_pythia8/0000',
+        'ZZTo4L_13TeV_powheg_pythia8/0000',
+        'ZZZ_TuneCP5_13TeV-amcatnlo-pythia8/0000',
         
-        #'DoubleEGRun2017B/0000',
-        #'DoubleEGRun2017E/0000',
-        #'DoubleEGRun2017C/0000',
-        #'DoubleEGRun2017F/0000',
-        #'DoubleEGRun2017D/0000',
-        #'DoubleMuonRun2017C/0000',
-        #'DoubleMuonRun2017F/0000',
-        #'DoubleMuonRun2017D/0000',
-        #'DoubleMuonRun2017B/0000',
-        #'DoubleMuonRun2017E/0000',
-        #'MuonEGRun2017C/0000',
-        #'MuonEGRun2017F/0000',
-        #'MuonEGRun2017D/0000',
-        #'MuonEGRun2017B/0000',
-        #'MuonEGRun2017E/0000',
+        'DoubleEGRun2017B/0000',
+        'DoubleEGRun2017E/0000',
+        'DoubleEGRun2017C/0000',
+        'DoubleEGRun2017F/0000',
+        'DoubleEGRun2017D/0000',
+        'DoubleMuonRun2017C/0000',
+        'DoubleMuonRun2017F/0000',
+        'DoubleMuonRun2017D/0000',
+        'DoubleMuonRun2017B/0000',
+        'DoubleMuonRun2017E/0000',
+        'MuonEGRun2017C/0000',
+        'MuonEGRun2017F/0000',
+        'MuonEGRun2017D/0000',
+        'MuonEGRun2017B/0000',
+        'MuonEGRun2017E/0000',
 
 	#'TTTo2L2Nu_TuneCP5_PSweights_13TeV-powheg-pythia8/multiLep2017/191021_194953/0000',
 	#'TTTo2L2Nu_TuneCP5_PSweights_13TeV-powheg-pythia8/0000',
@@ -176,7 +249,7 @@ for samplePath in dirList:
     #haddcommand = 'hadd -f root://cmseos.fnal.gov/'+outDir+'/'+sample+'_hadd.root '
     haddcommand = 'hadd -f /eos/uscms/'+outDir+'/'+sample+'_hadd.root '
 
-    nFilesPerHadd = 500
+    nFilesPerHadd = 400
     #print 'len(rootfiles)/nFilesPerHadd = ', len(rootfiles), '/',nFilesPerHadd,' = ', len(rootfiles)/(nFilesPerHadd*1.0)
     print 'split into file extension ',range(int(math.ceil(len(rootfiles)/(nFilesPerHadd*1.0))))
 #     nFilesPerHadd = 10
@@ -197,7 +270,7 @@ for samplePath in dirList:
             if end >len(rootfiles) : end=len(rootfiles)
             print 'file ',i,' with root files ', begin, ' to ', end
             for j in range(begin,end):
-                if os.path.getsize('/eos/uscms/'+inDir+'/'+samplePath+'/'+rootfiles[j]) < 1501: continue
+                #if os.path.getsize('/eos/uscms/'+inDir+'/'+samplePath+'/'+rootfiles[j]) < 1501: continue
                 haddcommand+=' root://cmseos.fnal.gov/'+inDir+'/'+samplePath+'/'+rootfiles[j]
             os.system(haddcommand)
 

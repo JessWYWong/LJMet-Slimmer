@@ -43,8 +43,8 @@ public :
    Int_t           event_CommonCalc;
    Int_t           run_CommonCalc;
    Int_t           lumi_CommonCalc;
-   Int_t           nPV_singleLepCalc;
-   Int_t           nTrueInteractions_singleLepCalc;
+   Int_t           nPV_MultiLepCalc;
+   Int_t           nTrueInteractions_MultiLepCalc;
    Int_t           isElectron;
    Int_t           isMuon;
 //    Int_t           MCPastTrigger;
@@ -64,7 +64,7 @@ public :
    Bool_t          isBZBH_TpTpCalc;
    Bool_t          isBZBZ_TpTpCalc;
    Int_t           NLeptonDecays_TpTpCalc;
-   Double_t        MCWeight_singleLepCalc;
+   Double_t        MCWeight_MultiLepCalc;
    vector<double>  *renormWeights;
    vector<float>   *pdfWeights;
    Float_t         JetSF_pTNbwflat;
@@ -154,18 +154,18 @@ public :
    Int_t           MCPastTrigger_singlelep;
    Int_t           DataPastTrigger_singlelep;
    Double_t        ttbarMass_TTbarMassCalc;
-   Double_t        corr_met_singleLepCalc;
-   Double_t        corr_met_phi_singleLepCalc;
-   Float_t         leptonPt_singleLepCalc;
-   Float_t         leptonEta_singleLepCalc;
-   Float_t         leptonPhi_singleLepCalc;
-   Float_t         leptonEnergy_singleLepCalc;
-   Float_t         leptonMiniIso_singleLepCalc;
-   Float_t         leptonRelIso_singleLepCalc;
-   Float_t         leptonDxy_singleLepCalc;
-   Float_t         leptonDz_singleLepCalc;
-   Int_t           leptonCharge_singleLepCalc;
-   Int_t           elTrigPresel_singleLepCalc;
+   Double_t        corr_met_MultiLepCalc;
+   Double_t        corr_met_phi_MultiLepCalc;
+   Float_t         leptonPt_MultiLepCalc;
+   Float_t         leptonEta_MultiLepCalc;
+   Float_t         leptonPhi_MultiLepCalc;
+   Float_t         leptonEnergy_MultiLepCalc;
+   Float_t         leptonMiniIso_MultiLepCalc;
+   Float_t         leptonRelIso_MultiLepCalc;
+   Float_t         leptonDxy_MultiLepCalc;
+   Float_t         leptonDz_MultiLepCalc;
+   Int_t           leptonCharge_MultiLepCalc;
+   Int_t           elTrigPresel_MultiLepCalc;
    vector<float>   *AllLeptonElPt_PtOrdered;
    vector<float>   *AllLeptonElEta_PtOrdered;
    vector<float>   *AllLeptonElPhi_PtOrdered;
@@ -263,15 +263,15 @@ public :
    vector<float>   *TightLeptonMiniIso_PtOrdered;
    vector<int>     *TightLeptonFlavor_PtOrdered;
    vector<int>     *TightLeptonCharge_PtOrdered;
-   vector<double>  *AK4JetPt_singleLepCalc_PtOrdered;
-   vector<double>  *AK4JetEta_singleLepCalc_PtOrdered;
-   vector<double>  *AK4JetPhi_singleLepCalc_PtOrdered;
-   vector<double>  *AK4JetEnergy_singleLepCalc_PtOrdered;
-   vector<int>     *AK4JetBTag_singleLepCalc_PtOrdered;
-   vector<int>     *AK4JetBTag_bSFup_singleLepCalc_PtOrdered;
-   vector<int>     *AK4JetBTag_bSFdn_singleLepCalc_PtOrdered;
-   vector<int>     *AK4JetBTag_lSFup_singleLepCalc_PtOrdered;
-   vector<int>     *AK4JetBTag_lSFdn_singleLepCalc_PtOrdered;
+   vector<double>  *AK4JetPt_MultiLepCalc_PtOrdered;
+   vector<double>  *AK4JetEta_MultiLepCalc_PtOrdered;
+   vector<double>  *AK4JetPhi_MultiLepCalc_PtOrdered;
+   vector<double>  *AK4JetEnergy_MultiLepCalc_PtOrdered;
+   vector<int>     *AK4JetBTag_MultiLepCalc_PtOrdered;
+   vector<int>     *AK4JetBTag_bSFup_MultiLepCalc_PtOrdered;
+   vector<int>     *AK4JetBTag_bSFdn_MultiLepCalc_PtOrdered;
+   vector<int>     *AK4JetBTag_lSFup_MultiLepCalc_PtOrdered;
+   vector<int>     *AK4JetBTag_lSFdn_MultiLepCalc_PtOrdered;
    vector<int>     *HadronicVHtID_JetSubCalc;
    vector<double>  *HadronicVHtPt_JetSubCalc;
    vector<double>  *HadronicVHtEta_JetSubCalc;
@@ -293,10 +293,10 @@ public :
    vector<int>     *theJetAK8Zmatch_JetSubCalc_PtOrdered;
    vector<int>     *theJetAK8Hmatch_JetSubCalc_PtOrdered;
    vector<double>  *theJetAK8MatchedPt_JetSubCalc_PtOrdered;
-   vector<double>  *genJetPt_singleLepCalc;
-   vector<double>  *genJetEta_singleLepCalc;
-   vector<double>  *genJetPhi_singleLepCalc;
-   vector<double>  *genJetEnergy_singleLepCalc;
+   vector<double>  *genJetPt_MultiLepCalc;
+   vector<double>  *genJetEta_MultiLepCalc;
+   vector<double>  *genJetPhi_MultiLepCalc;
+   vector<double>  *genJetEnergy_MultiLepCalc;
    Float_t         BJetLeadPt;
    vector<double>  *BJetLeadPt_shifts;
    Float_t         WJetLeadPt;
@@ -309,12 +309,12 @@ public :
    vector<float>   *ddBkgWeights_scan;
    vector<float>   *ddBkgWeights_scan_muFR;
    vector<float>   *ddBkgWeights_scan_elFR;
-   Int_t           NJets_singleLepCalc;
+   Int_t           NJets_MultiLepCalc;
    Int_t           NJetsAK8_JetSubCalc;
-   Int_t           NJetsBTagwithSF_singleLepCalc;
-   Int_t           NJetsBTagwithSF_singleLepCalc_noLepCorr;
-   vector<int>     *NJetsBTagwithSF_singleLepCalc_shifts;
-   vector<int>     *NJetsBTagwithSF_singleLepCalc_noLepCorr_shifts;
+   Int_t           NJetsBTagwithSF_MultiLepCalc;
+   Int_t           NJetsBTagwithSF_MultiLepCalc_noLepCorr;
+   vector<int>     *NJetsBTagwithSF_MultiLepCalc_shifts;
+   vector<int>     *NJetsBTagwithSF_MultiLepCalc_noLepCorr_shifts;
    Int_t           NJetsHtagged;
    vector<int>     *NJetsHtagged_shifts;
    Float_t         topPt;
@@ -400,8 +400,8 @@ public :
    TBranch        *b_event_CommonCalc;   //!
    TBranch        *b_run_CommonCalc;   //!
    TBranch        *b_lumi_CommonCalc;   //!
-   TBranch        *b_nPV_singleLepCalc;   //!
-   TBranch        *b_nTrueInteractions_singleLepCalc;   //!
+   TBranch        *b_nPV_MultiLepCalc;   //!
+   TBranch        *b_nTrueInteractions_MultiLepCalc;   //!
    TBranch        *b_isElectron;   //!
    TBranch        *b_isMuon;   //!
 //    TBranch        *b_MCPastTrigger;   //!
@@ -421,7 +421,7 @@ public :
    TBranch        *b_isBZBH_TpTpCalc;   //!
    TBranch        *b_isBZBZ_TpTpCalc;   //!
    TBranch        *b_NLeptonDecays_TpTpCalc;   //!
-   TBranch        *b_MCWeight_singleLepCalc;   //!
+   TBranch        *b_MCWeight_MultiLepCalc;   //!
    TBranch        *b_renormWeights;   //!
    TBranch        *b_pdfWeights;   //!
    TBranch        *b_JetSF_pTNbwflat;   //!
@@ -511,18 +511,18 @@ public :
    TBranch        *b_MCPastTrigger_singlelep;   //!
    TBranch        *b_DataPastTrigger_singlelep;   //!
    TBranch        *b_ttbarMass_TTbarMassCalc;   //!
-   TBranch        *b_corr_met_singleLepCalc;   //!
-   TBranch        *b_corr_met_phi_singleLepCalc;   //!
-   TBranch        *b_leptonPt_singleLepCalc;   //!
-   TBranch        *b_leptonEta_singleLepCalc;   //!
-   TBranch        *b_leptonPhi_singleLepCalc;   //!
-   TBranch        *b_leptonEnergy_singleLepCalc;   //!
-   TBranch        *b_leptonMiniIso_singleLepCalc;   //!
-   TBranch        *b_leptonRelIso_singleLepCalc;   //!
-   TBranch        *b_leptonDxy_singleLepCalc;   //!
-   TBranch        *b_leptonDz_singleLepCalc;   //!
-   TBranch        *b_leptonCharge_singleLepCalc;   //!
-   TBranch        *b_elTrigPresel_singleLepCalc;   //!
+   TBranch        *b_corr_met_MultiLepCalc;   //!
+   TBranch        *b_corr_met_phi_MultiLepCalc;   //!
+   TBranch        *b_leptonPt_MultiLepCalc;   //!
+   TBranch        *b_leptonEta_MultiLepCalc;   //!
+   TBranch        *b_leptonPhi_MultiLepCalc;   //!
+   TBranch        *b_leptonEnergy_MultiLepCalc;   //!
+   TBranch        *b_leptonMiniIso_MultiLepCalc;   //!
+   TBranch        *b_leptonRelIso_MultiLepCalc;   //!
+   TBranch        *b_leptonDxy_MultiLepCalc;   //!
+   TBranch        *b_leptonDz_MultiLepCalc;   //!
+   TBranch        *b_leptonCharge_MultiLepCalc;   //!
+   TBranch        *b_elTrigPresel_MultiLepCalc;   //!
    TBranch        *b_AllLeptonElPt_PtOrdered;   //!
    TBranch        *b_AllLeptonElEta_PtOrdered;   //!
    TBranch        *b_AllLeptonElPhi_PtOrdered;   //!
@@ -620,15 +620,15 @@ public :
    TBranch        *b_TightLeptonMiniIso_PtOrdered;   //!
    TBranch        *b_TightLeptonFlavor_PtOrdered;   //!
    TBranch        *b_TightLeptonCharge_PtOrdered;   //!
-   TBranch        *b_AK4JetPt_singleLepCalc_PtOrdered;   //!
-   TBranch        *b_AK4JetEta_singleLepCalc_PtOrdered;   //!
-   TBranch        *b_AK4JetPhi_singleLepCalc_PtOrdered;   //!
-   TBranch        *b_AK4JetEnergy_singleLepCalc_PtOrdered;   //!
-   TBranch        *b_AK4JetBTag_singleLepCalc_PtOrdered;   //!
-   TBranch        *b_AK4JetBTag_bSFup_singleLepCalc_PtOrdered;   //!
-   TBranch        *b_AK4JetBTag_bSFdn_singleLepCalc_PtOrdered;   //!
-   TBranch        *b_AK4JetBTag_lSFup_singleLepCalc_PtOrdered;   //!
-   TBranch        *b_AK4JetBTag_lSFdn_singleLepCalc_PtOrdered;   //!
+   TBranch        *b_AK4JetPt_MultiLepCalc_PtOrdered;   //!
+   TBranch        *b_AK4JetEta_MultiLepCalc_PtOrdered;   //!
+   TBranch        *b_AK4JetPhi_MultiLepCalc_PtOrdered;   //!
+   TBranch        *b_AK4JetEnergy_MultiLepCalc_PtOrdered;   //!
+   TBranch        *b_AK4JetBTag_MultiLepCalc_PtOrdered;   //!
+   TBranch        *b_AK4JetBTag_bSFup_MultiLepCalc_PtOrdered;   //!
+   TBranch        *b_AK4JetBTag_bSFdn_MultiLepCalc_PtOrdered;   //!
+   TBranch        *b_AK4JetBTag_lSFup_MultiLepCalc_PtOrdered;   //!
+   TBranch        *b_AK4JetBTag_lSFdn_MultiLepCalc_PtOrdered;   //!
    TBranch        *b_HadronicVHtID_JetSubCalc;   //!
    TBranch        *b_HadronicVHtPt_JetSubCalc;   //!
    TBranch        *b_HadronicVHtEta_JetSubCalc;   //!
@@ -650,10 +650,10 @@ public :
    TBranch        *b_theJetAK8Zmatch_JetSubCalc_PtOrdered;   //!
    TBranch        *b_theJetAK8Hmatch_JetSubCalc_PtOrdered;   //!
    TBranch        *b_theJetAK8MatchedPt_JetSubCalc_PtOrdered;   //!
-   TBranch        *b_genJetPt_singleLepCalc;   //!
-   TBranch        *b_genJetEta_singleLepCalc;   //!
-   TBranch        *b_genJetPhi_singleLepCalc;   //!
-   TBranch        *b_genJetEnergy_singleLepCalc;   //!
+   TBranch        *b_genJetPt_MultiLepCalc;   //!
+   TBranch        *b_genJetEta_MultiLepCalc;   //!
+   TBranch        *b_genJetPhi_MultiLepCalc;   //!
+   TBranch        *b_genJetEnergy_MultiLepCalc;   //!
    TBranch        *b_BJetLeadPt;   //!
    TBranch        *b_BJetLeadPt_shifts;   //!
    TBranch        *b_WJetLeadPt;   //!
@@ -666,12 +666,12 @@ public :
    TBranch        *b_ddBkgWeights_scan;   //!
    TBranch        *b_ddBkgWeights_scan_muFR;   //!
    TBranch        *b_ddBkgWeights_scan_elFR;   //!
-   TBranch        *b_NJets_singleLepCalc;   //!
+   TBranch        *b_NJets_MultiLepCalc;   //!
    TBranch        *b_NJetsAK8_JetSubCalc;   //!
-   TBranch        *b_NJetsBTagwithSF_singleLepCalc;   //!
-   TBranch        *b_NJetsBTagwithSF_singleLepCalc_noLepCorr;   //!
-   TBranch        *b_NJetsBTagwithSF_singleLepCalc_shifts;   //!
-   TBranch        *b_NJetsBTagwithSF_singleLepCalc_noLepCorr_shifts;   //!
+   TBranch        *b_NJetsBTagwithSF_MultiLepCalc;   //!
+   TBranch        *b_NJetsBTagwithSF_MultiLepCalc_noLepCorr;   //!
+   TBranch        *b_NJetsBTagwithSF_MultiLepCalc_shifts;   //!
+   TBranch        *b_NJetsBTagwithSF_MultiLepCalc_noLepCorr_shifts;   //!
    TBranch        *b_NJetsHtagged;   //!
    TBranch        *b_NJetsHtagged_shifts;   //!
    TBranch        *b_topPt;   //!
@@ -912,15 +912,15 @@ void step2_fakeRateCount::Init(TTree *tree)
    TightLeptonMiniIso_PtOrdered = 0;
    TightLeptonFlavor_PtOrdered = 0;
    TightLeptonCharge_PtOrdered = 0;
-   AK4JetPt_singleLepCalc_PtOrdered = 0;
-   AK4JetEta_singleLepCalc_PtOrdered = 0;
-   AK4JetPhi_singleLepCalc_PtOrdered = 0;
-   AK4JetEnergy_singleLepCalc_PtOrdered = 0;
-   AK4JetBTag_singleLepCalc_PtOrdered = 0;
-   AK4JetBTag_bSFup_singleLepCalc_PtOrdered = 0;
-   AK4JetBTag_bSFdn_singleLepCalc_PtOrdered = 0;
-   AK4JetBTag_lSFup_singleLepCalc_PtOrdered = 0;
-   AK4JetBTag_lSFdn_singleLepCalc_PtOrdered = 0;
+   AK4JetPt_MultiLepCalc_PtOrdered = 0;
+   AK4JetEta_MultiLepCalc_PtOrdered = 0;
+   AK4JetPhi_MultiLepCalc_PtOrdered = 0;
+   AK4JetEnergy_MultiLepCalc_PtOrdered = 0;
+   AK4JetBTag_MultiLepCalc_PtOrdered = 0;
+   AK4JetBTag_bSFup_MultiLepCalc_PtOrdered = 0;
+   AK4JetBTag_bSFdn_MultiLepCalc_PtOrdered = 0;
+   AK4JetBTag_lSFup_MultiLepCalc_PtOrdered = 0;
+   AK4JetBTag_lSFdn_MultiLepCalc_PtOrdered = 0;
    HadronicVHtID_JetSubCalc = 0;
    HadronicVHtPt_JetSubCalc = 0;
    HadronicVHtEta_JetSubCalc = 0;
@@ -942,10 +942,10 @@ void step2_fakeRateCount::Init(TTree *tree)
    theJetAK8Zmatch_JetSubCalc_PtOrdered = 0;
    theJetAK8Hmatch_JetSubCalc_PtOrdered = 0;
    theJetAK8MatchedPt_JetSubCalc_PtOrdered = 0;
-   genJetPt_singleLepCalc = 0;
-   genJetEta_singleLepCalc = 0;
-   genJetPhi_singleLepCalc = 0;
-   genJetEnergy_singleLepCalc = 0;
+   genJetPt_MultiLepCalc = 0;
+   genJetEta_MultiLepCalc = 0;
+   genJetPhi_MultiLepCalc = 0;
+   genJetEnergy_MultiLepCalc = 0;
    BJetLeadPt_shifts = 0;
    WJetLeadPt_shifts = 0;
    TJetLeadPt_shifts = 0;
@@ -953,8 +953,8 @@ void step2_fakeRateCount::Init(TTree *tree)
    ddBkgWeights_scan = 0;
    ddBkgWeights_scan_muFR = 0;
    ddBkgWeights_scan_elFR = 0;
-   NJetsBTagwithSF_singleLepCalc_shifts = 0;
-   NJetsBTagwithSF_singleLepCalc_noLepCorr_shifts = 0;
+   NJetsBTagwithSF_MultiLepCalc_shifts = 0;
+   NJetsBTagwithSF_MultiLepCalc_noLepCorr_shifts = 0;
    NJetsHtagged_shifts = 0;
    minMleppBjet_shifts = 0;
    deltaRlepbJetInMinMlb_shifts = 0;
@@ -1007,8 +1007,8 @@ void step2_fakeRateCount::Init(TTree *tree)
    inputTree->SetBranchAddress("event_CommonCalc", &event_CommonCalc, &b_event_CommonCalc);
    inputTree->SetBranchAddress("run_CommonCalc", &run_CommonCalc, &b_run_CommonCalc);
    inputTree->SetBranchAddress("lumi_CommonCalc", &lumi_CommonCalc, &b_lumi_CommonCalc);
-   inputTree->SetBranchAddress("nPV_singleLepCalc", &nPV_singleLepCalc, &b_nPV_singleLepCalc);
-   inputTree->SetBranchAddress("nTrueInteractions_singleLepCalc", &nTrueInteractions_singleLepCalc, &b_nTrueInteractions_singleLepCalc);
+   inputTree->SetBranchAddress("nPV_MultiLepCalc", &nPV_MultiLepCalc, &b_nPV_MultiLepCalc);
+   inputTree->SetBranchAddress("nTrueInteractions_MultiLepCalc", &nTrueInteractions_MultiLepCalc, &b_nTrueInteractions_MultiLepCalc);
    inputTree->SetBranchAddress("isElectron", &isElectron, &b_isElectron);
    inputTree->SetBranchAddress("isMuon", &isMuon, &b_isMuon);
    inputTree->SetBranchAddress("MCPastTrigger", &MCPastTrigger, &b_MCPastTrigger);
@@ -1028,7 +1028,7 @@ void step2_fakeRateCount::Init(TTree *tree)
    inputTree->SetBranchAddress("isBZBH_TpTpCalc", &isBZBH_TpTpCalc, &b_isBZBH_TpTpCalc);
    inputTree->SetBranchAddress("isBZBZ_TpTpCalc", &isBZBZ_TpTpCalc, &b_isBZBZ_TpTpCalc);
    inputTree->SetBranchAddress("NLeptonDecays_TpTpCalc", &NLeptonDecays_TpTpCalc, &b_NLeptonDecays_TpTpCalc);
-   inputTree->SetBranchAddress("MCWeight_singleLepCalc", &MCWeight_singleLepCalc, &b_MCWeight_singleLepCalc);
+   inputTree->SetBranchAddress("MCWeight_MultiLepCalc", &MCWeight_MultiLepCalc, &b_MCWeight_MultiLepCalc);
    inputTree->SetBranchAddress("renormWeights", &renormWeights, &b_renormWeights);
    inputTree->SetBranchAddress("pdfWeights", &pdfWeights, &b_pdfWeights);
    inputTree->SetBranchAddress("JetSF_pTNbwflat", &JetSF_pTNbwflat, &b_JetSF_pTNbwflat);
@@ -1118,18 +1118,18 @@ void step2_fakeRateCount::Init(TTree *tree)
    inputTree->SetBranchAddress("MCPastTrigger_singlelep", &MCPastTrigger_singlelep, &b_MCPastTrigger_singlelep);
    inputTree->SetBranchAddress("DataPastTrigger_singlelep", &DataPastTrigger_singlelep, &b_DataPastTrigger_singlelep);
    inputTree->SetBranchAddress("ttbarMass_TTbarMassCalc", &ttbarMass_TTbarMassCalc, &b_ttbarMass_TTbarMassCalc);
-   inputTree->SetBranchAddress("corr_met_singleLepCalc", &corr_met_singleLepCalc, &b_corr_met_singleLepCalc);
-   inputTree->SetBranchAddress("corr_met_phi_singleLepCalc", &corr_met_phi_singleLepCalc, &b_corr_met_phi_singleLepCalc);
-   inputTree->SetBranchAddress("leptonPt_singleLepCalc", &leptonPt_singleLepCalc, &b_leptonPt_singleLepCalc);
-   inputTree->SetBranchAddress("leptonEta_singleLepCalc", &leptonEta_singleLepCalc, &b_leptonEta_singleLepCalc);
-   inputTree->SetBranchAddress("leptonPhi_singleLepCalc", &leptonPhi_singleLepCalc, &b_leptonPhi_singleLepCalc);
-   inputTree->SetBranchAddress("leptonEnergy_singleLepCalc", &leptonEnergy_singleLepCalc, &b_leptonEnergy_singleLepCalc);
-   inputTree->SetBranchAddress("leptonMiniIso_singleLepCalc", &leptonMiniIso_singleLepCalc, &b_leptonMiniIso_singleLepCalc);
-   inputTree->SetBranchAddress("leptonRelIso_singleLepCalc", &leptonRelIso_singleLepCalc, &b_leptonRelIso_singleLepCalc);
-   inputTree->SetBranchAddress("leptonDxy_singleLepCalc", &leptonDxy_singleLepCalc, &b_leptonDxy_singleLepCalc);
-   inputTree->SetBranchAddress("leptonDz_singleLepCalc", &leptonDz_singleLepCalc, &b_leptonDz_singleLepCalc);
-   inputTree->SetBranchAddress("leptonCharge_singleLepCalc", &leptonCharge_singleLepCalc, &b_leptonCharge_singleLepCalc);
-   inputTree->SetBranchAddress("elTrigPresel_singleLepCalc", &elTrigPresel_singleLepCalc, &b_elTrigPresel_singleLepCalc);
+   inputTree->SetBranchAddress("corr_met_MultiLepCalc", &corr_met_MultiLepCalc, &b_corr_met_MultiLepCalc);
+   inputTree->SetBranchAddress("corr_met_phi_MultiLepCalc", &corr_met_phi_MultiLepCalc, &b_corr_met_phi_MultiLepCalc);
+   inputTree->SetBranchAddress("leptonPt_MultiLepCalc", &leptonPt_MultiLepCalc, &b_leptonPt_MultiLepCalc);
+   inputTree->SetBranchAddress("leptonEta_MultiLepCalc", &leptonEta_MultiLepCalc, &b_leptonEta_MultiLepCalc);
+   inputTree->SetBranchAddress("leptonPhi_MultiLepCalc", &leptonPhi_MultiLepCalc, &b_leptonPhi_MultiLepCalc);
+   inputTree->SetBranchAddress("leptonEnergy_MultiLepCalc", &leptonEnergy_MultiLepCalc, &b_leptonEnergy_MultiLepCalc);
+   inputTree->SetBranchAddress("leptonMiniIso_MultiLepCalc", &leptonMiniIso_MultiLepCalc, &b_leptonMiniIso_MultiLepCalc);
+   inputTree->SetBranchAddress("leptonRelIso_MultiLepCalc", &leptonRelIso_MultiLepCalc, &b_leptonRelIso_MultiLepCalc);
+   inputTree->SetBranchAddress("leptonDxy_MultiLepCalc", &leptonDxy_MultiLepCalc, &b_leptonDxy_MultiLepCalc);
+   inputTree->SetBranchAddress("leptonDz_MultiLepCalc", &leptonDz_MultiLepCalc, &b_leptonDz_MultiLepCalc);
+   inputTree->SetBranchAddress("leptonCharge_MultiLepCalc", &leptonCharge_MultiLepCalc, &b_leptonCharge_MultiLepCalc);
+   inputTree->SetBranchAddress("elTrigPresel_MultiLepCalc", &elTrigPresel_MultiLepCalc, &b_elTrigPresel_MultiLepCalc);
    inputTree->SetBranchAddress("AllLeptonElPt_PtOrdered", &AllLeptonElPt_PtOrdered, &b_AllLeptonElPt_PtOrdered);
    inputTree->SetBranchAddress("AllLeptonElEta_PtOrdered", &AllLeptonElEta_PtOrdered, &b_AllLeptonElEta_PtOrdered);
    inputTree->SetBranchAddress("AllLeptonElPhi_PtOrdered", &AllLeptonElPhi_PtOrdered, &b_AllLeptonElPhi_PtOrdered);
@@ -1227,15 +1227,15 @@ void step2_fakeRateCount::Init(TTree *tree)
    inputTree->SetBranchAddress("TightLeptonMiniIso_PtOrdered", &TightLeptonMiniIso_PtOrdered, &b_TightLeptonMiniIso_PtOrdered);
    inputTree->SetBranchAddress("TightLeptonFlavor_PtOrdered", &TightLeptonFlavor_PtOrdered, &b_TightLeptonFlavor_PtOrdered);
    inputTree->SetBranchAddress("TightLeptonCharge_PtOrdered", &TightLeptonCharge_PtOrdered, &b_TightLeptonCharge_PtOrdered);
-   inputTree->SetBranchAddress("AK4JetPt_singleLepCalc_PtOrdered", &AK4JetPt_singleLepCalc_PtOrdered, &b_AK4JetPt_singleLepCalc_PtOrdered);
-   inputTree->SetBranchAddress("AK4JetEta_singleLepCalc_PtOrdered", &AK4JetEta_singleLepCalc_PtOrdered, &b_AK4JetEta_singleLepCalc_PtOrdered);
-   inputTree->SetBranchAddress("AK4JetPhi_singleLepCalc_PtOrdered", &AK4JetPhi_singleLepCalc_PtOrdered, &b_AK4JetPhi_singleLepCalc_PtOrdered);
-   inputTree->SetBranchAddress("AK4JetEnergy_singleLepCalc_PtOrdered", &AK4JetEnergy_singleLepCalc_PtOrdered, &b_AK4JetEnergy_singleLepCalc_PtOrdered);
-   inputTree->SetBranchAddress("AK4JetBTag_singleLepCalc_PtOrdered", &AK4JetBTag_singleLepCalc_PtOrdered, &b_AK4JetBTag_singleLepCalc_PtOrdered);
-   inputTree->SetBranchAddress("AK4JetBTag_bSFup_singleLepCalc_PtOrdered", &AK4JetBTag_bSFup_singleLepCalc_PtOrdered, &b_AK4JetBTag_bSFup_singleLepCalc_PtOrdered);
-   inputTree->SetBranchAddress("AK4JetBTag_bSFdn_singleLepCalc_PtOrdered", &AK4JetBTag_bSFdn_singleLepCalc_PtOrdered, &b_AK4JetBTag_bSFdn_singleLepCalc_PtOrdered);
-   inputTree->SetBranchAddress("AK4JetBTag_lSFup_singleLepCalc_PtOrdered", &AK4JetBTag_lSFup_singleLepCalc_PtOrdered, &b_AK4JetBTag_lSFup_singleLepCalc_PtOrdered);
-   inputTree->SetBranchAddress("AK4JetBTag_lSFdn_singleLepCalc_PtOrdered", &AK4JetBTag_lSFdn_singleLepCalc_PtOrdered, &b_AK4JetBTag_lSFdn_singleLepCalc_PtOrdered);
+   inputTree->SetBranchAddress("AK4JetPt_MultiLepCalc_PtOrdered", &AK4JetPt_MultiLepCalc_PtOrdered, &b_AK4JetPt_MultiLepCalc_PtOrdered);
+   inputTree->SetBranchAddress("AK4JetEta_MultiLepCalc_PtOrdered", &AK4JetEta_MultiLepCalc_PtOrdered, &b_AK4JetEta_MultiLepCalc_PtOrdered);
+   inputTree->SetBranchAddress("AK4JetPhi_MultiLepCalc_PtOrdered", &AK4JetPhi_MultiLepCalc_PtOrdered, &b_AK4JetPhi_MultiLepCalc_PtOrdered);
+   inputTree->SetBranchAddress("AK4JetEnergy_MultiLepCalc_PtOrdered", &AK4JetEnergy_MultiLepCalc_PtOrdered, &b_AK4JetEnergy_MultiLepCalc_PtOrdered);
+   inputTree->SetBranchAddress("AK4JetBTag_MultiLepCalc_PtOrdered", &AK4JetBTag_MultiLepCalc_PtOrdered, &b_AK4JetBTag_MultiLepCalc_PtOrdered);
+   inputTree->SetBranchAddress("AK4JetBTag_bSFup_MultiLepCalc_PtOrdered", &AK4JetBTag_bSFup_MultiLepCalc_PtOrdered, &b_AK4JetBTag_bSFup_MultiLepCalc_PtOrdered);
+   inputTree->SetBranchAddress("AK4JetBTag_bSFdn_MultiLepCalc_PtOrdered", &AK4JetBTag_bSFdn_MultiLepCalc_PtOrdered, &b_AK4JetBTag_bSFdn_MultiLepCalc_PtOrdered);
+   inputTree->SetBranchAddress("AK4JetBTag_lSFup_MultiLepCalc_PtOrdered", &AK4JetBTag_lSFup_MultiLepCalc_PtOrdered, &b_AK4JetBTag_lSFup_MultiLepCalc_PtOrdered);
+   inputTree->SetBranchAddress("AK4JetBTag_lSFdn_MultiLepCalc_PtOrdered", &AK4JetBTag_lSFdn_MultiLepCalc_PtOrdered, &b_AK4JetBTag_lSFdn_MultiLepCalc_PtOrdered);
    inputTree->SetBranchAddress("HadronicVHtID_JetSubCalc", &HadronicVHtID_JetSubCalc, &b_HadronicVHtID_JetSubCalc);
    inputTree->SetBranchAddress("HadronicVHtPt_JetSubCalc", &HadronicVHtPt_JetSubCalc, &b_HadronicVHtPt_JetSubCalc);
    inputTree->SetBranchAddress("HadronicVHtEta_JetSubCalc", &HadronicVHtEta_JetSubCalc, &b_HadronicVHtEta_JetSubCalc);
@@ -1257,10 +1257,10 @@ void step2_fakeRateCount::Init(TTree *tree)
    inputTree->SetBranchAddress("theJetAK8Zmatch_JetSubCalc_PtOrdered", &theJetAK8Zmatch_JetSubCalc_PtOrdered, &b_theJetAK8Zmatch_JetSubCalc_PtOrdered);
    inputTree->SetBranchAddress("theJetAK8Hmatch_JetSubCalc_PtOrdered", &theJetAK8Hmatch_JetSubCalc_PtOrdered, &b_theJetAK8Hmatch_JetSubCalc_PtOrdered);
    inputTree->SetBranchAddress("theJetAK8MatchedPt_JetSubCalc_PtOrdered", &theJetAK8MatchedPt_JetSubCalc_PtOrdered, &b_theJetAK8MatchedPt_JetSubCalc_PtOrdered);
-   inputTree->SetBranchAddress("genJetPt_singleLepCalc", &genJetPt_singleLepCalc, &b_genJetPt_singleLepCalc);
-   inputTree->SetBranchAddress("genJetEta_singleLepCalc", &genJetEta_singleLepCalc, &b_genJetEta_singleLepCalc);
-   inputTree->SetBranchAddress("genJetPhi_singleLepCalc", &genJetPhi_singleLepCalc, &b_genJetPhi_singleLepCalc);
-   inputTree->SetBranchAddress("genJetEnergy_singleLepCalc", &genJetEnergy_singleLepCalc, &b_genJetEnergy_singleLepCalc);
+   inputTree->SetBranchAddress("genJetPt_MultiLepCalc", &genJetPt_MultiLepCalc, &b_genJetPt_MultiLepCalc);
+   inputTree->SetBranchAddress("genJetEta_MultiLepCalc", &genJetEta_MultiLepCalc, &b_genJetEta_MultiLepCalc);
+   inputTree->SetBranchAddress("genJetPhi_MultiLepCalc", &genJetPhi_MultiLepCalc, &b_genJetPhi_MultiLepCalc);
+   inputTree->SetBranchAddress("genJetEnergy_MultiLepCalc", &genJetEnergy_MultiLepCalc, &b_genJetEnergy_MultiLepCalc);
    inputTree->SetBranchAddress("BJetLeadPt", &BJetLeadPt, &b_BJetLeadPt);
    inputTree->SetBranchAddress("BJetLeadPt_shifts", &BJetLeadPt_shifts, &b_BJetLeadPt_shifts);
    inputTree->SetBranchAddress("WJetLeadPt", &WJetLeadPt, &b_WJetLeadPt);
@@ -1273,12 +1273,12 @@ void step2_fakeRateCount::Init(TTree *tree)
    inputTree->SetBranchAddress("ddBkgWeights_scan", &ddBkgWeights_scan, &b_ddBkgWeights_scan);
    inputTree->SetBranchAddress("ddBkgWeights_scan_muFR", &ddBkgWeights_scan_muFR, &b_ddBkgWeights_scan_muFR);
    inputTree->SetBranchAddress("ddBkgWeights_scan_elFR", &ddBkgWeights_scan_elFR, &b_ddBkgWeights_scan_elFR);
-   inputTree->SetBranchAddress("NJets_singleLepCalc", &NJets_singleLepCalc, &b_NJets_singleLepCalc);
+   inputTree->SetBranchAddress("NJets_MultiLepCalc", &NJets_MultiLepCalc, &b_NJets_MultiLepCalc);
    inputTree->SetBranchAddress("NJetsAK8_JetSubCalc", &NJetsAK8_JetSubCalc, &b_NJetsAK8_JetSubCalc);
-   inputTree->SetBranchAddress("NJetsBTagwithSF_singleLepCalc", &NJetsBTagwithSF_singleLepCalc, &b_NJetsBTagwithSF_singleLepCalc);
-   inputTree->SetBranchAddress("NJetsBTagwithSF_singleLepCalc_noLepCorr", &NJetsBTagwithSF_singleLepCalc_noLepCorr, &b_NJetsBTagwithSF_singleLepCalc_noLepCorr);
-   inputTree->SetBranchAddress("NJetsBTagwithSF_singleLepCalc_shifts", &NJetsBTagwithSF_singleLepCalc_shifts, &b_NJetsBTagwithSF_singleLepCalc_shifts);
-   inputTree->SetBranchAddress("NJetsBTagwithSF_singleLepCalc_noLepCorr_shifts", &NJetsBTagwithSF_singleLepCalc_noLepCorr_shifts, &b_NJetsBTagwithSF_singleLepCalc_noLepCorr_shifts);
+   inputTree->SetBranchAddress("NJetsBTagwithSF_MultiLepCalc", &NJetsBTagwithSF_MultiLepCalc, &b_NJetsBTagwithSF_MultiLepCalc);
+   inputTree->SetBranchAddress("NJetsBTagwithSF_MultiLepCalc_noLepCorr", &NJetsBTagwithSF_MultiLepCalc_noLepCorr, &b_NJetsBTagwithSF_MultiLepCalc_noLepCorr);
+   inputTree->SetBranchAddress("NJetsBTagwithSF_MultiLepCalc_shifts", &NJetsBTagwithSF_MultiLepCalc_shifts, &b_NJetsBTagwithSF_MultiLepCalc_shifts);
+   inputTree->SetBranchAddress("NJetsBTagwithSF_MultiLepCalc_noLepCorr_shifts", &NJetsBTagwithSF_MultiLepCalc_noLepCorr_shifts, &b_NJetsBTagwithSF_MultiLepCalc_noLepCorr_shifts);
    inputTree->SetBranchAddress("NJetsHtagged", &NJetsHtagged, &b_NJetsHtagged);
    inputTree->SetBranchAddress("NJetsHtagged_shifts", &NJetsHtagged_shifts, &b_NJetsHtagged_shifts);
    inputTree->SetBranchAddress("topPt", &topPt, &b_topPt);

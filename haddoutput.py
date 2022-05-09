@@ -1,24 +1,26 @@
 import os,sys,datetime,time
 from ROOT import *
-execfile("/uscms_data/d3/rsyarif/EOSSafeUtils.py")
+execfile("/uscms_data/d3/wywong/EOSSafeUtils.py")
 
 start_time = time.time()
 
 #IO directories must be full paths
 input  = sys.argv[1]
 output = sys.argv[2]
-shift = sys.argv[3]
+#shift = sys.argv[3]
 
-inputDir='/eos/uscms/store/user/lpcljm/'+input+'/'+shift
-outputDir='/eos/uscms/store/user/lpcljm/'+output+'/'+shift
+inputDir='/eos/uscms/store/user/wywong/'+input #+'/'+shift
+
+outputDir='/eos/uscms/store/user/wywong/'+output #+'/'+shift
 
 inDir=inputDir[10:]
 outDir=outputDir[10:]
 
 os.system('eos root://cmseos.fnal.gov/ mkdir -p '+outDir)
 
-# signalList = [
-# #     'TprimeTprime_M-1000_TuneCP5_13TeV-madgraph-pythia8',
+signalList = [
+     'TprimeTprime_M-700_TuneCP5_13TeV-madgraph-pythia8',
+#     'TprimeTprime_M-1000_TuneCP5_13TeV-madgraph-pythia8',
 #     'TprimeTprime_M-1100_TuneCP5_13TeV-madgraph-pythia8',
 #     'TprimeTprime_M-1200_TuneCP5_13TeV-madgraph-pythia8',
 #     'TprimeTprime_M-1300_TuneCP5_13TeV-madgraph-pythia8',
@@ -27,61 +29,61 @@ os.system('eos root://cmseos.fnal.gov/ mkdir -p '+outDir)
 #     'TprimeTprime_M-1600_TuneCP5_13TeV-madgraph-pythia8',
 #     'TprimeTprime_M-1700_TuneCP5_13TeV-madgraph-pythia8',
 #     'TprimeTprime_M-1800_TuneCP5_13TeV-madgraph-pythia8',
-#     ]
-# 
-# signalOutList = ['BWBW','TZBW','THBW','TZTH','TZTZ','THTH']
-# 
-# for sample in signalList:
-#     for outlabel in signalOutList:
-# 
-#         rootfiles = EOSlist_root_files(inputDir+'/'+sample+'_'+outlabel)
-# #        print 'N root files in',sample,'=',len(rootfiles)
-# #         haddcommand = 'hadd root://cmseos.fnal.gov/'+outDir+'/'+sample+'_'+outlabel+'_hadd.root '
-#         haddcommand = 'hadd -f root://cmseos.fnal.gov/'+outDir+'/'+sample+'_'+outlabel+'_hadd.root '
-# 
-#         print '##########'*15
-#         print 'HADDING:', sample,'_',outlabel
-#         print '##########'*15
-# 
-#         for file in rootfiles:
-# 
-#             haddcommand+=' root://cmseos.fnal.gov/'+inDir+'/'+sample+'_'+outlabel+'/'+file
-# 
-#         os.system(haddcommand)
-# #        print haddcommand
-# 
+    ]
+ 
+signalOutList = ['BWBW','TZBW','THBW','TZTH','TZTZ','THTH']
+ 
+for sample in signalList:
+    for outlabel in signalOutList:
 
-# signalList = [
-#     'BprimeBprime_M-1000_TuneCP5_13TeV-madgraph-pythia8',
-#     'BprimeBprime_M-1100_TuneCP5_13TeV-madgraph-pythia8',
-#     'BprimeBprime_M-1200_TuneCP5_13TeV-madgraph-pythia8',
-#     'BprimeBprime_M-1300_TuneCP5_13TeV-madgraph-pythia8',
-#     'BprimeBprime_M-1400_TuneCP5_13TeV-madgraph-pythia8',
-#     'BprimeBprime_M-1500_TuneCP5_13TeV-madgraph-pythia8',
-#     'BprimeBprime_M-1600_TuneCP5_13TeV-madgraph-pythia8',
-#     'BprimeBprime_M-1700_TuneCP5_13TeV-madgraph-pythia8',
-#     'BprimeBprime_M-1800_TuneCP5_13TeV-madgraph-pythia8',
-#     ]
-# 
-# signalOutList = ['TWTW','BZTW','BHTW','BZBH','BZBZ','BHBH']
-# 
-# for sample in signalList:
-#     for outlabel in signalOutList:
-# 
-#         rootfiles = EOSlist_root_files(inputDir+'/'+sample+'_'+outlabel)
-# #        print 'N root files in',sample,'=',len(rootfiles)
+        rootfiles = EOSlist_root_files(inputDir+'/'+sample+'_'+outlabel)
+#        print 'N root files in',sample,'=',len(rootfiles)
 #         haddcommand = 'hadd root://cmseos.fnal.gov/'+outDir+'/'+sample+'_'+outlabel+'_hadd.root '
-# 
-#         print '##########'*15
-#         print 'HADDING:', sample,'_',outlabel
-#         print '##########'*15
-# 
-#         for file in rootfiles:
-# 
-#             haddcommand+=' root://cmseos.fnal.gov/'+inDir+'/'+sample+'_'+outlabel+'/'+file
-# 
-#         os.system(haddcommand)
-# #        print haddcommand
+        haddcommand = 'hadd -f root://cmseos.fnal.gov/'+outDir+'/'+sample+'_'+outlabel+'_hadd.root '
+
+        print '##########'*15
+        print 'HADDING:', sample,'_',outlabel
+        print '##########'*15
+
+        for file in rootfiles:
+
+            haddcommand+=' root://cmseos.fnal.gov/'+inDir+'/'+sample+'_'+outlabel+'/'+file
+
+        os.system(haddcommand)
+#        print haddcommand
+
+
+signalList = [
+#    'BprimeBprime_M-1000_TuneCP5_13TeV-madgraph-pythia8',
+#    'BprimeBprime_M-1100_TuneCP5_13TeV-madgraph-pythia8',
+#    'BprimeBprime_M-1200_TuneCP5_13TeV-madgraph-pythia8',
+#    'BprimeBprime_M-1300_TuneCP5_13TeV-madgraph-pythia8',
+#    'BprimeBprime_M-1400_TuneCP5_13TeV-madgraph-pythia8',
+#    'BprimeBprime_M-1500_TuneCP5_13TeV-madgraph-pythia8',
+#    'BprimeBprime_M-1600_TuneCP5_13TeV-madgraph-pythia8',
+#    'BprimeBprime_M-1700_TuneCP5_13TeV-madgraph-pythia8',
+#    'BprimeBprime_M-1800_TuneCP5_13TeV-madgraph-pythia8',
+    ]
+
+signalOutList = ['TWTW','BZTW','BHTW','BZBH','BZBZ','BHBH']
+
+for sample in signalList:
+    for outlabel in signalOutList:
+
+        rootfiles = EOSlist_root_files(inputDir+'/'+sample+'_'+outlabel)
+#        print 'N root files in',sample,'=',len(rootfiles)
+        haddcommand = 'hadd root://cmseos.fnal.gov/'+outDir+'/'+sample+'_'+outlabel+'_hadd.root '
+
+        print '##########'*15
+        print 'HADDING:', sample,'_',outlabel
+        print '##########'*15
+
+        for file in rootfiles:
+
+            haddcommand+=' root://cmseos.fnal.gov/'+inDir+'/'+sample+'_'+outlabel+'/'+file
+
+        os.system(haddcommand)
+#        print haddcommand
 
 
 dirList = [
@@ -93,12 +95,37 @@ dirList = [
 # 	'WZTo3LNu_13TeV-powheg-pythia8',
 # 	'ZZTo4L_13TeV_powheg_pythia8',
 # 	'WWW_4F_TuneCP5_13TeV-amcatnlo-pythia8',
-	'WWZ_4F_TuneCP5_13TeV-amcatnlo-pythia8',
+#	'WWZ_4F_TuneCP5_13TeV-amcatnlo-pythia8',
 # 	'WZZ_TuneCP5_13TeV-amcatnlo-pythia8',
 # 	'ZZZ_TuneCP5_13TeV-amcatnlo-pythia8',
 # 	'TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8',
 # 	'TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8',
 # 	'WW_TuneCP5_13TeV-pythia8',	
+
+        #'TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8',
+        #'TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8',
+        #'WWW_4F_TuneCP5_13TeV-amcatnlo-pythia8',
+        #'WWZ_4F_TuneCP5_13TeV-amcatnlo-pythia8',
+        #'WZTo3LNu_TuneCP5_13TeV-amcatnloFXFX-pythia8',
+        #'WZZ_TuneCP5_13TeV-amcatnlo-pythia8',
+        #'ZZTo4L_13TeV_powheg_pythia8',
+        #'ZZZ_TuneCP5_13TeV-amcatnlo-pythia8',
+        
+        #'DoubleEGRun2017B',
+        #'DoubleEGRun2017E',
+        #'DoubleEGRun2017C',
+        #'DoubleEGRun2017F',
+        #'DoubleEGRun2017D',
+        #'DoubleMuonRun2017C',
+        #'DoubleMuonRun2017F',
+        #'DoubleMuonRun2017D',
+        #'DoubleMuonRun2017B',
+        #'DoubleMuonRun2017E',
+        #'MuonEGRun2017C',
+        #'MuonEGRun2017F',
+        #'MuonEGRun2017D',
+        #'MuonEGRun2017B',
+        #'MuonEGRun2017E',
 	
     ]
 

@@ -38,6 +38,11 @@ void step2_fakeRateCount::Loop()
    TTree *outputTree = new TTree("ljmet","ljmet");
 //    outputTree = inputTree->CloneTree(0);
 
+   // define cuts values
+   int minNbjetsCut = 1;
+   int maxNbjetsCut = 999;
+   int mllOSCut  = 20;
+
    float LeptonPt;
    float LeptonEta;
    float LeptonPhi;
@@ -118,10 +123,14 @@ void step2_fakeRateCount::Loop()
 //       if(AllLeptonCount_PtOrdered!=3) continue;
 //       if(AllLeptonCount_PtOrdered!=2) continue;
 //       if(AllLeptonCount_PtOrdered!=1) continue;
+      //if(NJetsBTagwithSF_MultiLepCalc < minNbjetsCut || NJetsBTagwithSF_MultiLepCalc > maxNbjetsCut) continue;
+      //if( !(MllOS_allComb->at(0) > mllOSCut || MllOS_allComb->at(0) < 0)) continue;
+      //if( !(MllOS_allComb->at(1) > mllOSCut || MllOS_allComb->at(1) < 0)) continue;
+      //if( !(MllOS_allComb->at(2) > mllOSCut || MllOS_allComb->at(2) < 0)) continue;
 
       for(int i=0; i<AllLeptonPt_PtOrdered->size(); i++){
 
-      	LeptonPt		= AllLeptonPt_PtOrdered->at(i);
+      		LeptonPt		= AllLeptonPt_PtOrdered->at(i);
 		LeptonEta		= AllLeptonEta_PtOrdered->at(i);
 		LeptonPhi		= AllLeptonPhi_PtOrdered->at(i);
 		LeptonEnergy		= AllLeptonEnergy_PtOrdered->at(i);

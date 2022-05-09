@@ -13,12 +13,15 @@ relbase = os.environ['CMSSW_BASE']
 
 #inputDir='/eos/uscms/store/user/wywong/FWLJMET102X_3lep2017_wywong_102019_saveLooseLep/'#+shift+'/'
 #inputDir='/eos/uscms/store/user/wywong/FWLJMET102X_3lep2017_wywong_062019/'
-inputDir='/eos/uscms/store/user/wywong/FWLJMET102X_3lep2017_wywong_012020/'
+#inputDir='/eos/uscms/store/user/wywong/FWLJMET102X_3lep2017_wywong_012020/'
+inputDir='/eos/uscms/store/group/lpcljm/FWLJMET102X_3lep2017_wywong_012020/'
 
 #outputDir='/eos/uscms/store/user/wywong/FWLJMET102X_3lep2017_wywong_012020_step1_etaFRv5/'
 #outputDir='/eos/uscms/store/user/wywong/FWLJMET102X_3lep2017_wywong_012020_step1_FRv4_uFR/'
 #outputDir='/eos/uscms/store/user/wywong/FWLJMET102X_3lep2017_wywong_012020_step1_FRv5_PRv2_prefire_elIdSys_TrigEffWeight_pdf4LHC/' #_etaFR/'
-outputDir='/eos/uscms/store/user/wywong/FWLJMET102X_3lep2017_wywong_012020_step1_FRv5_PRv2_pdf4LHC_nPU/' #_etaFR/'
+#outputDir='/eos/uscms/store/user/wywong/FWLJMET102X_3lep2017_wywong_012020_step1_FRv5_PRv2_pdf4LHC_nPU_etaFR/'
+#outputDir='/eos/uscms/store/user/wywong/FWLJMET102X_3lep2017_wywong_012020_step1_FRv5_PRv2_prefire_elIdSys_TrigEffWeight_pdf4LHC_etaFR/'
+outputDir='/eos/uscms/store/user/wywong/FWLJMET102X_3lep2017_wywong_012020_step1_FRv5_PRv4_ANv8_uFRupdate/'
 
 condorDir=os.environ['CMSSW_BASE']+'/../'+outputDir.split('/')[-2]+'/' #'/FWLJMET102X_3lep2017_wywong_102019_step1_FRv2_UnityElPR/'#+shift+'/'
 
@@ -44,20 +47,97 @@ proxyPath=proxyPath.readline().strip()
 
 print 'Starting submission'
 count=0
- 
+
+newsignalList = [
+     #'TTTT_TuneCP5_PSweights_13TeV-amcatnlo-pythia8_correctnPartonsInBorn',
+     #'X53X53_M-900_RH_TuneCP5_13TeV-madgraph-pythia8',
+     #'X53X53_M-1000_RH_TuneCP5_13TeV-madgraph-pythia8',
+     #'X53X53_M-1100_RH_TuneCP5_13TeV-madgraph-pythia8',
+     #'X53X53_M-1200_RH_TuneCP5_13TeV-madgraph-pythia8',
+     #'X53X53_M-1300_RH_TuneCP5_13TeV-madgraph-pythia8',
+     #'X53X53_M-1400_RH_TuneCP5_13TeV-madgraph-pythia8',
+     #'X53X53_M-1600_RH_TuneCP5_13TeV-madgraph-pythia8',
+     #'X53X53_M-1700_RH_TuneCP5_13TeV-madgraph-pythia8',
+
+     #'X53X53_M-1100_LH_TuneCP5_13TeV-madgraph-pythia8',
+     #'X53X53_M-1200_LH_TuneCP5_13TeV-madgraph-pythia8',
+     #'X53X53_M-1400_LH_TuneCP5_13TeV-madgraph-pythia8',
+     #'X53X53_M-1500_LH_TuneCP5_13TeV-madgraph-pythia8',
+     #'X53X53_M-1700_LH_TuneCP5_13TeV-madgraph-pythia8',
+]
+
+for path in newsignalList:
+    sample=path.split('/')[0]
+
+    subdir = EOSlistdir(inputDir+path)
+    while len(subdir) == 1 and ".root" not in subdir[0]:
+        path = path +"/"+ subdir[0]
+        subdir = EOSlistdir(inputDir+path)
+        #print (inputDir+path, subdir)
+    #print path
+
+    rootfiles = []
+    if len(subdir) > 1:
+        for sub in subdir:
+            subpath = path+"/"+sub
+            subsubdir = EOSlistdir(inputDir+subpath)
+            while len(subsubdir) == 1 and ".root" not in subsubdir[0]:
+                subpath = subpath+"/"+ subsubdir[0]
+                subsubdir = EOSlistdir(inputDir+subpath)
+                #print (inputDir+subpath, subsubdir)
+            #print subpath
+            rootfiles += [subpath.replace(path,"")+"/"+x for x in EOSlist_root_files(inputDir+subpath)]
+    else:
+        rootfiles = EOSlist_root_files(inputDir+path)
+
+    #relPath = path
+    outPath = sample
+    os.system('eos root://cmseos.fnal.gov/ mkdir -p '+outDir+sample)
+    os.system('mkdir -p '+condorDir+sample)
+
+    for file in rootfiles:
+        #if not any([n in file for n in ['_1350','_2364','_3525','_3605','_4106','_4720'] ]): continue
+        relPath = (path+file).replace(file.split("/")[-1],"")
+        rawname = (file.split("/")[-1])[:-5]
+        count+=1
+        dict={'RUNDIR':runDir, 'POST':runDirPost, 'RELPATH':relPath, 'OUTPATH':outPath , 'CONDORDIR':condorDir, 'INPUTDIR':inDir, 'FILENAME':rawname, 'PROXY':proxyPath, 'CMSSWBASE':relbase, 'OUTPUTDIR':outDir}
+        jdfName=condorDir+'/%(OUTPATH)s/%(FILENAME)s.job'%dict
+        print jdfName
+        jdf=open(jdfName,'w')
+        jdf.write(
+           """x509userproxy = %(PROXY)s
+universe = vanilla
+Executable = %(RUNDIR)s/makeStep1.sh
+Should_Transfer_Files = YES
+WhenToTransferOutput = ON_EXIT
+Transfer_Input_Files = %(RUNDIR)s/makeStep1.C, %(RUNDIR)s/%(POST)s/step1.cc, %(RUNDIR)s/%(POST)s/step1.h, %(RUNDIR)s/%(POST)s/step1_cc.d, %(RUNDIR)s/%(POST)s/step1_cc.so, %(RUNDIR)s/%(POST)s/fakerate.h, %(RUNDIR)s/%(POST)s/PUweights_TTTT.h
+Output = %(FILENAME)s.out
+Error = %(FILENAME)s.err
+Log = %(FILENAME)s.log
+Notification = Never
+Arguments = %(FILENAME)s.root %(FILENAME)s.root %(INPUTDIR)s/%(RELPATH)s %(OUTPUTDIR)s/%(OUTPATH)s
+
+Queue 1"""%dict)
+        jdf.close()
+        os.chdir('%s/%s'%(condorDir,outPath))
+        os.system('condor_submit %(FILENAME)s.job'%dict)
+        os.system('sleep 0.5')
+        os.chdir('%s'%(runDir))
+        print count, "jobs submitted!!!"
+
+
 signalList = [
 ## FWLJMET
-     'TprimeTprime_M-1300_TuneCP5_13TeV-madgraph-pythia8',
-     'TprimeTprime_M-1400_TuneCP5_13TeV-madgraph-pythia8',
+     #'TprimeTprime_M-1300_TuneCP5_13TeV-madgraph-pythia8',
+     #'TprimeTprime_M-1400_TuneCP5_13TeV-madgraph-pythia8',
      'TprimeTprime_M-1500_TuneCP5_13TeV-madgraph-pythia8',
-     'TprimeTprime_M-1600_TuneCP5_13TeV-madgraph-pythia8',
-     'TprimeTprime_M-1700_TuneCP5_13TeV-madgraph-pythia8',
-
-## FWLJMET_wywong
+     #'TprimeTprime_M-1600_TuneCP5_13TeV-madgraph-pythia8',
+     #'TprimeTprime_M-1700_TuneCP5_13TeV-madgraph-pythia8',
+     #'TprimeTprime_M-700_TuneCP5_13TeV-madgraph-pythia8/multiLep2017/210411_210955/0000',
      'TprimeTprime_M-1000_TuneCP5_13TeV-madgraph-pythia8',
-     'TprimeTprime_M-1100_TuneCP5_13TeV-madgraph-pythia8',
-     'TprimeTprime_M-1200_TuneCP5_13TeV-madgraph-pythia8',
-     'TprimeTprime_M-1800_TuneCP5_13TeV-madgraph-pythia8',
+     #'TprimeTprime_M-1100_TuneCP5_13TeV-madgraph-pythia8',
+     #'TprimeTprime_M-1200_TuneCP5_13TeV-madgraph-pythia8',
+     #'TprimeTprime_M-1800_TuneCP5_13TeV-madgraph-pythia8',
 
 #    'TprimeTprime_M-1300_TuneCP5_13TeV-madgraph-pythia8/multiLep2017/190620_221349/0000',
 #    'TprimeTprime_M-1400_TuneCP5_13TeV-madgraph-pythia8/multiLep2017/190620_222511/0000',
@@ -123,16 +203,16 @@ Queue 1"""%dict)
 #, %(RUNDIR)s/csc2015_Dec01.txt, %(RUNDIR)s/ecalscn1043093_Dec01.txt
 
 signalList = [
-     'BprimeBprime_M-900_TuneCP5_13TeV-madgraph-pythia8',
-     'BprimeBprime_M-1000_TuneCP5_13TeV-madgraph-pythia8',
-     'BprimeBprime_M-1100_TuneCP5_13TeV-madgraph-pythia8',
-     'BprimeBprime_M-1200_TuneCP5_13TeV-madgraph-pythia8',
-     'BprimeBprime_M-1300_TuneCP5_13TeV-madgraph-pythia8',
-     'BprimeBprime_M-1400_TuneCP5_13TeV-madgraph-pythia8',
-     'BprimeBprime_M-1500_TuneCP5_13TeV-madgraph-pythia8',
-     'BprimeBprime_M-1600_TuneCP5_13TeV-madgraph-pythia8',
-     'BprimeBprime_M-1700_TuneCP5_13TeV-madgraph-pythia8',
-     'BprimeBprime_M-1800_TuneCP5_13TeV-madgraph-pythia8',
+     #'BprimeBprime_M-900_TuneCP5_13TeV-madgraph-pythia8',
+     #'BprimeBprime_M-1000_TuneCP5_13TeV-madgraph-pythia8',
+     #'BprimeBprime_M-1100_TuneCP5_13TeV-madgraph-pythia8',
+     #'BprimeBprime_M-1200_TuneCP5_13TeV-madgraph-pythia8',
+     #'BprimeBprime_M-1300_TuneCP5_13TeV-madgraph-pythia8',
+     #'BprimeBprime_M-1400_TuneCP5_13TeV-madgraph-pythia8',
+     #'BprimeBprime_M-1500_TuneCP5_13TeV-madgraph-pythia8',
+     #'BprimeBprime_M-1600_TuneCP5_13TeV-madgraph-pythia8',
+     #'BprimeBprime_M-1700_TuneCP5_13TeV-madgraph-pythia8',
+     #'BprimeBprime_M-1800_TuneCP5_13TeV-madgraph-pythia8',
 
 ## FWLJMET
      #'BprimeBprime_M-1100_TuneCP5_13TeV-madgraph-pythia8',#/multiLep2017/190620_230122/0000',
@@ -142,8 +222,6 @@ signalList = [
      #'BprimeBprime_M-1500_TuneCP5_13TeV-madgraph-pythia8',#/multiLep2017/190620_221835/0000',
      #'BprimeBprime_M-1700_TuneCP5_13TeV-madgraph-pythia8',#/multiLep2017/190620_230014/0000',
      #'BprimeBprime_M-1800_TuneCP5_13TeV-madgraph-pythia8',#/multiLep2017/190620_225908/0000',
-
-## FWLJMET_wywong
      #'BprimeBprime_M-1000_TuneCP5_13TeV-madgraph-pythia8',#/multiLep2017/190806_185500/0000',
      #'BprimeBprime_M-1600_TuneCP5_13TeV-madgraph-pythia8',#/multiLep2017/190806_185643/0000', 
      ]
@@ -217,12 +295,15 @@ dirList = [
 # 	'TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8',
 # 	'TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8',
 # 	'WW_TuneCP5_13TeV-pythia8',	
+
 ## FWLJMET
         #'WZTo3LNu_TuneCP5_13TeV-amcatnloFXFX-pythia8', #/multiLep2017/190620_231128/0000',	
         #'ZZTo4L_13TeV_powheg_pythia8',#/multiLep2017/190620_231021/0000',
         #'WWW_4F_TuneCP5_13TeV-amcatnlo-pythia8', #/multiLep2017/190620_230439/0000',
         #'WWZ_4F_TuneCP5_13TeV-amcatnlo-pythia8',#/multiLep2017/190620_230906/0000',
-        #'WZZ_TuneCP5_13TeV-amcatnlo-pythia8',#/multiLep2017/190620_230546/0000',
+	#'WZZTo3L1Nu2Q_4f_TuneCP5_13TeV_amcatnlo_pythia8',
+	#'WZZ_ZTo2L_WToAll_4f_TuneCP5_13TeV_amcatnlo_pythia8',
+        ##'WZZ_TuneCP5_13TeV-amcatnlo-pythia8',#/multiLep2017/190620_230546/0000',
         #'ZZZ_TuneCP5_13TeV-amcatnlo-pythia8',#/multiLep2017/190620_230652/0000',
         #'TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8',#/multiLep2017/190620_230758/0000',
         #'TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8',#/multiLep2017/190620_230333/0000',
@@ -242,7 +323,7 @@ dirList = [
         #'MuonEG/multiLep2017/200103_210318/0000',#190620_232720/0000',
         #'MuonEG/multiLep2017/200103_210424/0000',
         #'MuonEG/multiLep2017/200103_210518/0000',#190620_232931/0000',
-        #####deleted files####'MuonEG/multiLep2017/190620_232826/0000',
+        ######deleted files####'MuonEG/multiLep2017/190620_232826/0000',
         #########'MuonEG/multiLep2017/190620_232931/0000',
 
 ## FWLJMET_wywong

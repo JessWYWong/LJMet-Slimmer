@@ -1,18 +1,19 @@
 #include "step1.cc"
 
 void testStep1(){  
-  TString path ="root://cmseos.fnal.gov//store/user/lpcljm/FWLJMET102X_3lep2017_062019/";
-  
+  TString path ="root://cmseos.fnal.gov//store/user/lpcljm/FWLJMET102X_3lep2017_wywong_012020/";
+ 
   //Choose one for test:
 //   TString outname  = "MuonEG";
 //   TString filename = outname+"/multiLep2017/190620_232931/0000/"+outname+"_1.root"; //190620_232931:rsyarif_crab_multiLep2017_MuonEGRun2017F
   
-  TString outname  = "TprimeTprime_M-1400_TuneCP5_13TeV-madgraph-pythia8";
-  TString filename = outname+"/multiLep2017/190620_222511/0000/"+outname+"_1.root";
-
+  //TString outname  = "X53X53_M-1000_RH_TuneCP5_13TeV-madgraph-pythia8";
+  //TString filename = outname+"/multiLep2017/211119_225353/0000/"+outname+"_1.root";
+  TString outname  = "TTTT_TuneCP5_PSweights_13TeV-amcatnlo-pythia8_correctnPartonsInBorn";
+  TString filename = outname+"/multiLep2017/211203_214113/0000/"+outname+"_1.root";
 
   TString inputFile=path+"/"+filename;    	
-  TString outputFile="testStep1_"+outname+".root";
+  TString outputFile=outname+".root";//"testStep1_"+outname+".root";
 
   gSystem->AddIncludePath("-I$CMSSW_BASE/src/");
   

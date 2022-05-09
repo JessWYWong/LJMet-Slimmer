@@ -3,9 +3,10 @@ using namespace std;
 
 void plotFakeRate(){
 
-	bool doSinglelep = true;
-	bool doDilep = true;
+	bool DEBUG = true;	
 
+	bool doSinglelep = true;
+	bool doDilep = false;
 // 
 // // 	TString Dir = "LJMet80x_1orMorelep_Moriond17_ttbarFakeRate_saveLooseMC_2017_4_17_rizki_step1hadds_step2/";
 // 	TString Dir = "LJMet80x_1orMorelep_Moriond17_ttbarFakeRate_saveLooseMC_2017_4_17_dR0p01_elMVAaltFix_rizki_step1hadds_step2/";
@@ -23,10 +24,15 @@ void plotFakeRate(){
 // 	TString Dir = "LJMet80x_1orMorelep_Moriond17_MCFakeRate_saveLooseMC_2017_5_8_rizki_step1hadds_step2/";
 // 	TString Dir = "LJMet80x_1orMorelep_Moriond17_MCFakeRate_saveLooseMC_2017_5_8_dR0p3_rizki_step1hadds_step2/";
 // 	TString Dir = "LJMet80x_1orMorelep_Moriond17_MCFakeRate_saveLooseMC_2017_5_8_dR0p1_rizki_step1hadds_step2/";
-	TString Dir = "LJMet80x_1orMorelep_Moriond17_MCFakeRate_saveLooseMC_2017_5_8_dR0p01_elMVAaltFix_rizki_step1hadds_step2/";
+	//TString Dir = "LJMet80x_1orMorelep_Moriond17_MCFakeRate_saveLooseMC_2017_5_8_dR0p01_elMVAaltFix_rizki_step1hadds_step2/";
+	//TString Dir = "FWLJMET102X_3lep2017_wywong_102019_saveLooseLep_step1_FRv1_v2_hadds_step2/";
+	//TString Dir = "FWLJMET102X_3lep2017_wywong_102019_saveLooseLep_ttClosureCount_step1_FRv2_hadds_step2/";
+	TString Dir = "FWLJMET102X_3lep2017_wywong_012020_ttClosureCount_step1_FRv3/TTTo2L2Nu_TuneCP5_PSweights_13TeV-powheg-pythia8/0000_step2/";
+	//TString Dir = "FWLJMET102X_3lep2017_wywong_012020_step1_FRv3_hadds_step2/";
 // 	TString f_str = Dir+"/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_combined_1_hadd";
-	TString f_str = Dir+"/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_combined_v2_1_hadd";
+	//TString f_str = Dir+"/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_combined_v2_1_hadd";
 // 	TString f_str = Dir+"/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_combined_hadd";
+	TString f_str = Dir+"TTTo2L2Nu_TuneCP5_PSweights_13TeV-powheg-pythia8_10"; //_hadd";
 	TString SaveDir = "";
 	
 	TFile *f = TFile::Open(f_str+".root","READ");
@@ -39,12 +45,12 @@ void plotFakeRate(){
 	cout << "" << endl;
 
 	TTree *t = (TTree*) f->Get("ljmet");
-	
+
 	//define binnings
 // 	const Int_t nbins = 20; 
 // 	Double_t bins[nbins+1]={0,10,30,40,60,80,100,120,140,160,180,200,220,240,260,280,300,350,400,450,500};
-	const Int_t nbins = 7; 
-	Double_t bins[nbins+1]={0,10,30,50,100,150,200,500};
+	const Int_t nbins = 5; 
+	Double_t bins[nbins+1]={30,50,100,150,200,500};
 
 
 	//define cuts
@@ -101,13 +107,17 @@ void plotFakeRate(){
 	TH1D *h_m_ALLlep_isFromC_num = new TH1D("h_m_ALLlep_isFromC_num","h_m_ALLlep_isFromC_num",nbins,bins);
 	TH1D *h_m_ALLlep_isFromL_num = new TH1D("h_m_ALLlep_isFromL_num","h_m_ALLlep_isFromL_num",nbins,bins);
 	TH1D *h_m_ALLlep_isFromElse_num = new TH1D("h_m_ALLlep_isFromElse_num","h_m_ALLlep_isFromElse_num",nbins,bins);
-		
+
+	if(DEBUG) cout << "Created new hist." << endl;		
+
 	t->Draw("LeptonPt>>h_e_ALLlep_denom","LeptonFlavor==0"+ALLlepCut+isNonPrompt);
 	t->Draw("LeptonPt>>h_e_ALLlep_isNotMatched_denom","LeptonFlavor==0"+ALLlepCut+isNonPrompt+isNotMatched);
 	t->Draw("LeptonPt>>h_e_ALLlep_isFromB_denom","LeptonFlavor==0"+ALLlepCut+isNonPrompt+isFromB);
 	t->Draw("LeptonPt>>h_e_ALLlep_isFromC_denom","LeptonFlavor==0"+ALLlepCut+isNonPrompt+isFromC);
 	t->Draw("LeptonPt>>h_e_ALLlep_isFromL_denom","LeptonFlavor==0"+ALLlepCut+isNonPrompt+isFromL);
 	t->Draw("LeptonPt>>h_e_ALLlep_isFromElse_denom","LeptonFlavor==0"+ALLlepCut+isNonPrompt+isFromElse);
+
+	if(DEBUG) cout << "Drew el all non-prompt (den)." << endl;
 
 	t->Draw("LeptonPt>>h_e_ALLlep_num","LeptonFlavor==0"+ALLlepCut+isNonPrompt+isTight);
 	t->Draw("LeptonPt>>h_e_ALLlep_isNotMatched_num","LeptonFlavor==0"+ALLlepCut+isNonPrompt+isNotMatched+isTight);
@@ -116,12 +126,16 @@ void plotFakeRate(){
 	t->Draw("LeptonPt>>h_e_ALLlep_isFromL_num","LeptonFlavor==0"+ALLlepCut+isNonPrompt+isFromL+isTight);
 	t->Draw("LeptonPt>>h_e_ALLlep_isFromElse_num","LeptonFlavor==0"+ALLlepCut+isNonPrompt+isFromElse+isTight);
 
+	if(DEBUG) cout << "Drew el isTight non-prompt (num)." << endl;
+
 	t->Draw("LeptonPt>>h_m_ALLlep_denom","LeptonFlavor==1"+ALLlepCut+isNonPrompt);
 	t->Draw("LeptonPt>>h_m_ALLlep_isNotMatched_denom","LeptonFlavor==1"+ALLlepCut+isNonPrompt+isNotMatched);
 	t->Draw("LeptonPt>>h_m_ALLlep_isFromB_denom","LeptonFlavor==1"+ALLlepCut+isNonPrompt+isFromB);
 	t->Draw("LeptonPt>>h_m_ALLlep_isFromC_denom","LeptonFlavor==1"+ALLlepCut+isNonPrompt+isFromC);
 	t->Draw("LeptonPt>>h_m_ALLlep_isFromL_denom","LeptonFlavor==1"+ALLlepCut+isNonPrompt+isFromL);
 	t->Draw("LeptonPt>>h_m_ALLlep_isFromElse_denom","LeptonFlavor==1"+ALLlepCut+isNonPrompt+isFromElse);
+
+        if(DEBUG) cout << "Drew mu all non-prompt (den)." << endl;
 
 	t->Draw("LeptonPt>>h_m_ALLlep_num","LeptonFlavor==1"+ALLlepCut+isNonPrompt+isTight);
 	t->Draw("LeptonPt>>h_m_ALLlep_isNotMatched_num","LeptonFlavor==1"+ALLlepCut+isNonPrompt+isNotMatched+isTight);
@@ -130,6 +144,8 @@ void plotFakeRate(){
 	t->Draw("LeptonPt>>h_m_ALLlep_isFromL_num","LeptonFlavor==1"+ALLlepCut+isNonPrompt+isFromL+isTight);
 	t->Draw("LeptonPt>>h_m_ALLlep_isFromElse_num","LeptonFlavor==1"+ALLlepCut+isNonPrompt+isFromElse+isTight);
 	
+        if(DEBUG) cout << "Drew mu isTight non-prompt (num)." << endl;
+
 	TGraphAsymmErrors *g_e_ALLlep = new TGraphAsymmErrors( h_e_ALLlep_num, h_e_ALLlep_denom,"cl=0.683 b(1,1) mode");
 	TGraphAsymmErrors *g_e_ALLlep_isNotMatched = new TGraphAsymmErrors( h_e_ALLlep_isNotMatched_num, h_e_ALLlep_isNotMatched_denom,"cl=0.683 b(1,1) mode");
 	TGraphAsymmErrors *g_e_ALLlep_isFromB = new TGraphAsymmErrors( h_e_ALLlep_isFromB_num, h_e_ALLlep_isFromB_denom,"cl=0.683 b(1,1) mode");

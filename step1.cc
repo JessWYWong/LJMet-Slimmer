@@ -2058,12 +2058,12 @@ void step1::Loop(TString inTreeName, TString outTreeName)
 			else std::cout<<"Something is wrong with trigger efficiency SF. None of the trigger types."<< std::endl;
 			
 			if(SelTrigType == 0) {
-                                TrigEffWeightUp = TrigEffWeight+eeTrigLeadUp[LeadEtaBin][LeadPtBin]+0.01+0.003;
-                                TrigEffWeightDn = TrigEffWeight-eeTrigLeadDn[LeadEtaBin][LeadPtBin]-0.01-0.003;
+                                TrigEffWeightUp = TrigEffWeight+TMath::Sqrt(pow(eeTrigLeadUp[LeadEtaBin][LeadPtBin]+0.02,2.0)+pow(0.01+0.02,2.0)+0.003*0.003);
+                                TrigEffWeightDn = TrigEffWeight-TMath::Sqrt(pow(eeTrigLeadDn[LeadEtaBin][LeadPtBin]+0.02,2.0)+pow(0.01+0.02,2.0)+0.003*0.003);
 			}
 			else{
-				TrigEffWeightUp = TrigEffWeight+2*0.01;
-				TrigEffWeightDn = TrigEffWeight-2*0.01;
+				TrigEffWeightUp = TrigEffWeight+TMath::Sqrt(2*pow(0.01+0.02,2.0));
+				TrigEffWeightDn = TrigEffWeight-TMath::Sqrt(2*pow(0.01+0.02,2.0));
 			}
 			
 		}
@@ -2412,76 +2412,76 @@ eta:2.5 bin:11
 			
 			//added by Jess  March 2020 MVA90 noiso unc
                         if (leppt < 20){ 
-                            if( lepeta < -2.000) elIdSys += 0.014*0.014 ;
-                            else if( lepeta < -1.566) elIdSys += 0.020*0.020 ;
-                            else if( lepeta < -1.444) elIdSys += 1.000*1.000 ;
-                            else if( lepeta < -0.800) elIdSys += 0.041*0.041 ;
-                            else if( lepeta < 0.000) elIdSys += 0.022*0.022 ;
-                            else if( lepeta < 0.800) elIdSys += 0.022*0.022 ;
-                            else if( lepeta < 1.444) elIdSys += 0.041*0.041 ;
-                            else if( lepeta < 1.566) elIdSys += 1.000*1.000 ;
-                            else if( lepeta < 2.000) elIdSys += 0.020*0.020 ;
-                            else elIdSys += 0.014*0.014 ;
+                            if( lepeta < -2.000) elIdSys += 0.014;
+                            else if( lepeta < -1.566) elIdSys += 0.020;
+                            else if( lepeta < -1.444) elIdSys += 1.000;
+                            else if( lepeta < -0.800) elIdSys += 0.041;
+                            else if( lepeta < 0.000) elIdSys += 0.022;
+                            else if( lepeta < 0.800) elIdSys += 0.022;
+                            else if( lepeta < 1.444) elIdSys += 0.041;
+                            else if( lepeta < 1.566) elIdSys += 1.000;
+                            else if( lepeta < 2.000) elIdSys += 0.020;
+                            else elIdSys += 0.014;
                         }
                         else if (leppt < 35){
-                            if( lepeta < -2.000) elIdSys += 0.018*0.018 ;
-                            else if( lepeta < -1.566) elIdSys += 0.020*0.020 ;
-                            else if( lepeta < -1.444) elIdSys += 1.000*1.000 ;
-                            else if( lepeta < -0.800) elIdSys += 0.028*0.028 ;
-                            else if( lepeta < 0.000) elIdSys += 0.019*0.019 ;
-                            else if( lepeta < 0.800) elIdSys += 0.019*0.019 ;
-                            else if( lepeta < 1.444) elIdSys += 0.028*0.028 ;
-                            else if( lepeta < 1.566) elIdSys += 1.000*1.000 ;
-                            else if( lepeta < 2.000) elIdSys += 0.020*0.020 ;
+                            if( lepeta < -2.000) elIdSys += 0.018;
+                            else if( lepeta < -1.566) elIdSys += 0.020;
+                            else if( lepeta < -1.444) elIdSys += 1.000;
+                            else if( lepeta < -0.800) elIdSys += 0.028;
+                            else if( lepeta < 0.000) elIdSys += 0.019;
+                            else if( lepeta < 0.800) elIdSys += 0.019;
+                            else if( lepeta < 1.444) elIdSys += 0.028;
+                            else if( lepeta < 1.566) elIdSys += 1.000;
+                            else if( lepeta < 2.000) elIdSys += 0.020;
                             else elIdSys += 0.018*0.018 ;
                         }
                         else if (leppt < 50){
-                            if( lepeta < -2.000) elIdSys += 0.008*0.008 ;
-                            else if( lepeta < -1.566) elIdSys += 0.005*0.005 ;
-                            else if( lepeta < -1.444) elIdSys += 1.000*1.000 ;
-                            else if( lepeta < -0.800) elIdSys += 0.005*0.005 ;
-                            else if( lepeta < 0.000) elIdSys += 0.003*0.003 ;
-                            else if( lepeta < 0.800) elIdSys += 0.003*0.003 ;
-                            else if( lepeta < 1.444) elIdSys += 0.005*0.005 ;
-                            else if( lepeta < 1.566) elIdSys += 1.000*1.000 ;
-                            else if( lepeta < 2.000) elIdSys += 0.005*0.005 ;
-                            else elIdSys += 0.008*0.008 ;
+                            if( lepeta < -2.000) elIdSys += 0.008;
+                            else if( lepeta < -1.566) elIdSys += 0.005;
+                            else if( lepeta < -1.444) elIdSys += 1.000;
+                            else if( lepeta < -0.800) elIdSys += 0.005;
+                            else if( lepeta < 0.000) elIdSys += 0.003;
+                            else if( lepeta < 0.800) elIdSys += 0.003;
+                            else if( lepeta < 1.444) elIdSys += 0.005;
+                            else if( lepeta < 1.566) elIdSys += 1.000;
+                            else if( lepeta < 2.000) elIdSys += 0.005;
+                            else elIdSys += 0.008;
                         }
                         else if (leppt < 100){
-                            if( lepeta < -2.000) elIdSys += 0.003*0.003 ;
-                            else if( lepeta < -1.566) elIdSys += 0.005*0.005 ;
-                            else if( lepeta < -1.444) elIdSys += 1.000*1.000 ;
-                            else if( lepeta < -0.800) elIdSys += 0.003*0.003 ;
-                            else if( lepeta < 0.000) elIdSys += 0.006*0.006 ;
-                            else if( lepeta < 0.800) elIdSys += 0.006*0.006 ;
-                            else if( lepeta < 1.444) elIdSys += 0.003*0.003 ;
-                            else if( lepeta < 1.566) elIdSys += 1.000*1.000 ;
-                            else if( lepeta < 2.000) elIdSys += 0.005*0.005 ;
-                            else elIdSys += 0.003*0.003 ;
+                            if( lepeta < -2.000) elIdSys += 0.003;
+                            else if( lepeta < -1.566) elIdSys += 0.005;
+                            else if( lepeta < -1.444) elIdSys += 1.000;
+                            else if( lepeta < -0.800) elIdSys += 0.003;
+                            else if( lepeta < 0.000) elIdSys += 0.006;
+                            else if( lepeta < 0.800) elIdSys += 0.006;
+                            else if( lepeta < 1.444) elIdSys += 0.003;
+                            else if( lepeta < 1.566) elIdSys += 1.000;
+                            else if( lepeta < 2.000) elIdSys += 0.005;
+                            else elIdSys += 0.003;
                         }
                         else if (leppt < 200){
-                            if( lepeta < -2.000) elIdSys += 0.034*0.034 ;
-                            else if( lepeta < -1.566) elIdSys += 0.045*0.045 ;
-                            else if( lepeta < -1.444) elIdSys += 1.000*1.000 ;
-                            else if( lepeta < -0.800) elIdSys += 0.011*0.011 ;
-                            else if( lepeta < 0.000) elIdSys += 0.010*0.010 ;
-                            else if( lepeta < 0.800) elIdSys += 0.010*0.010 ;
-                            else if( lepeta < 1.444) elIdSys += 0.011*0.011 ;
-                            else if( lepeta < 1.566) elIdSys += 1.000*1.000 ;
-                            else if( lepeta < 2.000) elIdSys += 0.045*0.045 ;
-                            else elIdSys += 0.034*0.034 ;
+                            if( lepeta < -2.000) elIdSys += 0.034;
+                            else if( lepeta < -1.566) elIdSys += 0.045;
+                            else if( lepeta < -1.444) elIdSys += 1.000;
+                            else if( lepeta < -0.800) elIdSys += 0.011;
+                            else if( lepeta < 0.000) elIdSys += 0.010;
+                            else if( lepeta < 0.800) elIdSys += 0.010;
+                            else if( lepeta < 1.444) elIdSys += 0.011;
+                            else if( lepeta < 1.566) elIdSys += 1.000;
+                            else if( lepeta < 2.000) elIdSys += 0.045;
+                            else elIdSys += 0.034;
                         }
                         else{
-                            if( lepeta < -2.000) elIdSys += 0.082*0.082 ;
-                            else if( lepeta < -1.566) elIdSys += 0.071*0.071 ;
-                            else if( lepeta < -1.444) elIdSys += 1.000*1.000 ;
-                            else if( lepeta < -0.800) elIdSys += 0.061*0.061 ;
-                            else if( lepeta < 0.000) elIdSys += 0.068*0.068 ;
-                            else if( lepeta < 0.800) elIdSys += 0.068*0.068 ;
-                            else if( lepeta < 1.444) elIdSys += 0.061*0.061 ;
-                            else if( lepeta < 1.566) elIdSys += 1.000*1.000 ;
-                            else if( lepeta < 2.000) elIdSys += 0.069*0.069 ;
-                            else elIdSys += 0.086*0.086 ;
+                            if( lepeta < -2.000) elIdSys += 0.082;
+                            else if( lepeta < -1.566) elIdSys += 0.071;
+                            else if( lepeta < -1.444) elIdSys += 1.000;
+                            else if( lepeta < -0.800) elIdSys += 0.061;
+                            else if( lepeta < 0.000) elIdSys += 0.068;
+                            else if( lepeta < 0.800) elIdSys += 0.068;
+                            else if( lepeta < 1.444) elIdSys += 0.061;
+                            else if( lepeta < 1.566) elIdSys += 1.000;
+                            else if( lepeta < 2.000) elIdSys += 0.069;
+                            else elIdSys += 0.086;
                         }
 
 		  }
@@ -2639,7 +2639,6 @@ eta:2.5 bin:11
 			}
 		  }
 		}
-		elIdSys = TMath::Sqrt(elIdSys);
 		isPastTrig = 1;
 		isPastTrig_dilep = 1;
 		
@@ -3303,7 +3302,7 @@ eta:2.5 bin:11
       pdfWeightsMSTW.clear();
       alphaSWeights.clear();
       pdfNewNominalWeight = 1.0;
-      if(isSig){
+      if(isSig && SigMass>=0){
 		pdfNewNominalWeight = NewPDFweights_MultiLepCalc->at(0);
 		// SEEMS TO APPLY TO ALL B2G MG+PYTHIA SIGNALS. LEADING ORDER 4-FLAVOR PDF
 		for(unsigned int i = 0; i < LHEweightids_MultiLepCalc->size(); i++){
@@ -3371,7 +3370,47 @@ eta:2.5 bin:11
 		  }
 		}
       }
-      else {
+      else if (isMadgraphAmc){
+		// APPLY to WWW and WWZ
+		for(unsigned int i = 0; i < LHEweightids_MultiLepCalc->size(); i++){
+		  if(LHEweightids_MultiLepCalc->at(i) > 1001 && LHEweightids_MultiLepCalc->at(i) < 1010){
+			if(LHEweightids_MultiLepCalc->at(i) == 1006 || LHEweightids_MultiLepCalc->at(i) == 1008) continue;
+			renorm.push_back(LHEweights_MultiLepCalc->at(i));
+			renormWeights.push_back(LHEweights_MultiLepCalc->at(i));
+		  }
+		  if(LHEweightids_MultiLepCalc->at(i) > 1440 && LHEweightids_MultiLepCalc->at(i) < 1471){
+			pdfWeights4LHC.push_back(LHEweights_MultiLepCalc->at(i));
+		  }
+		  if(LHEweightids_MultiLepCalc->at(i) > 1472 && LHEweightids_MultiLepCalc->at(i) < 1573){
+                        pdf.push_back(LHEweights_MultiLepCalc->at(i));
+                        pdfWeights.push_back(LHEweights_MultiLepCalc->at(i));
+                  }
+		  if(LHEweightids_MultiLepCalc->at(i) == 1573 || LHEweightids_MultiLepCalc->at(i) == 1574){
+                        alphaSWeights.push_back(LHEweights_MultiLepCalc->at(i));
+                  }
+		}
+      }
+      else if (isMadgraphWZZ){
+                // APPLY to WZZ
+                for(unsigned int i = 0; i < LHEweightids_MultiLepCalc->size(); i++){
+                  if(LHEweightids_MultiLepCalc->at(i) > 1001 && LHEweightids_MultiLepCalc->at(i) < 1010){
+                        if(LHEweightids_MultiLepCalc->at(i) == 1006 || LHEweightids_MultiLepCalc->at(i) == 1008) continue;
+                        renorm.push_back(LHEweights_MultiLepCalc->at(i));
+                        renormWeights.push_back(LHEweights_MultiLepCalc->at(i));
+                  }
+                  if(LHEweightids_MultiLepCalc->at(i) > 1542 && LHEweightids_MultiLepCalc->at(i) < 1573){
+                        pdfWeights4LHC.push_back(LHEweights_MultiLepCalc->at(i));
+                  }
+                  if(LHEweightids_MultiLepCalc->at(i) > 1574 && LHEweightids_MultiLepCalc->at(i) < 1675){
+                        pdf.push_back(LHEweights_MultiLepCalc->at(i));
+                        pdfWeights.push_back(LHEweights_MultiLepCalc->at(i));
+                  }
+                  if(LHEweightids_MultiLepCalc->at(i) == 1675 || LHEweightids_MultiLepCalc->at(i) == 1676){
+                        alphaSWeights.push_back(LHEweights_MultiLepCalc->at(i));
+                  }
+                }
+      }
+      else{
 		// SEEMS TO APPLY TO ALL AMCATNLO+PYTHIA8 BACKGROUNDS. (include FXFX and madspin)
 		for(unsigned int i = 0; i < LHEweightids_MultiLepCalc->size(); i++){
 		  if(LHEweightids_MultiLepCalc->at(i) > 1001 && LHEweightids_MultiLepCalc->at(i) < 1010){

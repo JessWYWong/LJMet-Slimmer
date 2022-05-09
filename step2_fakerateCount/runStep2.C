@@ -13,7 +13,8 @@ void runStep2(){
   TString subDir;
   TString outputDir;  
   
-  eosDir ="root://cmseos.fnal.gov//store/user/lpcljm/";
+  //eosDir ="root://cmseos.fnal.gov//store/user/lpcljm/";
+  eosDir ="root://cmseos.fnal.gov//store/user/wywong/";
 
   std::vector<TString> fileNames;
   
@@ -33,11 +34,15 @@ void runStep2(){
   
 //   fileNames.push_back("DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_combined_hadd.root");  
 //    fileNames.push_back("DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_combined_1_hadd.root");  
-   fileNames.push_back("DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_combined_v2_1_hadd.root");  
-  inputDir="LJMet80x_1orMorelep_Moriond17_MCFakeRate_saveLooseMC_2017_5_8_dR0p01_elMVAaltFix_rizki_step1hadds";
+   //fileNames.push_back("DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_combined_v2_1_hadd.root");  
+  fileNames.push_back("TTTo2L2Nu_TuneCP5_PSweights_13TeV-powheg-pythia8_10.root");//_hadd.root");
+  //inputDir="LJMet80x_1orMorelep_Moriond17_MCFakeRate_saveLooseMC_2017_5_8_dR0p01_elMVAaltFix_rizki_step1hadds";
+  //inputDir="FWLJMET102X_3lep2017_wywong_102019_saveLooseLep_ttClosureCount_step1_FRv2_hadds";
+  //inputDir="FWLJMET102X_3lep2017_wywong_102019_saveLooseLep_step1_FRv1_v2_hadds";
+  //inputDir="FWLJMET102X_3lep2017_wywong_012020_step1_FRv3";//_hadds";
+  inputDir="FWLJMET102X_3lep2017_wywong_012020_ttClosureCount_step1_FRv3/TTTo2L2Nu_TuneCP5_PSweights_13TeV-powheg-pythia8/0000";
 
-
-  subDir="nominal";
+  //subDir="nominal";
 
   outputDir=inputDir+"_step2";
       
@@ -45,8 +50,8 @@ void runStep2(){
   
   for(int i=0; i< fileNames.size() ; i++){
   	
-  	inputFile = eosDir+"/"+inputDir+"/"+subDir+"/"+fileNames.at(i);
-  	system("mkdir -v "+outputDir);
+  	inputFile = eosDir+"/"+inputDir+"/"+fileNames.at(i); //+subDir+"/"+fileNames.at(i);
+  	system("mkdir -vp "+outputDir);
 
   	outputFile = outputDir+"/"+fileNames.at(i);
   	

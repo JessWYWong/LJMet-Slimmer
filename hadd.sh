@@ -1,6 +1,6 @@
 #!/bin/bash
 
-input=LJMet94x_3lepTT_2017datasets_2018_11_7_rizki_step1 
+input=FWLJMET102X_3lep2017_062019_wiwong_step1
 
 postStr=hadds
 output=$input$postStr

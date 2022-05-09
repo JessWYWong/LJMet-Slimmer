@@ -10,8 +10,8 @@ input  = sys.argv[1]
 output = sys.argv[2]
 #shift = sys.argv[3]
 
-#inputDir='/eos/uscms/store/group/lpcljm/'+input #+'/'+shift
-inputDir='/eos/uscms/store/user/wywong/'+input
+inputDir='/eos/uscms/store/group/lpcljm/'+input #+'/'+shift
+#inputDir='/eos/uscms/store/user/wywong/'+input
 
 #outputDir='/eos/uscms/store/group/lpcljm/'+output #+'/'+shift
 outputDir='/eos/uscms/store/user/wywong/'+output #+'/'+shift
@@ -105,6 +105,23 @@ for sample in signalList:
 
 
 dirList = [
+        "TTTT_TuneCP5_PSweights_13TeV-amcatnlo-pythia8_correctnPartonsInBorn",
+
+        #"X53X53_M-900_RH_TuneCP5_13TeV-madgraph-pythia8",
+        #"X53X53_M-1000_RH_TuneCP5_13TeV-madgraph-pythia8",
+        #"X53X53_M-1100_RH_TuneCP5_13TeV-madgraph-pythia8",
+        #"X53X53_M-1200_RH_TuneCP5_13TeV-madgraph-pythia8",
+        #"X53X53_M-1300_RH_TuneCP5_13TeV-madgraph-pythia8",
+        #"X53X53_M-1400_RH_TuneCP5_13TeV-madgraph-pythia8",
+        #"X53X53_M-1600_RH_TuneCP5_13TeV-madgraph-pythia8",
+        #"X53X53_M-1700_RH_TuneCP5_13TeV-madgraph-pythia8",
+
+        #"X53X53_M-1100_LH_TuneCP5_13TeV-madgraph-pythia8",
+        #"X53X53_M-1200_LH_TuneCP5_13TeV-madgraph-pythia8",
+        #"X53X53_M-1400_LH_TuneCP5_13TeV-madgraph-pythia8",
+        #"X53X53_M-1500_LH_TuneCP5_13TeV-madgraph-pythia8",
+        #"X53X53_M-1700_LH_TuneCP5_13TeV-madgraph-pythia8",
+	
 	#### 2018 samples
 	#'WZTo3LNu_TuneCP5_13TeV-powheg-pythia8', 
 	#'ZZTo4L_TuneCP5_13TeV_powheg_pythia8', 
@@ -131,16 +148,18 @@ dirList = [
  	#'TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8',
  	#'WW_TuneCP5_13TeV-pythia8',	
 
-        'TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8',
-        'TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8',
-        'WWW_4F_TuneCP5_13TeV-amcatnlo-pythia8',
-        'WWZ_4F_TuneCP5_13TeV-amcatnlo-pythia8',
-        'WZTo3LNu_TuneCP5_13TeV-amcatnloFXFX-pythia8',
-        'WZZ_TuneCP5_13TeV-amcatnlo-pythia8',
-        'ZZTo4L_13TeV_powheg_pythia8',
-        'ZZZ_TuneCP5_13TeV-amcatnlo-pythia8',
-
- #       'MuonEG/multiLep2017/190905_030235/0000',        
+        #'TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8',
+        #'TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8',
+        #'WWW_4F_TuneCP5_13TeV-amcatnlo-pythia8',
+        #'WWZ_4F_TuneCP5_13TeV-amcatnlo-pythia8',
+        #'WZTo3LNu_TuneCP5_13TeV-amcatnloFXFX-pythia8',
+        #'WZZ_TuneCP5_13TeV-amcatnlo-pythia8',
+        #'WZZTo3L1Nu2Q_4f_TuneCP5_13TeV_amcatnlo_pythia8',
+        #'WZZ_ZTo2L_WToAll_4f_TuneCP5_13TeV_amcatnlo_pythia8',
+        #'ZZTo4L_13TeV_powheg_pythia8',
+        #'ZZZ_TuneCP5_13TeV-amcatnlo-pythia8',
+ 
+#       'MuonEG/multiLep2017/190905_030235/0000',        
         #'TTTo2L2Nu_TuneCP5_PSweights_13TeV-powheg-pythia8',
         #'TTToHadronic_TuneCP5_PSweights_13TeV-powheg-pythia8',
 	#'TTToSemiLeptonic_TuneCP5_PSweights_13TeV-powheg-pythia8',
@@ -195,7 +214,7 @@ for sample in dirList:
             print ('multiple dir', subdir)
             break
 
-    nFilesPerHadd = 500
+    nFilesPerHadd = 300
     rootfiles = []
     for sub in subdir:
         ListRootfiles = EOSlist_root_files(inputDir+'/'+sample+path+'/'+sub)
