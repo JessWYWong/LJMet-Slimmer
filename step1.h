@@ -31,6 +31,7 @@ public :
    Bool_t          isTOP;
    Bool_t          isMadgraphBkg;
    Bool_t          isPowhegBkg;
+   Bool_t          isMadgraphAmc,isMadgraphWZZ;
    Bool_t          isMC;
    Bool_t          isTT;
    Bool_t          isTTV;
@@ -1130,7 +1131,7 @@ step1::step1(TString inputFileName, TString outputFileName) : inputTree(0), inpu
 // if parameter tree is not specified (or zero), connect the file
 // used to generate this class and read the Tree.
 
-  isSig  = inputFileName.Contains("prime");
+  isSig  = inputFileName.Contains("TTTT_Tune") || inputFileName.Contains("prime") || inputFileName.Contains("X53X53");
   if(isSig){
     if(inputFileName.Contains("_M-700")) SigMass = 0;
     else if(inputFileName.Contains("_M-800")) SigMass = 1;
@@ -1148,8 +1149,10 @@ step1::step1(TString inputFileName, TString outputFileName) : inputTree(0), inpu
   }
   isMadgraphBkg = inputFileName.Contains("WJetsToLNu_HT") || inputFileName.Contains("QCD") || inputFileName.Contains("madgraph");
   isPowhegBkg = inputFileName.Contains("_powheg_");
-  isTOP = (inputFileName.Contains("Mtt") || inputFileName.Contains("ST") || inputFileName.Contains("TTZ_") || inputFileName.Contains("TTW_") || inputFileName.Contains("TT_Tune"));
-  isTT = (inputFileName.Contains("TT_Tune") || inputFileName.Contains("Mtt") || inputFileName.Contains("TTTo"));
+  isMadgraphAmc = inputFileName.Contains("WWW_") || inputFileName.Contains("WWZ_");
+  isMadgraphWZZ = inputFileName.Contains("WZZ_") || inputFileName.Contains("WZZTo");
+  isTOP = (inputFileName.Contains("Mtt") || inputFileName.Contains("ST") || inputFileName.Contains("TTZ_") || inputFileName.Contains("TTW_") || (inputFileName.Contains("TT_Tune") && !(inputFileName.Contains("TTTT_"))) );
+  isTT = ((inputFileName.Contains("TT_Tune") && !(inputFileName.Contains("TTTT_")))|| inputFileName.Contains("Mtt") || inputFileName.Contains("TTTo"));
   isST = inputFileName.Contains("ST");
   isTTV = (inputFileName.Contains("TTZ_") || inputFileName.Contains("TTW_"));
   isMC      = !inputFileName.Contains("EGamma") && !inputFileName.Contains("Muon");

@@ -15,7 +15,8 @@ void Closure_3leps_ppf(){
 // 	TString f_str = "root://cmseos.fnal.gov://store/user/lpcljm/LJMet80x_3lep_Moriond17_mcFakeRate_saveLooseMC_2017_4_20_rizki_step1hadds/nominal/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_combined_hadd.root";
 
 // 	TString f_str = "root://cmseos.fnal.gov://store/user/lpcljm/LJMet80x_3lep_Moriond17_ttbarFakeRate_saveLooseMC_2017_4_17_dR0p01_PRv9_FRv45_elMVAaltFix_rizki_step1hadds/nominal/TT_TuneCUETP8M2T4_13TeV-powheg-pythia8_hadd.root"; //fakerate was measured using LJMet80x_1orMorelep_Moriond17_ttbarFakeRate_saveLooseMC_2017_4_17_dR0p01_elMVAaltFix_rizki_step1hadds/nominal/TT_....1_hadd.root
-	TString f_str = "root://cmseos.fnal.gov://store/user/lpcljm/LJMet80x_3lep_Moriond17_ttbarFakeRate_saveLooseMC_2017_4_17_dR0p01_PRv9_FRv48_elMVAaltFix_rizki_step1hadds/nominal/TT_TuneCUETP8M2T4_13TeV-powheg-pythia8_hadd.root"; //fakerate was measured using LJMet80x_1orMorelep_Moriond17_ttbarFakeRate_saveLooseMC_2017_4_17_dR0p01_elMVAaltFix_rizki_step1hadds/nominal/TT_....1_hadd.root
+//	TString f_str = "root://cmseos.fnal.gov://store/user/lpcljm/LJMet80x_3lep_Moriond17_ttbarFakeRate_saveLooseMC_2017_4_17_dR0p01_PRv9_FRv48_elMVAaltFix_rizki_step1hadds/nominal/TT_TuneCUETP8M2T4_13TeV-powheg-pythia8_hadd.root"; //fakerate was measured using LJMet80x_1orMorelep_Moriond17_ttbarFakeRate_saveLooseMC_2017_4_17_dR0p01_elMVAaltFix_rizki_step1hadds/nominal/TT_....1_hadd.root
+	TString f_str = "root://cmseos.fnal.gov://store/user/wywong/FWLJMET102X_3lep2017_wywong_102019_saveLooseLep_step1_FRv1_hadds/TTTo2L2Nu_TuneCP5_PSweights_13TeV-powheg-pythia8_hadd.root";
 		
 	TFile *f = TFile::Open(f_str, "READ");
 	

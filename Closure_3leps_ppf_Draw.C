@@ -28,15 +28,16 @@ void Closure_3leps_ppf_Draw(){
 // 	TString f_str = "root://cmseos.fnal.gov://store/user/lpcljm/LJMet80x_3lep_Moriond17_mcFakeRate_saveLooseMC_2017_4_20_rizki_step1hadds/nominal/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_combined_hadd.root";
 
 // 	TString f_str = "root://cmseos.fnal.gov://store/user/lpcljm/LJMet80x_3lep_Moriond17_ttbarFakeRate_saveLooseMC_2017_4_17_dR0p01_PRv9_FRv45_elMVAaltFix_rizki_step1hadds/nominal/TT_TuneCUETP8M2T4_13TeV-powheg-pythia8_hadd.root"; //fakerate was measured using LJMet80x_1orMorelep_Moriond17_ttbarFakeRate_saveLooseMC_2017_4_17_dR0p01_elMVAaltFix_rizki_step1hadds/nominal/TT_....1_hadd.root
-	TString f_str = "root://cmseos.fnal.gov://store/user/lpcljm/LJMet80x_3lep_Moriond17_ttbarFakeRate_saveLooseMC_2017_4_17_dR0p01_PRv9_FRv48_elMVAaltFix_rizki_step1hadds/nominal/TT_TuneCUETP8M2T4_13TeV-powheg-pythia8_hadd.root"; //fakerate was measured using LJMet80x_1orMorelep_Moriond17_ttbarFakeRate_saveLooseMC_2017_4_17_dR0p01_elMVAaltFix_rizki_step1hadds/nominal/TT_....1_hadd.root
-		
+	//TString f_str = "root://cmseos.fnal.gov://store/user/lpcljm/LJMet80x_3lep_Moriond17_ttbarFakeRate_saveLooseMC_2017_4_17_dR0p01_PRv9_FRv48_elMVAaltFix_rizki_step1hadds/nominal/TT_TuneCUETP8M2T4_13TeV-powheg-pythia8_hadd.root"; //fakerate was measured using LJMet80x_1orMorelep_Moriond17_ttbarFakeRate_saveLooseMC_2017_4_17_dR0p01_elMVAaltFix_rizki_step1hadds/nominal/TT_....1_hadd.root
+	TString f_str = "root://cmseos.fnal.gov://store/user/wywong/FWLJMET102X_3lep2017_wywong_102019_saveLooseLep_step1_FRv1_hadds/TTTo2L2Nu_TuneCP5_PSweights_13TeV-powheg-pythia8_hadd.root";	
+	
 	TFile *f = TFile::Open(f_str, "READ");
 	
 	cout << "Opening file:" << f_str << endl;
 
 	TTree *t = (TTree*) f->Get("ljmet");
 	
-	TString saveDir = "Closure_3leps_ppf_Draw_Sep18-2017";
+	TString saveDir = "Closure_3leps_ppf_Draw_Oct19-2017";
 // 	TString saveDir = "Closure_3leps_ppf_Draw_Sep18-2017_minMlllBv4";
 
 	system("mkdir -v "+saveDir);
@@ -119,23 +120,23 @@ void Closure_3leps_ppf_Draw(){
 	TString exactly3Lep = " && AllLeptonCount_PtOrdered==3";
 
 	TString njet = " && 1";
-// 	TString njet = " && (NJets_singleLepCalc ==1)";
-// 	TString njet = " && (NJets_singleLepCalc ==2)";
-// 	TString njet = " && (NJets_singleLepCalc > 2)";
+// 	TString njet = " && (NJets_MultiLepCalc ==1)";
+// 	TString njet = " && (NJets_MultiLepCalc ==2)";
+// 	TString njet = " && (NJets_MultiLepCalc > 2)";
 
 // 	TString bjet = " && 1";
-	TString bjet = " && (NJetsBTagwithSF_singleLepCalc >=1)";
+	TString bjet = " && (NJetsBTagwithSF_MultiLepCalc >=1)";
 
 
 // 	TString basic_cut = "1 "+trig+trilep+lepPt+exactly3Lep+njet+bjet;
 // 	TString basic_cut = "1 "+trig+lepPt+exactly3Lep+njet+bjet;
 
-// 	TString basic_cut = "1 && (AllLeptonPt_PtOrdered[0] >= 30) && (AllLeptonPt_PtOrdered[1] >= 30) && (AllLeptonPt_PtOrdered[2] >= 30) && (corr_met_singleLepCalc >= 0) && (NJets_singleLepCalc >= 0) && (NJetsBTagwithSF_singleLepCalc >= 0) && DataPastTrigger_dilep == 1 && (AK4HTpMETpLepPt >= 0) && AllLeptonCount_PtOrdered == 3 && ( (MllOS_allComb[0] > 0 || MllOS_allComb[0] < 0) && (MllOS_allComb[1] > 0 || MllOS_allComb[1] < 0) && (MllOS_allComb[2] > 0 || MllOS_allComb[2] < 0) )";
-// 	TString basic_cut = "1 && (AllLeptonPt_PtOrdered[0] >= 30) && (AllLeptonPt_PtOrdered[1] >= 30) && (AllLeptonPt_PtOrdered[2] >= 30) && (corr_met_singleLepCalc >= 0) && (NJets_singleLepCalc >= 0) && (NJetsBTagwithSF_singleLepCalc >= 0) && MCPastTrigger_dilep == 1 && (AK4HTpMETpLepPt >= 0) && AllLeptonCount_PtOrdered == 3 && ( (MllOS_allComb[0] > 0 || MllOS_allComb[0] < 0) && (MllOS_allComb[1] > 0 || MllOS_allComb[1] < 0) && (MllOS_allComb[2] > 0 || MllOS_allComb[2] < 0) )";
+// 	TString basic_cut = "1 && (AllLeptonPt_PtOrdered[0] >= 30) && (AllLeptonPt_PtOrdered[1] >= 30) && (AllLeptonPt_PtOrdered[2] >= 30) && (corr_met_MultiLepCalc >= 0) && (NJets_MultiLepCalc >= 0) && (NJetsBTagwithSF_MultiLepCalc >= 0) && DataPastTrigger_dilep == 1 && (AK4HTpMETpLepPt >= 0) && AllLeptonCount_PtOrdered == 3 && ( (MllOS_allComb[0] > 0 || MllOS_allComb[0] < 0) && (MllOS_allComb[1] > 0 || MllOS_allComb[1] < 0) && (MllOS_allComb[2] > 0 || MllOS_allComb[2] < 0) )";
+// 	TString basic_cut = "1 && (AllLeptonPt_PtOrdered[0] >= 30) && (AllLeptonPt_PtOrdered[1] >= 30) && (AllLeptonPt_PtOrdered[2] >= 30) && (corr_met_MultiLepCalc >= 0) && (NJets_MultiLepCalc >= 0) && (NJetsBTagwithSF_MultiLepCalc >= 0) && MCPastTrigger_dilep == 1 && (AK4HTpMETpLepPt >= 0) && AllLeptonCount_PtOrdered == 3 && ( (MllOS_allComb[0] > 0 || MllOS_allComb[0] < 0) && (MllOS_allComb[1] > 0 || MllOS_allComb[1] < 0) && (MllOS_allComb[2] > 0 || MllOS_allComb[2] < 0) )";
 
 
 	//ttbar - SR cut --> CHECK!!
-	TString basic_cut = "1 && (AllLeptonPt_PtOrdered[0] >= 30) && (AllLeptonPt_PtOrdered[1] >= 30) && (AllLeptonPt_PtOrdered[2] >= 30) && (corr_met_singleLepCalc >= 20) && (NJets_singleLepCalc >= 3) && (NJetsBTagwithSF_singleLepCalc >= 1) && MCPastTrigger_dilep == 1 && (AK4HTpMETpLepPt >= 0) && AllLeptonCount_PtOrdered == 3 && ( (MllOS_allComb[0] > 20 || MllOS_allComb[0] < 0) && (MllOS_allComb[1] > 20 || MllOS_allComb[1] < 0) && (MllOS_allComb[2] > 20 || MllOS_allComb[2] < 0) )";
+	TString basic_cut = "1 && (AllLeptonPt_PtOrdered[0] >= 30) && (AllLeptonPt_PtOrdered[1] >= 30) && (AllLeptonPt_PtOrdered[2] >= 30) && (corr_met_MultiLepCalc >= 20) && (NJets_MultiLepCalc >= 3) && (NJetsBTagwithSF_MultiLepCalc >= 1) && MCPastTrigger_dilep == 1 && (AK4HTpMETpLepPt >= 0) && AllLeptonCount_PtOrdered == 3 && ( (MllOS_allComb[0] > 20 || MllOS_allComb[0] < 0) && (MllOS_allComb[1] > 20 || MllOS_allComb[1] < 0) && (MllOS_allComb[2] > 20 || MllOS_allComb[2] < 0) )";
 
 
 	cout << "Counting with basic cuts: " << basic_cut << endl;	
@@ -201,8 +202,8 @@ void Closure_3leps_ppf_Draw(){
 	TH1D *h_eee_obs = new TH1D("h_eee_obs","h_eee",nbins,bins);
 	TH1D *h_eee_pred = new TH1D("h_eee_pred","h_eee",nbins,bins);
 
-	EEE_ppf_ttt = t->Draw(observ+">>h_eee_obs",basic_cut+isEEE+" && ( isPPF || isPFP || isFPP ) && isTTT " );
-	EEE_ppf_tt  = t->Draw(observ+">>h_eee_pred",basic_cut+isEEE+isPPF+isPPF_isTT );
+	auto EEE_ppf_ttt = t->Draw(observ+">>h_eee_obs",basic_cut+isEEE+isPPF+isTTT_);//" && ( isPPF || isPFP || isFPP ) && isTTT " );
+	auto EEE_ppf_tt  = t->Draw(observ+">>h_eee_pred",basic_cut+isEEE+isPPF+isPPF_isTT );
 
 	std::cout<<"Processing EEE 1 fake t/l sources ..." << std::endl;
 
@@ -261,31 +262,31 @@ void Closure_3leps_ppf_Draw(){
 
 	//EEM - 2prompts
 	std::cout<<"Processing EEM 1 fake t/l..." << std::endl;
-	EEM_ppf_tt = t->Draw(observ+">>h_eem_pred",basic_cut+isEEM_+isPPF+isTT);
+	auto EEM_ppf_tt = t->Draw(observ+">>h_eem_pred",basic_cut+isEEM_+isPPF+isTT);
 
-	EEM_ppf_ttt = t->Draw(observ+">>h_eem_ppf_obs",basic_cut+isEEM_+isPPF+isTTT);
-	EEM_pfp_ttt = t->Draw(observ+">>h_eem_pfp_obs",basic_cut+isEEM_+isPFP+isTTT);
-	EEM_fpp_ttt = t->Draw(observ+">>h_eem_fpp_obs",basic_cut+isEEM_+isFPP+isTTT);
+	auto EEM_ppf_ttt = t->Draw(observ+">>h_eem_ppf_obs",basic_cut+isEEM_+isPPF+isTTT);
+	auto EEM_pfp_ttt = t->Draw(observ+">>h_eem_pfp_obs",basic_cut+isEEM_+isPFP+isTTT);
+	auto EEM_fpp_ttt = t->Draw(observ+">>h_eem_fpp_obs",basic_cut+isEEM_+isFPP+isTTT);
 
 	std::cout<<"Processing EEM 1 fake t/l sources..." << std::endl;
 
 	//EME - 2prompts
 	std::cout<<"Processing EME 1 fake t/l ..." << std::endl;
-	EME_ppf_tt = t->Draw(observ+">>h_eme_pred",basic_cut+isEME_+isPPF+isPPF_isTT);
+	auto EME_ppf_tt = t->Draw(observ+">>h_eme_pred",basic_cut+isEME_+isPPF+isPPF_isTT);
 
-	EME_ppf_ttt = t->Draw(observ+">>h_eme_ppf_obs",basic_cut+isEME_+isPPF+isTTT);
-	EME_pfp_ttt = t->Draw(observ+">>h_eme_pfp_obs",basic_cut+isEME_+isPFP+isTTT);
-	EME_fpp_ttt = t->Draw(observ+">>h_eme_fpp_obs",basic_cut+isEME_+isFPP+isTTT);
+	auto EME_ppf_ttt = t->Draw(observ+">>h_eme_ppf_obs",basic_cut+isEME_+isPPF+isTTT);
+	auto EME_pfp_ttt = t->Draw(observ+">>h_eme_pfp_obs",basic_cut+isEME_+isPFP+isTTT);
+	auto EME_fpp_ttt = t->Draw(observ+">>h_eme_fpp_obs",basic_cut+isEME_+isFPP+isTTT);
 
 	std::cout<<"Processing EME 1 fake t/l sources ..." << std::endl;
 
 	//MEE - 2prompts
 	std::cout<<"Processing MEE 1 fake t/l ..." << std::endl;
-	MEE_ppf_tt = t->Draw(observ+">>h_mee_pred",basic_cut+isMEE_+isPPF+isPPF_isTT);
+	auto MEE_ppf_tt = t->Draw(observ+">>h_mee_pred",basic_cut+isMEE_+isPPF+isPPF_isTT);
 
-	MEE_ppf_ttt = t->Draw(observ+">>h_mee_ppf_obs",basic_cut+isMEE_+isPPF+isTTT);
-	MEE_pfp_ttt = t->Draw(observ+">>h_mee_pfp_obs",basic_cut+isMEE_+isPFP+isTTT);
-	MEE_fpp_ttt = t->Draw(observ+">>h_mee_fpp_obs",basic_cut+isMEE_+isFPP+isTTT);
+	auto MEE_ppf_ttt = t->Draw(observ+">>h_mee_ppf_obs",basic_cut+isMEE_+isPPF+isTTT);
+	auto MEE_pfp_ttt = t->Draw(observ+">>h_mee_pfp_obs",basic_cut+isMEE_+isPFP+isTTT);
+	auto MEE_fpp_ttt = t->Draw(observ+">>h_mee_fpp_obs",basic_cut+isMEE_+isFPP+isTTT);
 
 	std::cout<<"Processing MEE 1 fake t/l sources..." << std::endl;
 	
@@ -388,29 +389,29 @@ void Closure_3leps_ppf_Draw(){
 
 	//1 fake / 2 prompts
 	std::cout<<"Processing EMM 1 fake t/l ..." << std::endl;
-	EMM_ppf_ttt = t->Draw(observ+">>h_emm_ppf_obs",basic_cut+isEMM_+isPPF+isTTT);
-	EMM_pfp_ttt = t->Draw(observ+">>h_emm_pfp_obs",basic_cut+isEMM_+isPFP+isTTT);
-	EMM_fpp_ttt = t->Draw(observ+">>h_emm_fpp_obs",basic_cut+isEMM_+isFPP+isTTT);
+	auto EMM_ppf_ttt = t->Draw(observ+">>h_emm_ppf_obs",basic_cut+isEMM_+isPPF+isTTT);
+	auto EMM_pfp_ttt = t->Draw(observ+">>h_emm_pfp_obs",basic_cut+isEMM_+isPFP+isTTT);
+	auto EMM_fpp_ttt = t->Draw(observ+">>h_emm_fpp_obs",basic_cut+isEMM_+isFPP+isTTT);
 
-	EMM_ppf_tt = t->Draw(observ+">>h_emm_pred",basic_cut+isEMM_+isPPF+isPPF_isTT);
+	auto EMM_ppf_tt = t->Draw(observ+">>h_emm_pred",basic_cut+isEMM_+isPPF+isPPF_isTT);
 
 	std::cout<<"Processing EMM 1 fake t/l sources ..." << std::endl;
 
 	std::cout<<"Processing MEM 1 fake t/l..." << std::endl;
-	MEM_ppf_ttt = t->Draw(observ+">>h_mem_ppf_obs",basic_cut+isMEM_+isPPF+isTTT);
-	MEM_pfp_ttt = t->Draw(observ+">>h_mem_pfp_obs",basic_cut+isMEM_+isPFP+isTTT);
-	MEM_fpp_ttt = t->Draw(observ+">>h_mem_fpp_obs",basic_cut+isMEM_+isFPP+isTTT);
+	auto MEM_ppf_ttt = t->Draw(observ+">>h_mem_ppf_obs",basic_cut+isMEM_+isPPF+isTTT);
+	auto MEM_pfp_ttt = t->Draw(observ+">>h_mem_pfp_obs",basic_cut+isMEM_+isPFP+isTTT);
+	auto MEM_fpp_ttt = t->Draw(observ+">>h_mem_fpp_obs",basic_cut+isMEM_+isFPP+isTTT);
 
-	MEM_ppf_tt = t->Draw(observ+">>h_mem_pred",basic_cut+isMEM_+isPPF+isPPF_isTT);
+	auto MEM_ppf_tt = t->Draw(observ+">>h_mem_pred",basic_cut+isMEM_+isPPF+isPPF_isTT);
 
 	std::cout<<"Processing MEM 1 fake sources..." << std::endl;
 
 	std::cout<<"Processing MME 1 fake t/l..." << std::endl;
-	MME_ppf_ttt = t->Draw(observ+">>h_mme_ppf_obs",basic_cut+isMME_+isPPF+isTTT);
-	MME_pfp_ttt = t->Draw(observ+">>h_mme_pfp_obs",basic_cut+isMME_+isPFP+isTTT);
-	MME_fpp_ttt = t->Draw(observ+">>h_mme_fpp_obs",basic_cut+isMME_+isFPP+isTTT);
+	auto MME_ppf_ttt = t->Draw(observ+">>h_mme_ppf_obs",basic_cut+isMME_+isPPF+isTTT);
+	auto MME_pfp_ttt = t->Draw(observ+">>h_mme_pfp_obs",basic_cut+isMME_+isPFP+isTTT);
+	auto MME_fpp_ttt = t->Draw(observ+">>h_mme_fpp_obs",basic_cut+isMME_+isFPP+isTTT);
 
-	MME_ppf_tt = t->Draw(observ+">>h_mme_pred",basic_cut+isMME_+isPPF+isPPF_isTT);
+	auto MME_ppf_tt = t->Draw(observ+">>h_mme_pred",basic_cut+isMME_+isPPF+isPPF_isTT);
 
 	std::cout<<"Processing MME 1 fake t/l sources ..." << std::endl;
 
@@ -498,9 +499,9 @@ void Closure_3leps_ppf_Draw(){
 	TH1D *h_mmm_pred = new TH1D("h_mmm_pred","h_mmm",nbins,bins);
 
 	std::cout<<"Processing MMM 1 fake t/l ..." << std::endl;
-	MMM_ppf_tt = t->Draw(observ+">>h_mmm_pred",basic_cut+isMMM+isPPF+isPPF_isTT );
+	auto MMM_ppf_tt = t->Draw(observ+">>h_mmm_pred",basic_cut+isMMM+isPPF+isPPF_isTT );
 
-	MMM_ppf_ttt = t->Draw(observ+">>h_mmm_obs",basic_cut+isMMM+" && ( isPPF || isPFP || isFPP ) && isTTT " );
+	auto MMM_ppf_ttt = t->Draw(observ+">>h_mmm_obs",basic_cut+isMMM+" && ( isPPF || isPFP || isFPP ) && isTTT " );
 
 	std::cout<<"Processing MMM 1 fake t/l sources ..." << std::endl;
 

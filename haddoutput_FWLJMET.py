@@ -21,7 +21,7 @@ outDir=outputDir[10:]
 os.system('eos root://cmseos.fnal.gov/ mkdir -p '+outDir)
 
 signalList = [
-#     'TprimeTprime_M-700_TuneCP5_PSweights_13TeV-madgraph-pythia8',
+     #'TprimeTprime_M-900_TuneCP5_PSweights_13TeV-madgraph-pythia8',
      #'TprimeTprime_M-1000_TuneCP5_PSweights_13TeV-madgraph-pythia8',
      #'TprimeTprime_M-1100_TuneCP5_PSweights_13TeV-madgraph-pythia8',
      #'TprimeTprime_M-1200_TuneCP5_PSweights_13TeV-madgraph-pythia8',
@@ -57,16 +57,16 @@ for sample in signalList:
 
 
 signalList = [
-    'BprimeBprime_M-900_TuneCP5_PSweights_13TeV-madgraph-pythia8',
-    'BprimeBprime_M-1000_TuneCP5_PSweights_13TeV-madgraph-pythia8',
-    'BprimeBprime_M-1100_TuneCP5_PSweights_13TeV-madgraph-pythia8',
-    'BprimeBprime_M-1200_TuneCP5_PSweights_13TeV-madgraph-pythia8',
-    'BprimeBprime_M-1300_TuneCP5_PSweights_13TeV-madgraph-pythia8',
-    'BprimeBprime_M-1400_TuneCP5_PSweights_13TeV-madgraph-pythia8',
-    'BprimeBprime_M-1500_TuneCP5_PSweights_13TeV-madgraph-pythia8',
-    'BprimeBprime_M-1600_TuneCP5_PSweights_13TeV-madgraph-pythia8',
-    'BprimeBprime_M-1700_TuneCP5_PSweights_13TeV-madgraph-pythia8',
-    'BprimeBprime_M-1800_TuneCP5_PSweights_13TeV-madgraph-pythia8',
+    #'BprimeBprime_M-900_TuneCP5_PSweights_13TeV-madgraph-pythia8',
+    #'BprimeBprime_M-1000_TuneCP5_PSweights_13TeV-madgraph-pythia8',
+    #'BprimeBprime_M-1100_TuneCP5_PSweights_13TeV-madgraph-pythia8',
+    #'BprimeBprime_M-1200_TuneCP5_PSweights_13TeV-madgraph-pythia8',
+    #'BprimeBprime_M-1300_TuneCP5_PSweights_13TeV-madgraph-pythia8',
+    #'BprimeBprime_M-1400_TuneCP5_PSweights_13TeV-madgraph-pythia8',
+    #'BprimeBprime_M-1500_TuneCP5_PSweights_13TeV-madgraph-pythia8',
+    #'BprimeBprime_M-1600_TuneCP5_PSweights_13TeV-madgraph-pythia8',
+    #'BprimeBprime_M-1700_TuneCP5_PSweights_13TeV-madgraph-pythia8',
+    #'BprimeBprime_M-1800_TuneCP5_PSweights_13TeV-madgraph-pythia8',
     ]
 
 signalOutList = ['']
@@ -103,13 +103,32 @@ dirList = [
 # 	'TTZToLL_M-1to10_TuneCUETP8M1_13TeV-madgraphMLM-pythia8',
 
 #############2018################
+	## new signal
+        'TTTT_TuneCP5_13TeV-amcatnlo-pythia8',
+        #'X53X53_M-1000_RH_TuneCP5_13TeV-madgraph-pythia8',
+        #'X53X53_M-1100_LH_TuneCP5_13TeV-madgraph-pythia8',
+        #'X53X53_M-1100_RH_TuneCP5_13TeV-madgraph-pythia8',
+        #'X53X53_M-1200_LH_TuneCP5_13TeV-madgraph-pythia8',
+        #'X53X53_M-1200_RH_TuneCP5_13TeV-madgraph-pythia8',
+        #'X53X53_M-1300_RH_TuneCP5_13TeV-madgraph-pythia8',
+        #'X53X53_M-1400_LH_TuneCP5_13TeV-madgraph-pythia8',
+        #'X53X53_M-1400_RH_TuneCP5_13TeV-madgraph-pythia8',
+        #'X53X53_M-1500_LH_TuneCP5_13TeV-madgraph-pythia8',
+        #'X53X53_M-1500_RH_TuneCP5_13TeV-madgraph-pythia8',
+        #'X53X53_M-1600_RH_TuneCP5_13TeV-madgraph-pythia8',
+        #'X53X53_M-1700_LH_TuneCP5_13TeV-madgraph-pythia8',
+        #'X53X53_M-900_RH_TuneCP5_13TeV-madgraph-pythia8',
+
+	## background
         #'WZTo3LNu_TuneCP5_13TeV-powheg-pythia8/0000', #/multiLep2017/190620_231128/0000',  
-	#'ZZTo4L_TuneCP5_13TeV_powheg_pythia8/0000',
+	##'ZZTo4L_TuneCP5_13TeV_powheg_pythia8/0000',
         #'ZZTo4L_TuneCP5_13TeV_powheg_pythia8-ext2/0000',
         #'ZZTo4L_TuneCP5_13TeV_powheg_pythia8-ext2/0001',
         #'WWW_4F_TuneCP5_13TeV-amcatnlo-pythia8/0000', #/multiLep2017/190620_230439/0000',
         #'WWZ_TuneCP5_13TeV-amcatnlo-pythia8/0000',#/multiLep2017/190620_230906/0000',
         #'WZZ_TuneCP5_13TeV-amcatnlo-pythia8/0000',#/multiLep2017/190620_230546/0000',
+	#'WZZTo3L1Nu2Q_4f_TuneCP5_13TeV_amcatnlo_pythia8/0000',
+	#'WZZ_ZTo2L_WToAll_4f_TuneCP5_13TeV_amcatnlo_pythia8/0000',
         #'ZZZ_TuneCP5_13TeV-amcatnlo-pythia8/0000',#/multiLep2017/190620_230652/0000',
         #'TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8/0000',#/multiLep2017/190620_230758/0000',
         #'TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8/0000',#/multiLep2017/190620_230333/0000',
@@ -140,6 +159,7 @@ dirList = [
         #'EGammaRun2018B/0000',
         #'EGammaRun2018C/0000',
         #'EGammaRun2018D/0000',
+        ##'EGammaRun2018D_reco/0000',
 	#'DoubleMuonRun2018A/0000',
         #'DoubleMuonRun2018B/0000',
         #'DoubleMuonRun2018C/0000',

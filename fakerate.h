@@ -107,24 +107,24 @@ float Pr(int mode, std::vector<double> lep_info){
                 //else if(pt_el<500) weight = 0.798064;
                 //else weight = 0.85347;
 
-		//2018 082020 PRv2
-		if(pt_el>=30. && pt_el < 40.) weight = 0.785;
-                else if(pt_el<50) weight = 0.841;
-                else if(pt_el<60) weight = 0.871;
-                else if(pt_el<70) weight = 0.883;
-                else if(pt_el<80) weight = 0.888;
-                else if(pt_el<90) weight = 0.887;
-                else if(pt_el<100) weight = 0.890;
-                else if(pt_el<125) weight = 0.872;
-                else if(pt_el<150) weight = 0.868;
-                else if(pt_el<200) weight = 0.863;
-                else if(pt_el<300) weight = 0.852;
-                else if(pt_el<400) weight = 0.837;
+                
+		//2018 082020 PRv4 updated Aug 2021
+		if(pt_el>=30. && pt_el < 40.) weight = 0.789;
+                else if(pt_el<50) weight = 0.844;
+                else if(pt_el<60) weight = 0.873;
+                else if(pt_el<70) weight = 0.885;
+                else if(pt_el<80) weight = 0.892;
+                else if(pt_el<90) weight = 0.888;
+                else if(pt_el<100) weight = 0.894;
+                else if(pt_el<125) weight = 0.877;
+                else if(pt_el<150) weight = 0.873;
+                else if(pt_el<200) weight = 0.865;
+                else if(pt_el<300) weight = 0.848;
+                else if(pt_el<400) weight = 0.847;
                 else if(pt_el<500) weight = 0.816;
-                else weight = 0.827;
+                else weight = 0.828;
 
-
-		//// unity PR for syst
+		// unity PR for syst
 		//weight = 1.0;
 
 		//if(DEBUGfakerate_h)std::cout << "elPR used (mode:"<<mode<<") = " << weight << " + " << "("<<prModeBehavior(mode)<<")"<<uPr(lep_info)<< std::endl;
@@ -139,13 +139,13 @@ float Pr(int mode, std::vector<double> lep_info){
 		double eta_mu = lep_info.at(3);
 		double weight = 0.0;
 
-		// PRv6, PRv7test, PRvElPRtest, PRv9 - From Clint, https://indico.cern.ch/event/605620/contributions/2441087/attachments/1398025/2132153/VHFMeeting_X53_01.18.17.pdf http://cms.cern.ch/iCMS/jsp/db_notes/noteInfo.jsp?cmsnoteid=CMS%20AN-2016/242 v16
-		//weight = 0.943;
+		//// PRv6, PRv7test, PRvElPRtest, PRv9 - From Clint, https://indico.cern.ch/event/605620/contributions/2441087/attachments/1398025/2132153/VHFMeeting_X53_01.18.17.pdf http://cms.cern.ch/iCMS/jsp/db_notes/noteInfo.jsp?cmsnoteid=CMS%20AN-2016/242 v16
+		////weight = 0.943;
 
-		//2018 052020 PR
-		//weight = 0.943;
+		////2018 052020 PR
+		////weight = 0.943;
 		
-		//2018 082020 PRv2
+		//2018 082020 PRv4
 		weight = 0.931;
 
 		// unity PR for syst
@@ -180,7 +180,13 @@ float Fr(int mode, std::vector<double> lep_info){
                         //FRv3 FRCR2
                         //weight = 0.10 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
 
-			//2018 FRv1
+			//2018 FRv3 (rereco)
+			//weight = 0.09 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
+
+			//2018 FRv5 (RERUN) --> ddbkg from FRv3 when measure!
+			//weight = 0.06 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
+
+			//2018 FRv6
 			weight = 0.08 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
 
 			//FRv50 FRCR1 elMVAValueFix
@@ -221,29 +227,47 @@ float Fr(int mode, std::vector<double> lep_info){
 			// FRv3
                         //weight = 0.14 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
 			
-			// 2018 FRv1 & v2
+			// 2018 FRv4
+			//weight = 0.17 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
+
+			// 2018 FRv5
+			//weight = 0.13 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
+
+			// 2018 FRv6
 			weight = 0.16 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
 
-			//2018 sum FR eta
-			//if(fabs(eta_mu)<0.4) weight = 0.18 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
-			//else if (fabs(eta_mu)<0.9) weight = 0.15 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
-			//else if (fabs(eta_mu)<1.2) weight = 0.18 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
-			//else  weight = 0.17 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
+			////2018 sum FR eta
+			////if(fabs(eta_mu)<0.4) weight = 0.18 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
+			////else if (fabs(eta_mu)<0.9) weight = 0.15 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
+			////else if (fabs(eta_mu)<1.2) weight = 0.18 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
+			////else  weight = 0.17 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
 
-			//2018 EEM FR eta syst.
-			//if(fabs(eta_mu)<0.4) weight = 0.09 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
-			//else if (fabs(eta_mu)<0.9) weight = 0.16 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
+			////2018 EEM FRv4 eta syst. (rereco+JSON May 17 2021)
+			////if(fabs(eta_mu)<0.4) weight = 0.07 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
+			////else if (fabs(eta_mu)<0.9) weight = 0.18 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
+			////else if (fabs(eta_mu)<1.2) weight = 0.18 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
+			////else  weight = 0.20 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
+
+			////2018 EEM FRv5 (RERUN)
+			////if(fabs(eta_mu)<0.4) weight = 0.08 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
+			////else if (fabs(eta_mu)<0.9) weight = 0.15 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
+			////else if (fabs(eta_mu)<1.2) weight = 0.14 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
+			////else  weight = 0.16 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
+
+			//2018 EEM FRv6
+			//if(fabs(eta_mu)<0.4) weight = 0.10 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
+			//else if (fabs(eta_mu)<0.9) weight = 0.17 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
 			//else if (fabs(eta_mu)<1.2) weight = 0.16 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
-			//else  weight = 0.18 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
+			//else  weight = 0.19 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
 
-			//2018 sysFRv1 eta dependence
-			//weight = (0.16 + 0.001525 *eta_mu + 0.03425*(eta_mu*eta_mu)) +uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
+			////2018 sysFRv1 eta dependence
+			////weight = (0.16 + 0.001525 *eta_mu + 0.03425*(eta_mu*eta_mu)) +uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
 
-			//sysFRv4 eta dependence 2017 updated by Jess
-			//weight = (0.14 - 0.005394 *eta_mu + 0.03241*(eta_mu*eta_mu)) + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
+			////sysFRv4 eta dependence 2017 updated by Jess
+			////weight = (0.14 - 0.005394 *eta_mu + 0.03241*(eta_mu*eta_mu)) + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
 
-			//FRv50 FRCR1 elMVAValueFix
-// 			weight = 0.15 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
+			////FRv50 FRCR1 elMVAValueFix
+// 			//weight = 0.15 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
 
 		}
 		else{
@@ -283,26 +307,26 @@ inline float uPr(std::vector<double> lep_info){
                 //else if(pt_el<500) return 0.0156;
                 //else return 0.0192;
 
-		//2018 082020 PRv2
-		if(pt_el>=30. && pt_el < 40.) return 0.0002;
+		//2018 082020 PRv4 (Sep 2021)
+		if(pt_el>=30. && pt_el < 40.) return 0.0003;
                 else if(pt_el<50) return 0.0002;
-                else if(pt_el<60) return 0.0003;
-                else if(pt_el<70) return 0.0005;
-                else if(pt_el<80) return 0.0008;
-                else if(pt_el<90) return 0.0012;
-                else if(pt_el<100) return 0.0015;
-                else if(pt_el<125) return 0.0014;
-                else if(pt_el<150) return 0.0021;
-                else if(pt_el<200) return 0.0024;
-                else if(pt_el<300) return 0.0038;
-                else if(pt_el<400) return 0.0093;
-                else if(pt_el<500) return 0.0199;
-                else return 0.0291;
+                else if(pt_el<60) return 0.0004;
+                else if(pt_el<70) return 0.0007;
+                else if(pt_el<80) return 0.0012;
+                else if(pt_el<90) return 0.0017;
+                else if(pt_el<100) return 0.0022;
+                else if(pt_el<125) return 0.0020;
+                else if(pt_el<150) return 0.0031;
+                else if(pt_el<200) return 0.0036;
+                else if(pt_el<300) return 0.0057;
+                else if(pt_el<400) return 0.0136;
+                else if(pt_el<500) return 0.0298;
+                else return 0.0445;
 
 	}
 	else{
 		//mu prompt rate unc
-		return 0.01; // 2018 082020 PRv2
+		return 0.0105; // 2018 082020 PRv4
 
 
 	}
@@ -318,9 +342,10 @@ inline float uFr(std::vector<double> lep_info){
 		//return sqrt(0.018*0.018 + 0.04*0.04);
 		
 		//2018 FRv1 sys - stat^2 + ∆(CR2-CR1)^2 + ttbar∆(CR2-SR)^2
-		return sqrt(0.01*0.01 + 0.04*0.04 + 0.0*0.0); 
+		//return sqrt(0.01*0.01 + 0.04*0.04 + 0.0*0.0); 
 
-
+		//elFR -  stat^2 + ttbar∆(CR2-SR)^2
+		return sqrt(0.01*0.01 + 0.0*0.0);
 	}
 	else{
 		//mu fake rate unc
@@ -331,8 +356,10 @@ inline float uFr(std::vector<double> lep_info){
 		//return sqrt(0.014*0.014 + 0.0*0.0);
 
 		//2018 FRv1 sys - stat^2 + ∆(CR2-CR1)^2 + ttbar∆(CR2-SR)^2
-		return sqrt(0.01*0.01 + 0.03*0.03 + 0.01*0.01);
+		//return sqrt(0.01*0.01 + 0.02*0.02 + 0.02*0.02);
 
+		//muFR -  stat^2 + ttbar∆(CR2-SR)^2
+		return sqrt(0.01*0.01 + 0.02*0.02);
 	}
 }
 

@@ -6,7 +6,22 @@ inDir = "/store/user/wywong/FWLJMET102X_3lep2018_wywong_052020_hadds/"
 
 MClist = [
 #### 2018
-	"BprimeBprime_M-900_TuneCP5_PSweights_13TeV-madgraph-pythia8_hadd.root",
+        'TTTT_TuneCP5_13TeV-amcatnlo-pythia8_hadd.root',
+        'X53X53_M-1000_RH_TuneCP5_13TeV-madgraph-pythia8_hadd.root',
+        'X53X53_M-1100_LH_TuneCP5_13TeV-madgraph-pythia8_hadd.root',
+        'X53X53_M-1100_RH_TuneCP5_13TeV-madgraph-pythia8_hadd.root',
+        'X53X53_M-1200_LH_TuneCP5_13TeV-madgraph-pythia8_hadd.root',
+        'X53X53_M-1200_RH_TuneCP5_13TeV-madgraph-pythia8_hadd.root',
+        'X53X53_M-1300_RH_TuneCP5_13TeV-madgraph-pythia8_hadd.root',
+        'X53X53_M-1400_LH_TuneCP5_13TeV-madgraph-pythia8_hadd.root',
+        'X53X53_M-1400_RH_TuneCP5_13TeV-madgraph-pythia8_hadd.root',
+        'X53X53_M-1500_LH_TuneCP5_13TeV-madgraph-pythia8_hadd.root',
+        'X53X53_M-1500_RH_TuneCP5_13TeV-madgraph-pythia8_hadd.root',
+        'X53X53_M-1600_RH_TuneCP5_13TeV-madgraph-pythia8_hadd.root',
+        'X53X53_M-1700_LH_TuneCP5_13TeV-madgraph-pythia8_hadd.root',
+        'X53X53_M-900_RH_TuneCP5_13TeV-madgraph-pythia8_hadd.root',
+
+	#"BprimeBprime_M-900_TuneCP5_PSweights_13TeV-madgraph-pythia8_hadd.root",
 	#"BprimeBprime_M-1000_TuneCP5_PSweights_13TeV-madgraph-pythia8_hadd.root",
 	#"BprimeBprime_M-1100_TuneCP5_PSweights_13TeV-madgraph-pythia8_hadd.root",
 	#"BprimeBprime_M-1200_TuneCP5_PSweights_13TeV-madgraph-pythia8_hadd.root",
@@ -32,6 +47,8 @@ MClist = [
 	#"WWZ_TuneCP5_13TeV-amcatnlo-pythia8_hadd.root",
 	#"WZTo3LNu_TuneCP5_13TeV-powheg-pythia8_hadd.root",
 	#"WZZ_TuneCP5_13TeV-amcatnlo-pythia8_hadd.root",
+	#"WZZTo3L1Nu2Q_4f_TuneCP5_13TeV_amcatnlo_pythia8_hadd.root",
+	#"WZZ_ZTo2L_WToAll_4f_TuneCP5_13TeV_amcatnlo_pythia8_hadd.root",
 	#"ZZTo4L_TuneCP5_13TeV_powheg_pythia8_hadd.root",
 	#"ZZTo4L_TuneCP5_13TeV_powheg_pythia8-ext2_hadd.root",
 	#"ZZZ_TuneCP5_13TeV-amcatnlo-pythia8_hadd.root",
