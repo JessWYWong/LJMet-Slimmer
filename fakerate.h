@@ -59,56 +59,7 @@ float Pr(int mode, std::vector<double> lep_info){
 		double eta_el = lep_info.at(3);
 		double weight = 0.0;
 
-		////PRvMuPRtest,PRv9 from http://cms.cern.ch/iCMS/jsp/db_notes/noteInfo.jsp?cmsnoteid=CMS%20AN-2016/242 v16
-		//if(pt_el>=30. && pt_el < 40.) weight = 0.904;
-        	//else if(pt_el<50) weight = 0.928;
-      		//else if(pt_el<60) weight = 0.934;
-        	//else if(pt_el<70) weight = 0.942;
-        	//else if(pt_el<80) weight = 0.947;
-        	//else if(pt_el<90) weight = 0.953;
-        	//else if(pt_el<100) weight = 0.955;
-        	//else if(pt_el<125) weight = 0.948;
-        	//else if(pt_el<150) weight = 0.951;
-        	//else if(pt_el<200) weight = 0.946;
-        	//else if(pt_el<300) weight = 0.935;
-        	//else if(pt_el<400) weight = 0.920;
-        	//else if(pt_el<500) weight = 0.902;
-        	//else weight = 0.800;
-        	
-		////2018 PRv1
-                //if(pt_el>=30. && pt_el < 40.) weight = 0.803;
-                //else if(pt_el<50) weight = 0.861;
-                //else if(pt_el<60) weight = 0.871;
-                //else if(pt_el<70) weight = 0.878;
-                //else if(pt_el<80) weight = 0.880;
-                //else if(pt_el<90) weight = 0.880;
-                //else if(pt_el<100) weight = 0.881;
-                //else if(pt_el<125) weight = 0.863;
-                //else if(pt_el<150) weight = 0.860;
-                //else if(pt_el<200) weight = 0.857;
-                //else if(pt_el<300) weight = 0.847;
-                //else if(pt_el<400) weight = 0.833;
-                //else if(pt_el<500) weight = 0.804;
-                //else weight = 0.859;
-
-		//2018 052020 PR
-                //if(pt_el>=30. && pt_el < 40.) weight = 0.799456;
-                //else if(pt_el<50) weight = 0.84654;
-                //else if(pt_el<60) weight = 0.870202;
-                //else if(pt_el<70) weight = 0.877527;
-                //else if(pt_el<80) weight = 0.881013;
-                //else if(pt_el<90) weight = 0.87998;
-                //else if(pt_el<100) weight = 0.882556;
-                //else if(pt_el<125) weight = 0.864134;
-                //else if(pt_el<150) weight = 0.861906;
-                //else if(pt_el<200) weight = 0.857103;
-                //else if(pt_el<300) weight = 0.848472;
-                //else if(pt_el<400) weight = 0.837799;
-                //else if(pt_el<500) weight = 0.798064;
-                //else weight = 0.85347;
-
-                
-		//2018 082020 PRv4 updated Aug 2021
+		////2018 082020 PRv4 updated Aug 2021
 		if(pt_el>=30. && pt_el < 40.) weight = 0.789;
                 else if(pt_el<50) weight = 0.844;
                 else if(pt_el<60) weight = 0.873;
@@ -124,10 +75,9 @@ float Pr(int mode, std::vector<double> lep_info){
                 else if(pt_el<500) weight = 0.816;
                 else weight = 0.828;
 
-		// unity PR for syst
+		//// unity PR for syst
 		//weight = 1.0;
 
-		//if(DEBUGfakerate_h)std::cout << "elPR used (mode:"<<mode<<") = " << weight << " + " << "("<<prModeBehavior(mode)<<")"<<uPr(lep_info)<< std::endl;
 		if(DEBUGfakerate_h)std::cout << "Ele PR -- Mode: " << mode << ", " << weight <<" + "<< prModeBehavior(mode,lep_info.at(0)) <<  " * " << uPr(lep_info)<< endl;
 		return weight + uPr(lep_info)*prModeBehavior(mode,lep_info.at(0));
 
@@ -139,19 +89,12 @@ float Pr(int mode, std::vector<double> lep_info){
 		double eta_mu = lep_info.at(3);
 		double weight = 0.0;
 
-		//// PRv6, PRv7test, PRvElPRtest, PRv9 - From Clint, https://indico.cern.ch/event/605620/contributions/2441087/attachments/1398025/2132153/VHFMeeting_X53_01.18.17.pdf http://cms.cern.ch/iCMS/jsp/db_notes/noteInfo.jsp?cmsnoteid=CMS%20AN-2016/242 v16
-		////weight = 0.943;
-
-		////2018 052020 PR
-		////weight = 0.943;
-		
-		//2018 082020 PRv4
+		////2018 082020 PRv4
 		weight = 0.931;
 
-		// unity PR for syst
+		//// unity PR for syst
 		//weight = 1.0;
 
-		//if(DEBUGfakerate_h)std::cout << "muPR used (mode:"<<mode<<") = " << weight << " + " << "("<<prModeBehavior(mode)<<")"<<uPr(lep_info)<< std::endl;
  		if(DEBUGfakerate_h)std::cout << "Mu  PR -- Mode: " << mode << ", " << weight <<" + "<<  prModeBehavior(mode,lep_info.at(0)) << " * " << uPr(lep_info)<< endl;
 		return weight + uPr(lep_info)*prModeBehavior(mode,lep_info.at(0));
 
@@ -168,36 +111,14 @@ float Fr(int mode, std::vector<double> lep_info){
 
 		if(lep_info.size()==4){ //before scan size is 4
 
-			//FRv49 FRCR2 elMVAValueFix
-			//weight = 0.20 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
-
-                        //FRv1 FRCR2
-                        //weight = 0.10 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
-
-			//FRv2 FRCR2
-			//weight = 0.10 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
-
-                        //FRv3 FRCR2
-                        //weight = 0.10 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
-
-			//2018 FRv3 (rereco)
-			//weight = 0.09 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
-
-			//2018 FRv5 (RERUN) --> ddbkg from FRv3 when measure!
-			//weight = 0.06 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
-
 			//2018 FRv6
 			weight = 0.08 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
-
-			//FRv50 FRCR1 elMVAValueFix
-// 			weight = 0.23 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
 
 		}
 		else{
 			weight = lep_info.at(5);
 		}
 
-// 		if(DEBUGfakerate_h)std::cout << "elFR used = " << weight << std::endl;
 		if(DEBUGfakerate_h)std::cout << "Ele FR -- Mode: " << mode << ", " << frModeBehavior(mode,lep_info.at(0)) << " * " << uFr(lep_info)<<  endl;
 
 		return weight;
@@ -212,69 +133,23 @@ float Fr(int mode, std::vector<double> lep_info){
 
 		if(lep_info.size()==4) {  //before scan size is 4
 
-
-			//FRv49MuEtatest - model after Clints eta dependence - central=FRv49
-			//weight = ( 0.14 - 3.849218e-18*eta_mu + 0.0257206*(eta_mu*eta_mu) ) + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
-
-                        //FRv1 
-                        //weight = ( 0.15 - 3.849218e-18*eta_mu + 0.0257206*(eta_mu*eta_mu) ) + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
-
-			//FRv2
-			//weight = ( 0.13 - 3.849218e-18*eta_mu + 0.0257206*(eta_mu*eta_mu) ) + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
-
-                        //FRv3 eta dependence !!! needs to update quadractic function according to SS2L mu FR v.s. eta shape
-                        //weight = ( 0.14 - 3.849218e-18*eta_mu + 0.0257206*(eta_mu*eta_mu) ) + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
-			// FRv3
-                        //weight = 0.14 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
-			
-			// 2018 FRv4
-			//weight = 0.17 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
-
-			// 2018 FRv5
-			//weight = 0.13 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
-
 			// 2018 FRv6
 			weight = 0.16 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
 
-			////2018 sum FR eta
-			////if(fabs(eta_mu)<0.4) weight = 0.18 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
-			////else if (fabs(eta_mu)<0.9) weight = 0.15 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
-			////else if (fabs(eta_mu)<1.2) weight = 0.18 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
-			////else  weight = 0.17 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
-
-			////2018 EEM FRv4 eta syst. (rereco+JSON May 17 2021)
-			////if(fabs(eta_mu)<0.4) weight = 0.07 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
-			////else if (fabs(eta_mu)<0.9) weight = 0.18 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
-			////else if (fabs(eta_mu)<1.2) weight = 0.18 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
-			////else  weight = 0.20 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
-
-			////2018 EEM FRv5 (RERUN)
-			////if(fabs(eta_mu)<0.4) weight = 0.08 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
-			////else if (fabs(eta_mu)<0.9) weight = 0.15 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
-			////else if (fabs(eta_mu)<1.2) weight = 0.14 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
-			////else  weight = 0.16 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
-
-			//2018 EEM FRv6
+			////2018 EEM FRv6
 			//if(fabs(eta_mu)<0.4) weight = 0.10 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
 			//else if (fabs(eta_mu)<0.9) weight = 0.17 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
 			//else if (fabs(eta_mu)<1.2) weight = 0.16 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
 			//else  weight = 0.19 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
 
-			////2018 sysFRv1 eta dependence
+			////2018 sysFRv1 eta dependence -- method in 2016 analysis (no longer in use)
 			////weight = (0.16 + 0.001525 *eta_mu + 0.03425*(eta_mu*eta_mu)) +uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
-
-			////sysFRv4 eta dependence 2017 updated by Jess
-			////weight = (0.14 - 0.005394 *eta_mu + 0.03241*(eta_mu*eta_mu)) + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
-
-			////FRv50 FRCR1 elMVAValueFix
-// 			//weight = 0.15 + uFr(lep_info)*frModeBehavior(mode,lep_info.at(0));
 
 		}
 		else{
 			weight = lep_info.at(4);
 		}
 
-// 		if(DEBUGfakerate_h)std::cout << "muFR used = " << weight << std::endl;
 		if(DEBUGfakerate_h)std::cout << "Mu  FR -- Mode: " << mode << ", " << frModeBehavior(mode,lep_info.at(0)) << " * " << uFr(lep_info)<<  endl;
 
 		return weight;
@@ -287,25 +162,6 @@ inline float uPr(std::vector<double> lep_info){
 	if(lep_info.at(0)==0){
 		//ele prompt rate unc
 		double pt_el = lep_info.at(2);
-
-		//PRv6,PRv8test,PRv9,PRvMuPRtest
-		//return 0.001;
-
-		//2017 PRv1
-                //if(pt_el>=30. && pt_el < 40.) return 0.0001;
-                //else if(pt_el<50) return 0.0001;
-                //else if(pt_el<60) return 0.0002;
-                //else if(pt_el<70) return 0.0004;
-                //else if(pt_el<80) return 0.0006;
-                //else if(pt_el<90) return 0.0009;
-                //else if(pt_el<100) return 0.0012;
-                //else if(pt_el<125) return 0.0011;
-                //else if(pt_el<150) return 0.0017;
-                //else if(pt_el<200) return 0.0020;
-                //else if(pt_el<300) return 0.0030;
-                //else if(pt_el<400) return 0.0072;
-                //else if(pt_el<500) return 0.0156;
-                //else return 0.0192;
 
 		//2018 082020 PRv4 (Sep 2021)
 		if(pt_el>=30. && pt_el < 40.) return 0.0003;
@@ -327,8 +183,6 @@ inline float uPr(std::vector<double> lep_info){
 	else{
 		//mu prompt rate unc
 		return 0.0105; // 2018 082020 PRv4
-
-
 	}
 }
 
@@ -338,12 +192,6 @@ inline float uFr(std::vector<double> lep_info){
 		double pt_el = lep_info.at(2);
 		double eta_el = lep_info.at(3);
 
-	 	//FRv49sys - adding ttbar∆(CR2-SR)
-		//return sqrt(0.018*0.018 + 0.04*0.04);
-		
-		//2018 FRv1 sys - stat^2 + ∆(CR2-CR1)^2 + ttbar∆(CR2-SR)^2
-		//return sqrt(0.01*0.01 + 0.04*0.04 + 0.0*0.0); 
-
 		//elFR -  stat^2 + ttbar∆(CR2-SR)^2
 		return sqrt(0.01*0.01 + 0.0*0.0);
 	}
@@ -351,12 +199,6 @@ inline float uFr(std::vector<double> lep_info){
 		//mu fake rate unc
 		double pt_mu = lep_info.at(2);
 		double eta_mu = lep_info.at(3);
-
-	 	//FRv49sys - adding ttbar∆(CR2-SR)
-		//return sqrt(0.014*0.014 + 0.0*0.0);
-
-		//2018 FRv1 sys - stat^2 + ∆(CR2-CR1)^2 + ttbar∆(CR2-SR)^2
-		//return sqrt(0.01*0.01 + 0.02*0.02 + 0.02*0.02);
 
 		//muFR -  stat^2 + ttbar∆(CR2-SR)^2
 		return sqrt(0.01*0.01 + 0.02*0.02);
