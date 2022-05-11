@@ -11,7 +11,7 @@ shift = sys.argv[1]
 
 relbase = os.environ['CMSSW_BASE']
 
-inputDir='/eos/uscms/store/group/lpcljm/FWLJMET102X_3lep2017_wywong_012020/'
+inputDir='/eos/uscms/store/user/wywong/FWLJMET102X_3lep2017_wywong_012020/'
 
 outputDir='/eos/uscms/store/user/wywong/FWLJMET102X_3lep2017_wywong_012020_step1_FRv5_PRv4_ANv8_uFRupdate/'
 

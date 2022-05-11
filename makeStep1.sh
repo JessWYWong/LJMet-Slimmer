@@ -10,7 +10,7 @@ outputDir=${4}
 scratch=${PWD}
 macroDir=${PWD}
 source /cvmfs/cms.cern.ch/cmsset_default.sh
-export SCRAM_ARCH=slc6_amd64_gcc700
+export SCRAM_ARCH=slc7_amd64_gcc700
 #scramv1 project CMSSW CMSSW_9_4_11
 #cd CMSSW_9_4_11
 scramv1 project CMSSW CMSSW_10_2_10
