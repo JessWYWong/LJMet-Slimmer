@@ -1148,7 +1148,7 @@ step1::step1(TString inputFileName, TString outputFileName) : inputTree(0), inpu
     else SigMass = -1;
   }
   isMadgraphBkg = inputFileName.Contains("WJetsToLNu_HT") || inputFileName.Contains("QCD") || inputFileName.Contains("madgraph");
-  isPowhegBkg = inputFileName.Contains("_powheg_");
+  isPowhegBkg = inputFileName.Contains("powheg");
   isMadgraphAmc = inputFileName.Contains("WWW_") || inputFileName.Contains("WWZ_");
   isMadgraphWZZ = inputFileName.Contains("WZZ_") || inputFileName.Contains("WZZTo");
   isTOP = (inputFileName.Contains("Mtt") || inputFileName.Contains("ST") || inputFileName.Contains("TTZ_") || inputFileName.Contains("TTW_") || (inputFileName.Contains("TT_Tune") && !(inputFileName.Contains("TTTT_"))) );

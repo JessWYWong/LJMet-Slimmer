@@ -1700,7 +1700,7 @@ void step1::Loop(TString inTreeName, TString outTreeName)
 			double muFR = 0.; 
 			double elFR = 0.; 
 
-			//// not is use -- turned off			
+			//// not is use -- turned off
 			bool scaleFR = false;
 			double Zjet_ratio = 1.;
 			double ttx_ratio = 1.;
@@ -1894,7 +1894,7 @@ void step1::Loop(TString inTreeName, TString outTreeName)
 		  	for(unsigned int itrig=0; itrig < vsSelMCTriggersMu_MultiLepCalc->size(); itrig++){
 				if( ( 
 						//exclusively muon triggers
-						( vsSelMCTriggersMu_MultiLepCalc->at(itrig).find("HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ_Mass8") != std::string::npos) 
+						( vsSelMCTriggersMu_MultiLepCalc->at(itrig).find("HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ_Mass8") != std::string::npos)
 
 					) &&  viSelMCTriggersMu_MultiLepCalc->at(itrig) > 0 ) { 
 					isPastTrigMC = 1;
@@ -1956,7 +1956,7 @@ void step1::Loop(TString inTreeName, TString outTreeName)
 				}
 				if(DEBUG && SelTrigType < 0) std::cout<<"Something is wrong with trigger efficiency. No matching trigger to first 2 leptons."<< std::endl;
 			}
-		
+
 			float LeadPt, LeadEta, TrailPt, TrailEta;
 			if(diLepComb < 2){LeadPt = TightLeptonPt_PtOrdered.at(0); LeadEta = fabs(TightLeptonEta_PtOrdered.at(0));}
 			else{LeadPt = TightLeptonPt_PtOrdered.at(1); LeadEta = fabs(TightLeptonEta_PtOrdered.at(1));}
@@ -1988,7 +1988,6 @@ void step1::Loop(TString inTreeName, TString outTreeName)
 				TrigEffWeightUp = TrigEffWeight+TMath::Sqrt(2*pow(0.01+0.02,2.0));
 				TrigEffWeightDn = TrigEffWeight-TMath::Sqrt(2*pow(0.01+0.02,2.0));
 			}
-			
 		}
 		std::cout<< "Done TrigEffWeight"<< std::endl;
 		// --- END Trigger Eff SF ---
@@ -2251,7 +2250,6 @@ eta:2.5 bin:11
                                 else if( lepeta < 2.000) elIdSys += 0.030;
                                 else elIdSys += 0.075;
                         }
-                           
 		  }
 
 		  //////// MUONS
@@ -2397,7 +2395,7 @@ eta:2.5 bin:11
 		  	for(unsigned int itrig=0; itrig < vsSelTriggersMu_MultiLepCalc->size(); itrig++){
 				if( ( 
 						//exclusively muon triggers
-						( vsSelTriggersMu_MultiLepCalc->at(itrig).find("HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ_Mass8") != std::string::npos) 	
+						( vsSelTriggersMu_MultiLepCalc->at(itrig).find("HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ_Mass8") != std::string::npos)
 
 					) &&  viSelTriggersMu_MultiLepCalc->at(itrig) > 0 ) { 
 					isPastTrig = 1;
