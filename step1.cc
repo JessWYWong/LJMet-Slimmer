@@ -2967,6 +2967,7 @@ eta:2.5 bin:11
       pdfNewWeights.clear();
       pdfWeights4LHC.clear();
       pdfWeightsMSTW.clear();
+      alphaSWeights.clear();
       pdfNewNominalWeight = 1.0;
       if(isSig && SigMass >=0){
                 pdfNewNominalWeight = NewPDFweights_MultiLepCalc->at(0);
