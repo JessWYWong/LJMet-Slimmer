@@ -766,7 +766,6 @@ void step1::Loop(TString inTreeName, TString outTreeName)
    //if(isTT) njetsCut=1;
    float JetLeadPtCut=0;
    float lepPtCut=30;
-   //float elEtaCut=2.1;
    float jetEtaCut=2.4;
    float ak8EtaCut=2.4;
    float jetPtCut=30;
@@ -1886,7 +1885,7 @@ void step1::Loop(TString inTreeName, TString outTreeName)
 
 						//el&mu triggers
 						( vsSelMCTriggersMu_MultiLepCalc->at(itrig).find("HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ") != std::string::npos) ||
-						( vsSelMCTriggersMu_MultiLepCalc->at(itrig).find("HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ") != std::string::npos) //||
+						( vsSelMCTriggersMu_MultiLepCalc->at(itrig).find("HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ") != std::string::npos)
 
 					) &&  viSelMCTriggersMu_MultiLepCalc->at(itrig) > 0 ) { 
 					isPastTrigMC = 1;
@@ -1899,7 +1898,7 @@ void step1::Loop(TString inTreeName, TString outTreeName)
 		  	for(unsigned int itrig=0; itrig < vsSelMCTriggersMu_MultiLepCalc->size(); itrig++){
 				if( ( 
 						//exclusively muon triggers
-						( vsSelMCTriggersMu_MultiLepCalc->at(itrig).find("HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ_Mass8") != std::string::npos) //|| 	
+						( vsSelMCTriggersMu_MultiLepCalc->at(itrig).find("HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ_Mass8") != std::string::npos)
 
 					) &&  viSelMCTriggersMu_MultiLepCalc->at(itrig) > 0 ) { 
 					isPastTrigMC = 1;
@@ -2852,7 +2851,7 @@ eta:2.5 bin:11
 
 
 		// Count BTag withOUT SFs *** now use DeepJet for b-tagging
-		if(AK4JetDeepCSVb_MultiLepCalc_PtOrdered.at(ijet) + AK4JetDeepCSVbb_MultiLepCalc_PtOrdered.at(ijet) > 0.4941){ // ATTENTION !!! : HARD CODED BTAG MEDIUM VALUE for 2017data. 9 Nov 2018.
+		if(AK4JetDeepCSVb_MultiLepCalc_PtOrdered.at(ijet) + AK4JetDeepCSVbb_MultiLepCalc_PtOrdered.at(ijet) > 0.4941){ // ATTENTION !!! : HARD CODED BTAG MEDIUM VALUE
 			  NJetsBTag_MultiLepCalc += 1;
 			}
 

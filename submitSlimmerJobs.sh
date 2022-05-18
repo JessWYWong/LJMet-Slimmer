@@ -1,6 +1,6 @@
 #!/bin/bash
 
-######### Check FR,PR in fakerate_3lep_ptEta_rizki.h
+######### Check FR,PR in fakerate.h
 ######### Check input/outputs in runCondorSlimmerJobs.py
 ######### select correct step1.C below!
 
